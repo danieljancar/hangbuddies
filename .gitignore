@@ -46,3 +46,7 @@ Thumbs.db
 
  apps/webapp/node_modules
  apps/webapp/.angular
+
+## api
+
+apps/backend/node_modules
