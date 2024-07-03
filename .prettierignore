@@ -1,1 +1,5 @@
 # Ignore Artifacts:
+## root
+.idea
+node_modules
+
