@@ -1,0 +1,43 @@
+{
+  "name": "hangbuddies",
+  "version": "1.0.0",
+  "description": "HangBuddies is a lightweight web application built with NestJS and Angular, facilitating spontaneous social invites among friends for various activities. No login required, just create, share, and respond to invites effortlessly.",
+  "scripts": {
+    "prepare": "husky",
+    "lint": "eslint '**/*.{ts,tsx}'",
+    "lint:fix": "eslint '**/*.{ts,tsx}' --fix",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "format": "npm run prettier && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieljancar/hangbuddies.git"
+  },
+  "keywords": [
+    "nestjs",
+    "angular",
+    "web-application",
+    "social-invites",
+    "spontaneous",
+    "friends",
+    "activities"
+  ],
+  "author": "Daniel Jancar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danieljancar/hangbuddies/issues"
+  },
+  "homepage": "https://github.com/danieljancar/hangbuddies#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "eslint": "^8.5.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "3.3.2"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
