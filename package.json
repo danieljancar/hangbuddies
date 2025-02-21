@@ -1,0 +1,23 @@
+{
+  "name": "hangbuddies",
+  "version": "1.0.0",
+  "description": "HangBuddies is an open-source, monorepo-based web application that enables users to quickly create and share surveys without registration or any other fuss.",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieljancar/hangbuddies.git"
+  },
+  "keywords": [
+    "open-source",
+    "monorepo",
+    "survey-app",
+    "quick-poll"
+  ],
+  "author": "Daniel Jancar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danieljancar/hangbuddies/issues"
+  },
+  "homepage": "https://github.com/danieljancar/hangbuddies#readme"
+}
