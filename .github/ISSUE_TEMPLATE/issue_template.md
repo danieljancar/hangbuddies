@@ -1,8 +1,8 @@
 ---
 name: Blank issue
 about: Create a blank issue
-title: ""
-labels: "triage"
+title: ''
+labels: 'triage'
 ---
 
 **Description:**  

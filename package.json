@@ -1,31 +1,34 @@
 {
-  "name": "hangbuddies",
-  "version": "1.0.0",
-  "description": "HangBuddies is an open-source, monorepo-based web application that enables users to quickly create and share surveys without registration or any other fuss.",
-  "scripts": {
-    "prepare": "husky",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/danieljancar/hangbuddies.git"
-  },
-  "keywords": [
-    "open-source",
-    "monorepo",
-    "survey-app",
-    "quick-poll"
-  ],
-  "author": "Daniel Jancar",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danieljancar/hangbuddies/issues"
-  },
-  "homepage": "https://github.com/danieljancar/hangbuddies#readme",
-  "devDependencies": {
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "prettier": "3.5.1"
-  }
+    "name": "hangbuddies",
+    "version": "1.0.0",
+    "description": "HangBuddies is an open-source, monorepo-based web application that enables users to quickly create and share surveys without registration or any other fuss.",
+    "scripts": {
+        "prepare": "husky",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "commitlint": "commitlint --edit"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/danieljancar/hangbuddies.git"
+    },
+    "keywords": [
+        "open-source",
+        "monorepo",
+        "survey-app",
+        "quick-poll"
+    ],
+    "author": "Daniel Jancar",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/danieljancar/hangbuddies/issues"
+    },
+    "homepage": "https://github.com/danieljancar/hangbuddies#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^19.7.1",
+        "@commitlint/config-conventional": "^19.7.1",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.4.3",
+        "prettier": "3.5.1"
+    }
 }
