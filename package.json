@@ -3,10 +3,13 @@
     "version": "1.0.0",
     "description": "HangBuddies is an open-source, monorepo-based web application that enables users to quickly create and share surveys without registration or any other fuss.",
     "scripts": {
-        "prepare": "husky",
+        "prepare": "husky && npm install",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "commitlint": "commitlint --edit"
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
     },
     "repository": {
         "type": "git",
