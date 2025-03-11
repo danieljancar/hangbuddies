@@ -30,7 +30,7 @@ Before contributing, please ensure you:
 1. Read this document and the related guidelines in [docs/](./docs/).
 2. Have a GitHub account.
 3. Are familiar with our [Github Issues](https://github.com/danieljancar/hangbuddies/issues), [Project Boards](https://github.com/danieljancar/hangbuddies/projects), and [Milestones](https://github.com/danieljancar/hangbuddies/milestones).
-4. Agree to follow our [Code of Conduct](./CODE-OF-CONDUCT.md), [Developer Certificate of Origin](./DCO.md) and [License](./LICENSE).
+4. Agree to follow our [Code of Conduct](./CODE_OF_CONDUCT), [Developer Certificate of Origin](./DCO.md) and [License](./LICENSE).
 
 ## Contributing
 
@@ -46,6 +46,8 @@ We use GitHub Issues with labels, milestones, and project boards to manage tasks
 - **D13 - Code Cleanup & Refactoring** - Code quality improvements.
 - **D14 - CI/CD, Testing & QA Automation** - DevOps improvements
 - **D15 - Documentation & Knowledge Transfer** - Docs and internal guides.
+
+- **I{iteration-nr}** - Iteration milestones, mainly used for PR assignments and tracking.
 
 #### Project Milestones (active)
 
@@ -121,13 +123,15 @@ Code reviews are done by the project maintainers. If you are not a maintainer, y
 
 ## Code of Conduct
 
-We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html) Code of Conduct. Please read the full version in [CODE-OF-CONDUCT.md](./CODE-OF-CONDUCT.md).
+We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html) Code of Conduct. Please read the full version in [CODE-OF-CONDUCT.md](./CODE_OF_CONDUCT).
 
 ## Development Documentation
 
 For more details, refer to:
 
-- [Development Workflow](./docs/dev_workflow.md)
+- [Development Workflow](./docs/DEV_WORKFLOW)
+- [Collaborators Guide](./docs/COLLABORATORS)
+- [Branching Strategy](./docs/BRANCHING_STRATEGY)
 
 ## License
 
