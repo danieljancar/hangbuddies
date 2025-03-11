@@ -73,7 +73,7 @@ Issues are prioritized based on impact, urgency, and dependencies:
 
 ### Pull Requests
 
-Changes to the codebase are submitted via pull requests (PRs). PRs are reviewed and managed by the PL, DPL, and collaborators.
+Changes to the codebase are submitted via pull requests (PRs). PRs are reviewed and managed by the PL, DPL, and testing collaborators.
 
 PRs must include the following metadata:
 
