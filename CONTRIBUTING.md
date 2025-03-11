@@ -1,18 +1,134 @@
-# Contributing to HangBuddies
+# CONTRIBUTING
 
-Thank you for contributing! We strive for a streamlined process:
+## Table of Contents
 
-1. **Check for Existing Issues:**  
-   Verify if your idea or bug is already reported. If not, open a new issue.
-2. **Create a Fork and Branch:**  
-   Use a clear, descriptive branch name (e.g., `feature/short-description` or `bugfix/short-description`).
-3. **Develop Your Changes:**  
-   Make focused commits, ensuring you adhere to coding standards and include tests when relevant.
-4. **Submit a Pull Request:**  
-   Reference the corresponding issue, describe your changes, and request a review.
-5. **Follow Up:**  
-   Engage with any feedback and update your branch until it's ready for merge.
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+    - [Issue Tracking & Labels](#issue-tracking--labels)
+        - [General Milestones](#general-milestones)
+        - [Project Milestones (active)](#project-milestones-active)
+    - [Branching Strategy](#branching-strategy)
+        - [Example](#example)
+    - [Commit Messages](#commit-messages)
+        - [Types](#types)
+        - [Examples](#examples)
+    - [Pull Requests](#pull-requests)
+- [Code Review](#code-review)
+- [Code of Conduct](#code-of-conduct)
+- [Development Documentation](#development-documentation)
+- [License](#license)
 
-Check in our [dev docs](./docs) for more information on the project structure, coding standards, and other relevant topics.
+## Introduction
 
-Your contributions help improve HangBuddies—thank you for your efforts!
+Thank you for considering contributing to HangBuddies! This document outlines the contribution process to ensure a smooth and productive experience for everyone involved.
+
+## Getting Started
+
+Before contributing, please ensure you:
+
+1. Read this document and the related guidelines in [docs/](./docs/).
+2. Have a GitHub account.
+3. Are familiar with our [Github Issues](https://github.com/danieljancar/hangbuddies/issues), [Project Boards](https://github.com/danieljancar/hangbuddies/projects), and [Milestones](https://github.com/danieljancar/hangbuddies/milestones).
+4. Agree to follow our [Code of Conduct](./CODE-OF-CONDUCT.md), [Developer Certificate of Origin](./DCO.md) and [License](./LICENSE).
+
+## Contributing
+
+### Issue Tracking & Labels
+
+We use GitHub Issues with labels, milestones, and project boards to manage tasks. Milestones help categorize work:
+
+#### General Milestones
+
+- **D10 - Daily tasks without project** - Minor, standalone tasks.
+- **D11 - Operations and maintenance** - Routine maintenance (e.g., dependencies, backups)
+- **D12 - Complex Defect Resolution** - Deep investigation bugs.
+- **D13 - Code Cleanup & Refactoring** - Code quality improvements.
+- **D14 - CI/CD, Testing & QA Automation** - DevOps improvements
+- **D15 - Documentation & Knowledge Transfer** - Docs and internal guides.
+
+#### Project Milestones (active)
+
+- **P1000 - Core Feature Implementation (Beta Release)** - Core features for the first beta release (MVPs).
+
+Before opening a new issue, please check if a similar issue already exists. If you find one, add a comment or reaction to show your interest.
+
+### Branching Strategy
+
+We use the following branching strategy:
+
+- `develop` - Main development branch (default).
+- `{issue-nr}-issue-description` - Branch off from `develop` for each issue.
+- `beta` - Branch for the next release.
+- `hotfix/{description}` - Branch for critical bug fixes.
+
+Before a new release comes out, we create a beta branch from `develop` where last minute changes and testing can be done and a beta prerelease is published. Once the beta is stable, it is merged into `master` and tagged with the release version. After the release, the `beta` branch is merged back into `develop`.
+
+#### Example
+
+To create a feature branch for issue #42, run:
+
+```bash
+git checkout -b 42-add-survey-logic develop
+```
+
+### Commit Messages
+
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format for commit messages. This format helps with automatic changelog generation and semantic versioning.
+
+```bash
+<type>(<scope>): <message>
+```
+
+#### Types
+
+- **feat**: A new feature.
+- **fix**: A bug fix.
+- **docs**: Documentation changes.
+- **chore**: Maintenance tasks.
+- **style**: Code style changes.
+- **refactor**: Code refactoring.
+- **test**: Adding or updating tests.
+
+#### Examples
+
+```bash
+git commit -m "feat(api): add survey creation endpoint"
+git commit -m "fix(ui): resolve survey form validation error"
+```
+
+### Pull Requests
+
+1. Open a PR against `develop` (or `beta` for pre-releases).
+2. Reference the related issue in the PR description.
+3. Provide a summary of changes and request a review.
+4. Address feedback, update the issue/milestone and project if needed.
+
+Once merged, ensure related issues are closed.
+
+## Code Review
+
+Code reviews are essential for maintaining code quality and consistency. Reviewers should:
+
+- Ensure the code is well-documented and tested.
+- Check for code style and formatting.
+- Verify the changes work as expected.
+- Provide constructive feedback and suggestions.
+- Approve the PR once satisfied.
+- Merge the PR once approved.
+
+Code reviews are done by the project maintainers. If you are not a maintainer, you can still review and provide feedback.
+
+## Code of Conduct
+
+We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html) Code of Conduct. Please read the full version in [CODE-OF-CONDUCT.md](./CODE-OF-CONDUCT.md).
+
+## Development Documentation
+
+For more details, refer to:
+
+- [Development Workflow](./docs/dev_workflow.md)
+
+## License
+
+By contributing to HangBuddies, you agree that your contributions will be licensed under the [MIT License](./LICENSE).
