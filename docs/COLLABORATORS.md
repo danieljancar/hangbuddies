@@ -28,6 +28,7 @@
 - [Development Workflow](DEV_WORKFLOW.md)
 - [Collaborators (current)](COLLABORATORS.md)
 - [Branching Strategy](BRANCHING_STRATEGY.md)
+- [BRANDING Guidelines](BRANDING.md)
 
 ## Scrum Management
 

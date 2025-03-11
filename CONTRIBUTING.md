@@ -101,7 +101,7 @@ git commit -m "fix(ui): resolve survey form validation error"
 
 ### Pull Requests
 
-1. Open a PR against `develop` (or `beta` for pre-releases).
+1. (Checkout) and open a PR against `develop` (or `beta` for pre-releases).
 2. Reference the related issue in the PR description.
 3. Provide a summary of changes and request a review.
 4. Address feedback, update the issue/milestone and project if needed.
@@ -132,6 +132,7 @@ For more details, refer to:
 - [Development Workflow](./docs/DEV_WORKFLOW)
 - [Collaborators Guide](./docs/COLLABORATORS)
 - [Branching Strategy](./docs/BRANCHING_STRATEGY)
+- [Branding Guidelines](./docs/BRANDING)
 
 ## License
 
