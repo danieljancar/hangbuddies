@@ -1,6 +1,6 @@
 # Ignore artifacts:
-coverage
 node_modules
 .idea
 .husky
 .angular
+dist
