@@ -47,7 +47,7 @@ Make sure to install and configure the monorepo's project dependencies by naviga
 
 ## Configuration
 
-> **Note**
+> [!NOTE]
 > The setup and configuration of the project are still in progress and will be updated here once completed.
 
 # License
