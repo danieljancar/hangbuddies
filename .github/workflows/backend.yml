@@ -1,12 +1,12 @@
-name: Frontend CI
+name: Backend CI
 
 on:
     push:
         paths:
-            - 'apps/frontend/**'
+            - 'apps/backend/**'
     pull_request:
         paths:
-            - 'apps/frontend/**'
+            - 'apps/backend/**'
 
 jobs:
     lint:
@@ -20,13 +20,13 @@ jobs:
               with:
                   node-version: '22'
                   cache: 'npm'
-                  cache-dependency-path: apps/frontend/package-lock.json
+                  cache-dependency-path: apps/backend/package-lock.json
 
             - name: Install dependencies
               run: npm ci
 
             - name: Lint
-              run: npm run lint --prefix apps/frontend
+              run: npm run lint --prefix apps/backend
 
     build:
         name: Build
@@ -40,10 +40,10 @@ jobs:
               with:
                   node-version: '22'
                   cache: 'npm'
-                  cache-dependency-path: apps/frontend/package-lock.json
+                  cache-dependency-path: apps/backend/package-lock.json
 
             - name: Install dependencies
               run: npm ci
 
             - name: Build App
-              run: npm run build --prefix apps/frontend
+              run: npm run build --prefix apps/backend
