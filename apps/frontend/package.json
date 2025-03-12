@@ -9,6 +9,7 @@
         "test": "ng test"
     },
     "private": true,
+    "license": "MIT",
     "dependencies": {
         "@angular/common": "^19.2.0",
         "@angular/compiler": "^19.2.0",
