@@ -26,7 +26,7 @@ jobs:
               run: npm ci --prefix apps/backend
 
             - name: Lint
-              run: npm run lint --prefix apps/frontend
+              run: npx eslint .
 
     build:
         name: Build
