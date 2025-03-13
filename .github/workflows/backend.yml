@@ -23,7 +23,7 @@ jobs:
                   cache-dependency-path: apps/backend/package-lock.json
 
             - name: Install dependencies
-              run: npm ci
+              run: npm ci --prefix apps/backend
 
             - name: Lint
               run: npm run lint --prefix apps/backend
@@ -43,7 +43,7 @@ jobs:
                   cache-dependency-path: apps/backend/package-lock.json
 
             - name: Install dependencies
-              run: npm ci
+              run: npm ci --prefix apps/backend
 
             - name: Build App
               run: npm run build --prefix apps/backend
