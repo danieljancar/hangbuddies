@@ -8,8 +8,10 @@
 
 [![Frontend CI](https://github.com/danieljancar/hangbuddies/actions/workflows/frontend.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/frontend.yml)
 [![Backend CI](https://github.com/danieljancar/hangbuddies/actions/workflows/backend.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/backend.yml)
+
 [![Prettier](https://github.com/danieljancar/hangbuddies/actions/workflows/prettier.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/prettier.yml)
 [![CodeQL](https://github.com/danieljancar/hangbuddies/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/github-code-scanning/codeql)
+[![PR Labeler](https://github.com/danieljancar/hangbuddies/actions/workflows/label-pr.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/label-pr.yml)
 
 [![issues - hangbuddies](https://img.shields.io/github/issues/danieljancar/hangbuddies)](https://github.com/danieljancar/hangbuddies/issues)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
