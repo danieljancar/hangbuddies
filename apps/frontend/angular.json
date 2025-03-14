@@ -30,7 +30,10 @@
                             }
                         ],
                         "styles": ["src/styles.scss"],
-                        "scripts": []
+                        "scripts": [],
+                        "optimization": {
+                            "fonts": true
+                        }
                     },
                     "configurations": {
                         "production": {
