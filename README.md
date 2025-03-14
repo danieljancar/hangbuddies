@@ -13,7 +13,8 @@
 [![CodeQL](https://github.com/danieljancar/hangbuddies/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/github-code-scanning/codeql)
 [![PR Labeler](https://github.com/danieljancar/hangbuddies/actions/workflows/label-pr.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/label-pr.yml)
 
-[![issues - hangbuddies](https://img.shields.io/github/issues/danieljancar/hangbuddies)](https://github.com/danieljancar/hangbuddies/issues)
+[![Issues](https://img.shields.io/github/issues/danieljancar/hangbuddies)](https://github.com/danieljancar/hangbuddies/issues)
+![Pull Requests](https://img.shields.io/github/issues-pr/danieljancar/hangbuddies)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 </div>
