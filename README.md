@@ -40,13 +40,13 @@ relevant [documents](docs/) for developers before getting started.
 
 ## Installation
 
+Collaborators can clone this original repository, as a contributor you should make a fork onto your account.
+
 ```shell
 git clone https://github.com/danieljancar/hangbuddies.git
 cd hangbuddies
 npm install
 ```
-
-Make sure to install and configure the monorepo's project dependencies by navigating to them and running `npm install`.
 
 ## Configuration
 
