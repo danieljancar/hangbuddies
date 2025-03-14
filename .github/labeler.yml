@@ -1,0 +1,28 @@
+## PR Labeler Configuration
+
+pr:
+    - '**/*'
+
+ci/cd:
+    - .github/workflows/**
+
+husky:
+    - .husky/**
+
+# /apps/*
+frontend:
+    - apps/frontend/**
+
+backend:
+    - apps/backend/**
+
+assets:
+    - assets/**
+
+docs:
+    - docs/**
+    - README.md
+    - CONTRIBUTING.md
+
+scripts:
+    - scripts/**
