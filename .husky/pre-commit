@@ -5,8 +5,9 @@ if [ -n "$STAGED_FILES" ]; then
   echo "Formatting staged files..."
   echo "$STAGED_FILES" | xargs -r npx prettier --write
   echo "$STAGED_FILES" | xargs -r git add  # Ensure formatted files stay staged
+  echo "✅ Done formatting."
 else
-  echo "No files to format."
+  echo "✅ No files to format."
 fi
 
 # Get changed files
@@ -17,6 +18,9 @@ if echo "$CHANGED_FILES" | grep -q "apps/frontend/"; then
   if [ -d "apps/frontend" ]; then
     echo "Linting frontend..."
     npm run lint --prefix apps/frontend || true
+    echo "✅ Done linting."
+  else
+    echo "✅ Frontend doesn't have any changes."
   fi
 fi
 
@@ -25,6 +29,9 @@ if echo "$CHANGED_FILES" | grep -q "apps/backend/"; then
   if [ -d "apps/backend" ]; then
     echo "Linting backend..."
     npm run lint --prefix apps/backend || true
+    echo "✅ Done linting."
+  else
+    echo "✅ Backend doesn't have any changes."
   fi
 fi
 
