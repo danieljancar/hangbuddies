@@ -4,7 +4,10 @@
 
 - **`develop`** → Default branch where active development happens.
 - **`beta`** → Stabilization branch for final testing and fixes before production.
-- **`master`** → Production branch, only updated from `beta`.
+- **`master`** → Production branch, only updated from `beta` or hotfixes.
+
+> [!Tip]
+> Releases are automated using **Semantic Release** and **GitHub Actions**.
 
 ## Workflow
 
@@ -31,6 +34,9 @@
     - If any changes were made in `beta`, they are merged back into `develop` to keep it up-to-date.
     - Meanwhile, new development for the next iteration may have already started on `develop`.
 
+> [!TIP]
+> You can create branches directly from your issue on GitHub by clicking the "Create branch" button.
+
 ## Semantic Commit Rules
 
 Semantic Release determines version bumps based on commit messages:
@@ -45,8 +51,12 @@ Semantic Release determines version bumps based on commit messages:
 
 - Merges into `master` must be **fast-forwarded** and **trigger semantic-release**.
 - Hotfixes for production should be done in `beta`, then merged forward to `develop`.
-- If a critical fix must be applied to `master` immediately, branch from `master`, apply the fix, merge into `master`, then cherry-pick into `beta` and `develop`.
+- If a critical fix must be applied to `master` immediately, branch from `master`, apply the fix, merge into `master`,
+  then cherry-pick into `beta` and `develop`.
 - **CI/CD and Semantic Release Automation**:
     - GitHub Actions ensure releases follow semantic versioning.
-    - Builds and deployments happen automatically when a new release is created in `master`.
+    - Builds, dockerization and deployments happen automatically when a new release is created in `master`.
     - Automated tests run at each stage to prevent regressions.
+
+> [!WARNING]
+> Do not manually update version numbers in the project. Let Semantic Release handle it.

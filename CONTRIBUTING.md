@@ -21,7 +21,10 @@
 
 ## Introduction
 
-Thank you for considering contributing to HangBuddies! This document outlines the contribution process to ensure a smooth and productive experience for everyone involved.
+Thank you for considering contributing to HangBuddies!
+
+> [!Important]
+> This document outlines the contribution process to ensure a smooth and productive experience for everyone involved.
 
 ## Getting Started
 
@@ -29,8 +32,11 @@ Before contributing, please ensure you:
 
 1. Read this document and the related guidelines in [docs/](./docs/).
 2. Have a GitHub account.
-3. Are familiar with our [Github Issues](https://github.com/danieljancar/hangbuddies/issues), [Project Boards](https://github.com/danieljancar/hangbuddies/projects), and [Milestones](https://github.com/danieljancar/hangbuddies/milestones).
-4. Agree to follow our [Code of Conduct](./CODE_OF_CONDUCT), [Developer Certificate of Origin](./DCO.md) and [License](./LICENSE).
+3. Are familiar with
+   our [Github Issues](https://github.com/danieljancar/hangbuddies/issues), [Project Boards](https://github.com/danieljancar/hangbuddies/projects),
+   and [Milestones](https://github.com/danieljancar/hangbuddies/milestones).
+4. Agree to follow our [Code of Conduct](./CODE_OF_CONDUCT), [Developer Certificate of Origin](./DCO.md)
+   and [License](./LICENSE).
 
 ## Contributing
 
@@ -53,7 +59,8 @@ We use GitHub Issues with labels, milestones, and project boards to manage tasks
 
 - **P1000 - Core Feature Implementation (Beta Release)** - Core features for the first beta release (MVPs).
 
-Before opening a new issue, please check if a similar issue already exists. If you find one, add a comment or reaction to show your interest.
+> [!Tip]
+> Before opening a new issue, check if it already exists. If it does, consider adding a comment or upvoting it.
 
 ### Branching Strategy
 
@@ -64,7 +71,9 @@ We use the following branching strategy:
 - `beta` - Branch for the next release.
 - `hotfix/{description}` - Branch for critical bug fixes.
 
-Before a new release comes out, we create a beta branch from `develop` where last minute changes and testing can be done and a beta prerelease is published. Once the beta is stable, it is merged into `master` and tagged with the release version. After the release, the `beta` branch is merged back into `develop`.
+Before a new release comes out, we create a beta branch from `develop` where last minute changes and testing can be done
+and a beta prerelease is published. Once the beta is stable, it is merged into `master` and tagged with the release
+version. After the release, the `beta` branch is merged back into `develop`.
 
 #### Example
 
@@ -76,7 +85,8 @@ git checkout -b 42-add-survey-logic develop
 
 ### Commit Messages
 
-We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format for commit messages. This format helps with automatic changelog generation and semantic versioning.
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format for commit messages. This
+format helps with automatic changelog generation and semantic versioning.
 
 ```bash
 <type>(<scope>): <message>
@@ -119,11 +129,13 @@ Code reviews are essential for maintaining code quality and consistency. Reviewe
 - Approve the PR once satisfied.
 - Merge the PR once approved.
 
-Code reviews are done by the project maintainers. If you are not a maintainer, you can still review and provide feedback.
+> [!Note]
+> Code reviews are done by the project maintainers. If you are not a maintainer, you can still review and provide
 
 ## Code of Conduct
 
-We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html) Code of Conduct. Please read the full version in [CODE-OF-CONDUCT.md](./CODE_OF_CONDUCT).
+We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html) Code of
+Conduct. Please read the full version in [CODE-OF-CONDUCT.md](./CODE_OF_CONDUCT).
 
 ## Development Documentation
 

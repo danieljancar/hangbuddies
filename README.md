@@ -1,7 +1,7 @@
 <div align="center">
     <img src="assets/icon.png" width="200" height="200" alt="HangBuddies icon">
     <h1>HangBuddies</h1>
-    <p>A web-based survey tool for scheduling events with friends, company teams, and more. The tool is designed to be <b>fast, easy to share, and requires no registration.</b></p>
+    <p>A fast, shareable, and registration-free survey tool for effortless event scheduling with friends, teams, and more.</p>
 </div>
 
 <div align="center">
@@ -40,6 +40,9 @@
 
 # Contributing
 
+> [!Important]
+> This project is still in initial development and we are working on setting up configuration for contributors.
+
 Contributions are welcome! Please read the [contribution guidelines](CONTRIBUTING.md) and other
 relevant [documents](docs/) for developers before getting started.
 
@@ -55,8 +58,8 @@ npm install
 
 ## Configuration
 
-> [!NOTE]
-> The setup and configuration of the project are still in progress and will be updated here once completed.
+> [!Note]
+> As already mentioned, we are working on setting up configuration for contributors. Please check back later.
 
 # License
 

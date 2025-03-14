@@ -32,15 +32,18 @@
 
 ## Scrum Management
 
-Our collaboration follows the Scrum methodology, with project oversight by the PL and DPL. Iteration boards are managed in [GitHub Projects](https://github.com/danieljancar/hangbuddies/projects).
+Our collaboration follows the Scrum methodology, with project oversight by the PL and DPL. Iteration boards are managed
+in [GitHub Projects](https://github.com/danieljancar/hangbuddies/projects).
 
 ### Issues
 
-We use [GitHub Issues](https://github.com/danieljancar/hangbuddies/issues) to track tasks, bugs, and enhancements. Issue triage and management are handled by the PL, DPL, and collaborators.
+We use [GitHub Issues](https://github.com/danieljancar/hangbuddies/issues) to track tasks, bugs, and enhancements. Issue
+triage and management are handled by the PL, DPL, and collaborators.
 
 #### Triaging
 
-New issues are reviewed and categorized by the PL, DPL, or other collaborators. Issues are assigned to either the next sprint, the backlog, or a relevant milestone.
+New issues are reviewed and categorized by the PL, DPL, or other collaborators. Issues are assigned to either the next
+sprint, the backlog, or a relevant milestone.
 
 Each issue must include the following metadata:
 
@@ -53,7 +56,11 @@ Each issue must include the following metadata:
 
 ##### Projects
 
-A dedicated project board is used to track active sprints and backlog issues. Before each sprint, the PL and DPL create a new board and migrate any unfinished backlog issues.
+A dedicated project board is used to track active sprints and backlog issues. Before each sprint, the PL and DPL create
+a new board and migrate any unfinished backlog issues.
+
+> [!Tip]
+> Collaborators can create new issues directly from the project board.
 
 ##### Milestones
 
@@ -74,7 +81,8 @@ Issues are prioritized based on impact, urgency, and dependencies:
 
 ### Pull Requests
 
-Changes to the codebase are submitted via pull requests (PRs). PRs are reviewed and managed by the PL, DPL, and testing collaborators.
+Changes to the codebase are submitted via pull requests (PRs). PRs are reviewed and managed by the PL, DPL, and testing
+collaborators.
 
 PRs must include the following metadata:
 
@@ -82,4 +90,5 @@ PRs must include the following metadata:
 - **Status:** The associated issue status should be updated (e.g., `fixed`, `in review`).
 - **Reviewers:** Assigned to relevant collaborators for feedback.
 
-All collaborators should review PRs, request changes if necessary, and approve when ready. The PL and DPL are responsible for merging PRs.
+All collaborators should review PRs, request changes if necessary, and approve when ready. The PL and DPL are
+responsible for merging PRs.

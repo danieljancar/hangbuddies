@@ -34,7 +34,8 @@
     git checkout -b {issue-nr}-short-description develop
     ```
 4. **Implement Changes:**
-    - Follow the project's ESLint, Prettier, and configuration rules (root and project-specific configs **must** be respected).
+    - Follow the project's ESLint, Prettier, and configuration rules (root and project-specific configs **must** be
+      respected).
     - Ensure your changes are minimal, well-structured, and solve only the assigned issue.
     - Write tests for your changes (if applicable).
     - Update the documentation (if applicable).
@@ -70,7 +71,8 @@
     - Once the PR is approved, it will be merged into `develop` in most cases.
     - Close the related issue and update the project board.
 
-By following this structured workflow, we ensure a clean, efficient, and maintainable development process.
+> [!Note]
+> By following this structured workflow, we ensure a clean, efficient, and maintainable development process.
 
 ## Relevant Links
 
