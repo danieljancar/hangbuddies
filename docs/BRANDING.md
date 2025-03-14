@@ -12,7 +12,8 @@
 
 ## Favicons and Site Manifest
 
-The `assets/favicon` folder contains all necessary favicon assets for different devices and browsers. These should be referenced in the `<head>` section of `index.html` as follows:
+The `assets/favicon` folder contains all necessary favicon assets for different devices and browsers. These should be
+referenced in the `<head>` section of `index.html` as follows:
 
 ```html
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -23,7 +24,8 @@ The `assets/favicon` folder contains all necessary favicon assets for different 
 
 ### `site.webmanifest`
 
-The `site.webmanifest` file contains metadata for progressive web app (PWA) support. It should be placed in the root directory and include:
+The `site.webmanifest` file contains metadata for progressive web app (PWA) support. It should be placed in the root
+directory and include:
 
 ```json
 {
