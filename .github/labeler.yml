@@ -1,3 +1,8 @@
+## PR Labeler Configuration
+
+pr:
+    - '**/*'
+
 ci/cd:
     - .github/workflows/**
 
