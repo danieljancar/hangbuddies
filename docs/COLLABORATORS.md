@@ -54,6 +54,9 @@ Each issue must include the following metadata:
 - **Priority:** Marked as Critical, High, Medium, or Low.
 - **Status:** Updated based on progress (Open, In Progress, Blocked, Closed).
 
+> [!Important]
+> Feature-issues that are user story-relevant should be added as a child issue to the corresponding user story issue.
+
 ##### Projects
 
 A dedicated project board is used to track active sprints and backlog issues. Before each sprint, the PL and DPL create
