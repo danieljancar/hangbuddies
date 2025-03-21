@@ -62,6 +62,8 @@ Each issue must include the following metadata:
 A dedicated project board is used to track active sprints and backlog issues. Before each sprint, the PL and DPL create
 a new board and migrate any unfinished backlog issues.
 
+- You can find the backlog [here](https://github.com/users/danieljancar/projects/34)
+
 > [!Tip]
 > Collaborators can create new issues directly from the project board.
 

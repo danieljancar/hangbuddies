@@ -42,7 +42,11 @@ Before contributing, please ensure you:
 
 ### Issue Tracking & Labels
 
-We use GitHub Issues with labels, milestones, and project boards to manage tasks. Milestones help categorize work:
+We use GitHub Issues with labels, milestones, and project boards to manage tasks. Milestones help categorize work.
+
+> [!Note]
+> We have a project board which holds user stories and features, in
+> the [Backlog](https://github.com/users/danieljancar/projects/34)
 
 #### General Milestones
 
