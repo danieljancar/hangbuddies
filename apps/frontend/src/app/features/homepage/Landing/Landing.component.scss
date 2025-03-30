@@ -97,4 +97,12 @@
   #landing-design-view-illustration {
     display: none;
   }
+  #landing-info-container{
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .landing-container-content-view{
+    height: 120vh;
+  }
 }
