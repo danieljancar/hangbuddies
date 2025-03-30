@@ -4,7 +4,7 @@
   background-color: var(--mat-sys-secondary);
 }
 
-#landing-container-content-view {
+.landing-container-content-view {
   padding: 0 2rem;
   height: 100vh;
 }
@@ -23,7 +23,7 @@
   gap: 1rem;
 }
 
-#laning-design-view-illustration {
+#landing-design-view-illustration {
   width: auto;
   height: 332px;
   object-fit: cover;
@@ -94,7 +94,7 @@
     width: 100%;
     justify-content: center;
   }
-  #laning-design-view-illustration {
+  #landing-design-view-illustration {
     display: none;
   }
 }
