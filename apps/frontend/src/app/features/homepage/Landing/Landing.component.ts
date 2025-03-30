@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -11,5 +11,6 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './Landing.component.html',
   styleUrl: './Landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class LandingComponent { }
