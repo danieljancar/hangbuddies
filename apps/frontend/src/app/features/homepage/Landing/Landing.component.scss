@@ -1,0 +1,100 @@
+@use '@angular/material' as mat;
+
+#landing-container-design-view {
+  background-color: var(--mat-sys-secondary);
+}
+
+#landing-container-content-view {
+  padding: 0 2rem;
+  height: 100vh;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  height: 100vh;
+}
+
+.text-container {
+  max-width: 30rem;
+  align-items: start;
+  gap: 1rem;
+}
+
+#laning-design-view-illustration {
+  width: auto;
+  height: 332px;
+  object-fit: cover;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.landing-container-content-view-title {
+  font-size: 64px;
+  font-weight: 400;
+  max-width: 50%;
+  color: var(--mat-sys-text);
+}
+
+.landing-container-content-view-description {
+  margin-top: -2.3rem;
+  font-size: 1rem;
+  font-weight: 300;
+  max-width: 50%;
+  color: var(--mat-sys-text);
+}
+
+#landing-info-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.landing-info-item-icon {
+  color: var(--mat-sys-primary);
+  width: 40px;
+  height: 40px;
+  margin-bottom: -1rem;
+}
+
+.landing-info-item-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--mat-sys-text);
+}
+
+.landing-info-item-description {
+  margin-top: -1rem;
+  max-width: 338px;
+  color: var(--mat-sys-text);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+    justify-content: start;
+    height: 444px;
+  }
+  .text-container > h1 {
+    font-weight: 500;
+    font-size: 22px;
+  }
+  .text-container {
+    max-width: 100%;
+    text-align: center;
+  }
+  .btn-container {
+    width: 100%;
+    justify-content: center;
+  }
+  #laning-design-view-illustration {
+    display: none;
+  }
+}
