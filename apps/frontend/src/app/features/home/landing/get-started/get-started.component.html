@@ -1,0 +1,26 @@
+<section id="cont__getStarted">
+    <div class="cont__header">
+        <h1>Get Started</h1>
+        <p>
+            Scheduling made simple. Create a poll, invite instantly, and let
+            participants vote. No accounts, no delays. Whether for friends,
+            teams, or business meetings, organizing events has never been this
+            smooth.
+        </p>
+    </div>
+    <div class="cont__features">
+        @for (feature of features; track $index) {
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <mat-icon>{{ feature.icon }}</mat-icon>
+                    </div>
+                    <mat-card-title>{{ feature.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{ feature.description }}</p>
+                </mat-card-content>
+            </mat-card>
+        }
+    </div>
+</section>
