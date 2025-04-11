@@ -31,6 +31,9 @@
                         ],
                         "styles": ["src/styles.scss"],
                         "scripts": [],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/app/styles"]
+                        },
                         "optimization": {
                             "fonts": true
                         }
@@ -94,6 +97,6 @@
         }
     },
     "cli": {
-      "analytics": false
+        "analytics": false
     }
 }

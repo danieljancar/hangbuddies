@@ -20,7 +20,11 @@ export class AppComponent implements OnInit {
     private activatedRoute = inject(ActivatedRoute)
     private seoService = inject(SeoService)
 
-    ngOnInit() {
+    public ngOnInit() {
+        this.updateMetaOnNavigation()
+    }
+
+    private updateMetaOnNavigation() {
         this.router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),
@@ -35,12 +39,10 @@ export class AppComponent implements OnInit {
             )
             .subscribe((data) => {
                 if (data['metaTitle']) {
-                    console.log(data['metaTitle'])
                     this.seoService.updateTitle(data['metaTitle'])
                 }
 
                 if (data['metaTags']) {
-                    console.log(data['metaTags'])
                     this.seoService.updateMetaTags(data['metaTags'])
                 }
             })
