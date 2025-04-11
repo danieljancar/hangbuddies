@@ -1,10 +1,15 @@
 import { Routes } from '@angular/router'
-import { LandingComponent } from './features/home/landing/landing.component'
+import { APP_ROUTES } from './common/routes'
+import { HomeComponent } from './features/home/home.component'
+import { LANDING_META } from './common/meta.constants'
 
 export const routes: Routes = [
     {
-        title: 'Home',
-        path: '',
-        component: LandingComponent,
+        path: APP_ROUTES.HOME.LANDING,
+        component: HomeComponent,
+        data: {
+            metaTitle: LANDING_META.metaTitle,
+            metaTags: LANDING_META.metaTags,
+        },
     },
 ]
