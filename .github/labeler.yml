@@ -9,13 +9,6 @@ ci/cd:
 husky:
     - .husky/**
 
-# /apps/*
-frontend:
-    - apps/frontend/**
-
-backend:
-    - apps/backend/**
-
 assets:
     - assets/**
 
@@ -26,3 +19,13 @@ docs:
 
 scripts:
     - scripts/**
+
+bruno:
+    - bruno/**
+
+# /apps/*
+frontend:
+    - apps/frontend/**
+
+backend:
+    - apps/backend/**

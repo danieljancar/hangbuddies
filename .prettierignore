@@ -4,3 +4,4 @@ node_modules
 .husky
 .angular
 dist
+package-lock.json
