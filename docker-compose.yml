@@ -1,5 +1,4 @@
-version: '3.8'
-name: hangbuddies
+version: '3.3'
 services:
     mongodb:
         image: mongo
