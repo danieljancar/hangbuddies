@@ -1,0 +1,6 @@
+{
+    "version": "1",
+    "name": "Survey",
+    "type": "collection",
+    "ignore": ["node_modules", ".git"]
+}
