@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 import { SurveyMeta, SurveyMetaSchema } from './survey-meta.schema'
-import { Question, QuestionSchema } from './question.schema'
+import { SurveyQuestion, SurveyQuestionSchema } from './survey-question.schema'
 
 export type SurveyDocument = Survey & Document
 
@@ -16,8 +16,8 @@ export class Survey {
     @Prop({ required: true })
     createdBy: string
 
-    @Prop({ type: [QuestionSchema], default: [] })
-    questions: Question[]
+    @Prop({ type: [SurveyQuestionSchema], default: [] })
+    questions: SurveyQuestion[]
 
     @Prop({ type: SurveyMetaSchema, default: () => ({}) })
     meta: SurveyMeta

@@ -8,6 +8,7 @@ import {
 } from './schemas/survey-response.schema'
 import { CreateSurveyDto } from './dto/create-survey.dto'
 import { CreateSurveyResponseDto } from './dto/create-survey-response.dto'
+import { DeviceService } from '../../utils/device/device.service'
 
 @Injectable()
 export class SurveyService {
@@ -15,11 +16,13 @@ export class SurveyService {
         @InjectModel(Survey.name)
         private readonly surveyModel: Model<SurveyDocument>,
         @InjectModel(SurveyResponse.name)
-        private readonly surveyResponseModel: Model<SurveyResponseDocument>
+        private readonly surveyResponseModel: Model<SurveyResponseDocument>,
+        private readonly deviceService: DeviceService
     ) {}
 
     async createSurvey(createSurveyDto: CreateSurveyDto): Promise<Survey> {
         const survey = new this.surveyModel(createSurveyDto)
+        await this.deviceService.recordSubmission(createSurveyDto.createdBy)
         return survey.save()
     }
 
@@ -54,9 +57,13 @@ export class SurveyService {
             })
         )
 
+        const device = await this.deviceService.recordSubmission(
+            createSurveyResponseDto.deviceId
+        )
+
         const surveyResponse = new this.surveyResponseModel({
             surveyId: new Types.ObjectId(createSurveyResponseDto.surveyId),
-            deviceId: createSurveyResponseDto.deviceId,
+            device: device._id as Types.ObjectId,
             answers: mappedAnswers,
         })
         return surveyResponse.save()

@@ -2,21 +2,21 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 import { QuestionEnumType, QuestionType } from '../types/question.types'
 
-export type QuestionDocument = Question & Document
+export type SurveyQuestionDocument = SurveyQuestion & Document
 
 @Schema()
-export class Question {
+export class SurveyQuestion {
     @Prop({ required: true })
     text: string
 
     @Prop({ required: true, enum: QuestionType })
     type: QuestionEnumType
 
-    @Prop({ type: [String], default: [] })
-    options: string[]
+    @Prop({ required: false, type: [String] })
+    options?: string[]
 
     @Prop({ default: false })
     isRequired: boolean
 }
 
-export const QuestionSchema = SchemaFactory.createForClass(Question)
+export const SurveyQuestionSchema = SchemaFactory.createForClass(SurveyQuestion)

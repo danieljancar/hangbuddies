@@ -1,0 +1,43 @@
+meta {
+  name: Create survey
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/surveys
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Customer Feedback Survey",
+    "description": "Please fill out this survey and let us know what you think.",
+    "createdBy": "{{DFT_DEVICE_ID}}",
+    "questions": [
+      {
+        "text": "How do you rate our service?",
+        "type": "3",
+        "options": [
+          "Excellent",
+          "Good",
+          "Average",
+          "Poor"
+        ],
+        "isRequired": true
+      },
+      {
+        "text": "Any additional comments?",
+        "type": "1",
+        "isRequired": false
+      }
+    ],
+    "meta": {
+      "isHidden": false,
+      "status": 2,
+      "voteCount": 0,
+      "viewCount": 0
+    }
+  }
+}

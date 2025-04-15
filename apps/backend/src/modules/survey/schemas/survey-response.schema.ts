@@ -9,8 +9,8 @@ export class SurveyResponse {
     @Prop({ required: true, type: Types.ObjectId, ref: 'Survey' })
     surveyId: Types.ObjectId
 
-    @Prop({ required: true })
-    deviceId: string
+    @Prop({ required: true, type: Types.ObjectId, ref: 'Device' })
+    device: Types.ObjectId
 
     @Prop({ type: [ResponseAnswerSchema], default: [] })
     answers: ResponseAnswer[]

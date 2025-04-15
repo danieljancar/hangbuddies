@@ -7,6 +7,7 @@ import {
 } from './schemas/survey-response.schema'
 import { SurveyService } from './survey.service'
 import { SurveyController } from './survey.controller'
+import { DeviceModule } from '../../utils/device/device.module'
 
 @Module({
     imports: [
@@ -14,6 +15,8 @@ import { SurveyController } from './survey.controller'
             { name: Survey.name, schema: SurveySchema },
             { name: SurveyResponse.name, schema: SurveyResponseSchema },
         ]),
+
+        DeviceModule,
     ],
     providers: [SurveyService],
     controllers: [SurveyController],

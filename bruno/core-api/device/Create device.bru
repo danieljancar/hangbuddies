@@ -1,0 +1,19 @@
+meta {
+  name: Create device
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/devices
+  body: json
+  auth: inherit
+}
+
+body:json {
+    {
+      "deviceId": "{{DFT_DEVICE_ID}}",
+      "userAgent": "{{DFT_USER_AGENT}}",
+      "deviceType": "{{DFT_DEVICE_TYPE}}"
+    }
+}
