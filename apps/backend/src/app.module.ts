@@ -3,6 +3,7 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
+import { SurveyModule } from './modules/survey/survey.module'
 
 @Module({
     imports: [
@@ -17,6 +18,8 @@ import { MongooseModule } from '@nestjs/mongoose'
                 appName: configService.get<string>('MONGO_APP_NAME'),
             }),
         }),
+
+        SurveyModule,
     ],
     controllers: [AppController],
     providers: [AppService],

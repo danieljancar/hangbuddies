@@ -2,38 +2,12 @@ import {
     IsString,
     IsNotEmpty,
     IsOptional,
-    ValidateNested,
     IsArray,
-    IsBoolean,
-    IsIn,
-    IsInt,
-    IsObject,
+    ValidateNested,
 } from 'class-validator'
 import { Type } from 'class-transformer'
 import { CreateQuestionDto } from './create-question.dto'
-import { StatusType } from '../../types/status.types'
-
-export class SurveyMetaDto {
-    @IsOptional()
-    @IsBoolean()
-    isHidden?: boolean
-
-    @IsOptional()
-    @IsIn([StatusType])
-    status?: number
-
-    @IsOptional()
-    @IsInt()
-    voteCount?: number
-
-    @IsOptional()
-    @IsInt()
-    viewCount?: number
-
-    @IsOptional()
-    @IsObject()
-    additional?: Record<string, any>
-}
+import { SurveyMetaDto } from './survey-meta.dto'
 
 export class CreateSurveyDto {
     @IsString()
