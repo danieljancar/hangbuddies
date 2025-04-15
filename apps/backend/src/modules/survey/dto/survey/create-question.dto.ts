@@ -5,7 +5,7 @@ import {
     IsOptional,
     IsArray,
 } from 'class-validator'
-import { QuestionType } from '../types/question.types'
+import { QuestionType } from '../../types/question.types'
 
 export class CreateQuestionDto {
     @IsString()

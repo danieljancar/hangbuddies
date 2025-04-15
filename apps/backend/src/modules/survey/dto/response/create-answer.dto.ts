@@ -1,6 +1,6 @@
 import { IsMongoId, IsNotEmpty, IsDefined } from 'class-validator'
 
-export class AnswerDto {
+export class CreateAnswerDto {
     @IsMongoId()
     @IsNotEmpty()
     questionId: string

@@ -11,7 +11,7 @@ import {
 } from 'class-validator'
 import { Type } from 'class-transformer'
 import { CreateQuestionDto } from './create-question.dto'
-import { StatusType } from '../types/status.types'
+import { StatusType, StatusEnumType } from '../../types/status.types'
 
 export class SurveyMetaDto {
     @IsOptional()
@@ -19,7 +19,7 @@ export class SurveyMetaDto {
     isHidden?: boolean
 
     @IsOptional()
-    @IsIn([StatusType.DRAFT, StatusType.PUBLISHED, StatusType.ARCHIVED])
+    @IsIn(StatusEnumType)
     status?: number
 
     @IsOptional()

@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { StatusEnumType, StatusType } from '../types/status.types'
+import { StatusEnumType, StatusType } from '../../types/status.types'
 
 @Schema({ _id: false })
 export class SurveyMeta {
