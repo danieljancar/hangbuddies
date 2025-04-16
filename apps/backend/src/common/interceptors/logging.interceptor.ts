@@ -39,8 +39,8 @@ export class LoggingInterceptor implements NestInterceptor {
                             params: request.params,
                         }
                     )
-                    .catch((err) => {
-                        this.logService
+                    .catch(async (err) => {
+                        await this.logService
                             .warn(
                                 `Error logging request: ${err}`,
                                 LogCategoryType.INTERCEPTOR
