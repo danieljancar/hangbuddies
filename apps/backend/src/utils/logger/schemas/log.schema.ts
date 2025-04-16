@@ -7,7 +7,7 @@ import {
     LogLevelType,
 } from '../types/log.types'
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: false })
 export class Log {
     @Prop({ required: true, enum: LogLevelType })
     level: LogLevelEnumType
@@ -20,6 +20,9 @@ export class Log {
 
     @Prop({ type: Object })
     extra?: Record<string, any>
+
+    @Prop({ type: Date, default: Date.now })
+    timestamp: Date
 }
 
 export type LogDocument = Log & Document

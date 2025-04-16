@@ -12,6 +12,7 @@ export const LogCategoryType = {
     DEVICE: 'device',
     SECURITY: 'security',
     DB: 'db',
+    EXCEPTION: 'exception',
     OTHER: 'other',
 } as const
 export type LogCategoryEnumType =
