@@ -26,7 +26,7 @@ async function bootstrap() {
     )
     app.useGlobalInterceptors(
         new LoggingInterceptor(logService),
-        new DeviceInterceptor(deviceService)
+        new DeviceInterceptor(deviceService, logService)
     )
 
     await logService.debug(

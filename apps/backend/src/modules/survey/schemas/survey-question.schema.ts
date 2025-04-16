@@ -6,6 +6,8 @@ export type SurveyQuestionDocument = SurveyQuestion & Document
 
 @Schema()
 export class SurveyQuestion {
+    _id: string
+
     @Prop({ required: true })
     text: string
 

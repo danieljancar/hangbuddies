@@ -29,10 +29,11 @@ export class LoggingInterceptor implements NestInterceptor {
                 const responseTime = Date.now() - now
                 this.logService
                     .debug(
-                        `${request.method} ${request.url} - ${responseTime}ms`,
+                        `${request.method} ${request.url}`,
                         LogCategoryType.INTERCEPTOR,
                         {
                             deviceId,
+                            responseTime,
                             method: request.method,
                             url: request.url,
                             query: request.query,
@@ -40,14 +41,10 @@ export class LoggingInterceptor implements NestInterceptor {
                         }
                     )
                     .catch(async (err) => {
-                        await this.logService
-                            .warn(
-                                `Error logging request: ${err}`,
-                                LogCategoryType.INTERCEPTOR
-                            )
-                            .then(() => {
-                                console.error('Error logging request:', err)
-                            })
+                        await this.logService.warn(
+                            `Error logging request: ${err}`,
+                            LogCategoryType.INTERCEPTOR
+                        )
                     })
             })
         )

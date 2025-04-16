@@ -7,6 +7,8 @@ export type SurveyDocument = Survey & Document
 
 @Schema({ timestamps: true })
 export class Survey {
+    _id: string
+
     @Prop({ required: true })
     title: string
 
