@@ -1,12 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import {
-    LogCategoryEnumType,
-    LogCategoryType,
-    LogLevelEnumType,
-    LogLevelType,
-} from './types/log.types'
+import { LogCategoryEnumType, LogLevelType } from './types/log.types'
 import { Log, LogDocument } from './schemas/log.schema'
 
 @Injectable()
