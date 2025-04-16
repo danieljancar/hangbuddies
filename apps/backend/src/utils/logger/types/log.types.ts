@@ -7,10 +7,11 @@ export const LogLevelType = {
 export type LogLevelEnumType = (typeof LogLevelType)[keyof typeof LogLevelType]
 
 export const LogCategoryType = {
-    SURVEY: 'survey',
-    AUTH: 'auth',
-    DB: 'db',
     GENERAL: 'general',
+    SURVEY: 'survey',
+    DEVICE: 'device',
+    SECURITY: 'security',
+    DB: 'db',
     OTHER: 'other',
 } as const
 export type LogCategoryEnumType =

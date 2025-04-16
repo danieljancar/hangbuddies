@@ -1,49 +1,67 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import { LogCategoryEnumType, LogLevelType } from '../../types/log.types'
+import {
+    LogCategoryEnumType,
+    LogCategoryType,
+    LogLevelEnumType,
+    LogLevelType,
+} from './types/log.types'
 import { Log, LogDocument } from './schemas/log.schema'
-
-export interface LogMeta {
-    context?: string
-    category?: LogCategoryEnumType
-    module?: string
-    extra?: Record<string, any>
-}
 
 @Injectable()
 export class LogService {
     constructor(@InjectModel(Log.name) private logModel: Model<LogDocument>) {}
 
-    async log(message: string, meta?: LogMeta): Promise<void> {
+    async log(
+        message: string,
+        category: LogCategoryEnumType,
+        extra?: Record<string, any>
+    ): Promise<void> {
         await this.logModel.create({
             level: LogLevelType.INFO,
             message,
-            ...meta,
+            category,
+            extra,
         })
     }
 
-    async warn(message: string, meta?: LogMeta): Promise<void> {
+    async warn(
+        message: string,
+        category: LogCategoryEnumType,
+        extra?: Record<string, any>
+    ): Promise<void> {
         await this.logModel.create({
             level: LogLevelType.WARN,
             message,
-            ...meta,
+            category,
+            extra,
         })
     }
 
-    async debug(message: string, meta?: LogMeta): Promise<void> {
+    async debug(
+        message: string,
+        category: LogCategoryEnumType,
+        extra?: Record<string, any>
+    ): Promise<void> {
         await this.logModel.create({
             level: LogLevelType.DEBUG,
             message,
-            ...meta,
+            category,
+            extra,
         })
     }
 
-    async verbose(message: string, meta?: LogMeta): Promise<void> {
+    async verbose(
+        message: string,
+        category: LogCategoryEnumType,
+        extra?: Record<string, any>
+    ): Promise<void> {
         await this.logModel.create({
             level: LogLevelType.VERBOSE,
             message,
-            ...meta,
+            category,
+            extra,
         })
     }
 }

@@ -18,8 +18,8 @@ export class Device {
     @Prop({ default: 0 })
     totalSubmissions: number
 
-    @Prop()
-    lastActive?: Date
+    @Prop({ default: Date.now })
+    lastActive: Date
 }
 
 export const DeviceSchema = SchemaFactory.createForClass(Device)

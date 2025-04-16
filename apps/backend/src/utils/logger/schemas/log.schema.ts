@@ -5,7 +5,7 @@ import {
     LogCategoryType,
     LogLevelEnumType,
     LogLevelType,
-} from '../../../types/log.types'
+} from '../types/log.types'
 
 @Schema({ timestamps: true })
 export class Log {
@@ -15,11 +15,8 @@ export class Log {
     @Prop({ required: true })
     message: string
 
-    @Prop()
-    context?: string
-
     @Prop({ enum: LogCategoryType })
-    category?: LogCategoryEnumType
+    category: LogCategoryEnumType
 
     @Prop({ type: Object })
     extra?: Record<string, any>

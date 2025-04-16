@@ -8,6 +8,7 @@ import {
 import { SurveyService } from './survey.service'
 import { SurveyController } from './survey.controller'
 import { DeviceModule } from '../../utils/device/device.module'
+import { LogModule } from '../../utils/logger/log.module'
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { DeviceModule } from '../../utils/device/device.module'
         ]),
 
         DeviceModule,
+        LogModule,
     ],
     providers: [SurveyService],
     controllers: [SurveyController],

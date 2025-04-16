@@ -4,12 +4,15 @@ import { Model } from 'mongoose'
 import { Device, DeviceDocument } from './schemas/device.schema'
 import { CreateDeviceDto } from './dto/create-device.dto'
 import { DevicePartial } from './types/device-partial.types'
+import { LogService } from '../logger/log.service'
+import { LogCategoryType } from '../logger/types/log.types'
 
 @Injectable()
 export class DeviceService {
     constructor(
         @InjectModel(Device.name)
-        private readonly deviceModel: Model<DeviceDocument>
+        private readonly deviceModel: Model<DeviceDocument>,
+        private readonly logService: LogService
     ) {}
 
     async findOrCreate(
@@ -18,12 +21,14 @@ export class DeviceService {
     ): Promise<DeviceDocument> {
         let device = await this.deviceModel.findOne({ deviceId }).exec()
         if (!device) {
+            await this.logService.log(
+                `Device with id ${deviceId} not found, creating a new one`,
+                LogCategoryType.DEVICE
+            )
             device = new this.deviceModel({
                 deviceId,
                 userAgent: createDto?.userAgent,
                 deviceType: createDto?.deviceType,
-                totalSubmissions: 0,
-                lastActive: new Date(),
             })
             await device.save()
         }
@@ -51,6 +56,10 @@ export class DeviceService {
             .lean<DevicePartial>()
             .exec()
         if (!device) {
+            await this.logService.warn(
+                `Device with id ${deviceId} not found`,
+                LogCategoryType.DEVICE
+            )
             throw new NotFoundException(`Device with id ${deviceId} not found`)
         }
         return device

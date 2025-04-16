@@ -9,6 +9,8 @@ import {
 import { CreateSurveyDto } from './dto/create-survey.dto'
 import { CreateSurveyResponseDto } from './dto/create-survey-response.dto'
 import { DeviceService } from '../../utils/device/device.service'
+import { LogService } from '../../utils/logger/log.service'
+import { LogCategoryType } from '../../utils/logger/types/log.types'
 
 @Injectable()
 export class SurveyService {
@@ -17,7 +19,8 @@ export class SurveyService {
         private readonly surveyModel: Model<SurveyDocument>,
         @InjectModel(SurveyResponse.name)
         private readonly surveyResponseModel: Model<SurveyResponseDocument>,
-        private readonly deviceService: DeviceService
+        private readonly deviceService: DeviceService,
+        private readonly logService: LogService
     ) {}
 
     async createSurvey(createSurveyDto: CreateSurveyDto): Promise<Survey> {
@@ -33,6 +36,10 @@ export class SurveyService {
     async getSurveyById(id: string): Promise<Survey> {
         const survey = await this.surveyModel.findById(id).exec()
         if (!survey) {
+            await this.logService.warn(
+                `Survey with id ${id} not found`,
+                LogCategoryType.SURVEY
+            )
             throw new NotFoundException(`Survey with id ${id} not found`)
         }
         return survey
@@ -45,6 +52,10 @@ export class SurveyService {
             .findById(createSurveyResponseDto.surveyId)
             .exec()
         if (!survey) {
+            await this.logService.warn(
+                `Survey with id ${createSurveyResponseDto.surveyId} not found`,
+                LogCategoryType.SURVEY
+            )
             throw new NotFoundException(
                 `Survey with id ${createSurveyResponseDto.surveyId} not found`
             )
