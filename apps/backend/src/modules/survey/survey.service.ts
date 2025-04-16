@@ -23,9 +23,15 @@ export class SurveyService {
         private readonly logService: LogService
     ) {}
 
-    async createSurvey(createSurveyDto: CreateSurveyDto): Promise<Survey> {
-        const survey = new this.surveyModel(createSurveyDto)
-        await this.deviceService.recordSubmission(createSurveyDto.createdBy)
+    async createSurvey(
+        deviceId: string,
+        createSurveyDto: CreateSurveyDto
+    ): Promise<Survey> {
+        const survey = new this.surveyModel({
+            ...createSurveyDto,
+            deviceId,
+        })
+        await this.deviceService.recordSubmission(deviceId)
         return survey.save()
     }
 
@@ -46,19 +52,17 @@ export class SurveyService {
     }
 
     async submitSurveyResponse(
+        surveyId: string,
+        deviceId: string,
         createSurveyResponseDto: CreateSurveyResponseDto
     ): Promise<SurveyResponse> {
-        const survey = await this.surveyModel
-            .findById(createSurveyResponseDto.surveyId)
-            .exec()
+        const survey = await this.surveyModel.findById(surveyId).exec()
         if (!survey) {
             await this.logService.warn(
-                `Survey with id ${createSurveyResponseDto.surveyId} not found`,
+                `Survey with id ${surveyId} not found`,
                 LogCategoryType.SURVEY
             )
-            throw new NotFoundException(
-                `Survey with id ${createSurveyResponseDto.surveyId} not found`
-            )
+            throw new NotFoundException(`Survey with id ${surveyId} not found`)
         }
 
         const mappedAnswers = createSurveyResponseDto.answers.map(
@@ -68,12 +72,10 @@ export class SurveyService {
             })
         )
 
-        const device = await this.deviceService.recordSubmission(
-            createSurveyResponseDto.deviceId
-        )
+        const device = await this.deviceService.recordSubmission(deviceId)
 
         const surveyResponse = new this.surveyResponseModel({
-            surveyId: new Types.ObjectId(createSurveyResponseDto.surveyId),
+            surveyId: new Types.ObjectId(surveyId),
             device: device._id as Types.ObjectId,
             answers: mappedAnswers,
         })

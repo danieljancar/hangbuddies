@@ -5,6 +5,9 @@ import { ConfigService } from '@nestjs/config'
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter'
 import { LogService } from './utils/logger/log.service'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
+import { DeviceInterceptor } from './common/interceptors/device.interceptor'
+import { DeviceService } from './utils/device/device.service'
+import { LogCategoryType } from './utils/logger/types/log.types'
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule)
@@ -12,6 +15,7 @@ async function bootstrap() {
     const port: number = configService.get<number>('PORT') || 3000
 
     const logService = app.get(LogService)
+    const deviceService = app.get(DeviceService)
 
     app.useGlobalFilters(new AllExceptionsFilter(logService))
     app.useGlobalPipes(
@@ -20,7 +24,19 @@ async function bootstrap() {
             transform: true,
         })
     )
-    app.useGlobalInterceptors(new LoggingInterceptor(logService))
+    app.useGlobalInterceptors(
+        new LoggingInterceptor(logService),
+        new DeviceInterceptor(deviceService)
+    )
+
+    await logService.debug(
+        `Server started on port ${port}`,
+        LogCategoryType.DB,
+        {
+            port: port,
+            env: configService.get<string>('NODE_ENV'),
+        }
+    )
 
     await app.listen(port)
     Logger.log(`Server running on http://localhost:${port}`, 'Bootstrap')

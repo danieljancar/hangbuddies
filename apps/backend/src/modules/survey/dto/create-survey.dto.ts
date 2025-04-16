@@ -18,10 +18,6 @@ export class CreateSurveyDto {
     @IsString()
     description?: string
 
-    @IsString()
-    @IsNotEmpty()
-    createdBy: string
-
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })

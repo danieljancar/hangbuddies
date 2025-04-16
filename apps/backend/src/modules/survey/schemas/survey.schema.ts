@@ -14,7 +14,7 @@ export class Survey {
     description?: string
 
     @Prop({ required: true })
-    createdBy: string
+    deviceId: string
 
     @Prop({ type: [SurveyQuestionSchema], default: [] })
     questions: SurveyQuestion[]

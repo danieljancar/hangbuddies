@@ -1,0 +1,26 @@
+meta {
+  name: Create response
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/surveys/67ff91fa88199e465b11aa11/responses
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "answers": [
+      {
+        "questionId": "67ff91fa88199e465b11aa12",
+        "answer": "Good"
+      },
+          {
+        "questionId": "67ff91fa88199e465b11aa13",
+        "answer": "I didn't like the toilets."
+      }
+    ]
+  }
+}

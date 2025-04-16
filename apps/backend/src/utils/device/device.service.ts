@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { Device, DeviceDocument } from './schemas/device.schema'
 import { CreateDeviceDto } from './dto/create-device.dto'
-import { DevicePartial } from './types/device-partial.types'
 import { LogService } from '../logger/log.service'
 import { LogCategoryType } from '../logger/types/log.types'
 
@@ -49,11 +48,29 @@ export class DeviceService {
             .exec()
     }
 
-    async getDevice(deviceId: string): Promise<DevicePartial> {
+    async updateLastActive(deviceId: string): Promise<DeviceDocument> {
+        const now = new Date()
+        const device = await this.deviceModel
+            .findOneAndUpdate(
+                { deviceId },
+                { $set: { lastActive: now } },
+                { new: true, upsert: true }
+            )
+            .exec()
+
+        if (!device) {
+            throw new Error(
+                `Failed to update or create device with deviceId: ${deviceId}`
+            )
+        }
+        return device
+    }
+
+    async getDevice(deviceId: string): Promise<Partial<DeviceDocument>> {
         const device = await this.deviceModel
             .findOne({ deviceId })
             .select('deviceId totalSubmissions lastActive -_id')
-            .lean<DevicePartial>()
+            .lean()
             .exec()
         if (!device) {
             await this.logService.warn(

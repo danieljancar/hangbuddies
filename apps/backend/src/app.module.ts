@@ -16,6 +16,7 @@ import { SurveyModule } from './modules/survey/survey.module'
             useFactory: (configService: ConfigService) => ({
                 uri: configService.get<string>('MONGO_URI'),
                 appName: configService.get<string>('MONGO_APP_NAME'),
+                dbName: configService.get<string>('MONGO_APP_NAME'),
             }),
         }),
 

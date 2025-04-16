@@ -1,6 +1,6 @@
 {
     "version": "1",
-    "name": "HangBuddies Core API",
+    "name": "HangBuddies Core API (manual)",
     "type": "collection",
     "ignore": ["node_modules", ".git"]
 }

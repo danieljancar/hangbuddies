@@ -4,6 +4,7 @@ import { CreateSurveyResponseDto } from './dto/create-survey-response.dto'
 import { Survey } from './schemas/survey.schema'
 import { CreateSurveyDto } from './dto/create-survey.dto'
 import { SurveyService } from './survey.service'
+import { DeviceId } from '../../common/decorators/device.decorator'
 
 @Controller('surveys')
 export class SurveyController {
@@ -11,9 +12,10 @@ export class SurveyController {
 
     @Post()
     async createSurvey(
+        @DeviceId() deviceId: string,
         @Body() createSurveyDto: CreateSurveyDto
     ): Promise<Survey> {
-        return this.surveyService.createSurvey(createSurveyDto)
+        return this.surveyService.createSurvey(deviceId, createSurveyDto)
     }
 
     @Get()
@@ -21,19 +23,21 @@ export class SurveyController {
         return this.surveyService.getSurveys()
     }
 
-    @Get(':id')
-    async getSurvey(@Param('id') id: string): Promise<Survey> {
+    @Get(':surveyId')
+    async getSurvey(@Param('surveyId') id: string): Promise<Survey> {
         return this.surveyService.getSurveyById(id)
     }
 
-    @Post(':id/responses')
+    @Post(':surveyId/responses')
     async submitResponse(
-        @Param('id') id: string,
+        @DeviceId() deviceId: string,
+        @Param('surveyId') surveyId: string,
         @Body() createSurveyResponseDto: CreateSurveyResponseDto
     ): Promise<SurveyResponse> {
-        if (id !== createSurveyResponseDto.surveyId) {
-            createSurveyResponseDto.surveyId = id
-        }
-        return this.surveyService.submitSurveyResponse(createSurveyResponseDto)
+        return this.surveyService.submitSurveyResponse(
+            surveyId,
+            deviceId,
+            createSurveyResponseDto
+        )
     }
 }
