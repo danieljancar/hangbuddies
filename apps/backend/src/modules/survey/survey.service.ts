@@ -12,7 +12,7 @@ import {
 } from './schemas/survey-response.schema'
 import { CreateSurveyDto } from './dto/create-survey.dto'
 import { CreateSurveyResponseDto } from './dto/create-survey-response.dto'
-import { DeviceService } from '../../utils/device/device.service'
+import { DeviceService } from '../device/device.service'
 import { LogService } from '../../utils/logger/log.service'
 import { LogCategoryType } from '../../utils/logger/types/log.types'
 import { QuestionType } from './types/question.types'
@@ -87,7 +87,7 @@ export class SurveyService {
 
         const surveyResponse = new this.surveyResponseModel({
             surveyId: new Types.ObjectId(surveyId),
-            device: deviceRecord._id as Types.ObjectId,
+            deviceId: deviceRecord._id as Types.ObjectId,
             answers: mappedAnswers,
         })
         const savedResponse = await surveyResponse.save()

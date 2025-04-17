@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { Device, DeviceDocument } from './schemas/device.schema'
 import { CreateDeviceDto } from './dto/create-device.dto'
-import { LogService } from '../logger/log.service'
-import { LogCategoryType } from '../logger/types/log.types'
+import { LogService } from '../../utils/logger/log.service'
+import { LogCategoryType } from '../../utils/logger/types/log.types'
 
 @Injectable()
 export class DeviceService {

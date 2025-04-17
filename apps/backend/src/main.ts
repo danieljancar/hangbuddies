@@ -6,7 +6,7 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter'
 import { LogService } from './utils/logger/log.service'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { DeviceInterceptor } from './common/interceptors/device.interceptor'
-import { DeviceService } from './utils/device/device.service'
+import { DeviceService } from './modules/device/device.service'
 import { LogCategoryType } from './utils/logger/types/log.types'
 
 async function bootstrap() {

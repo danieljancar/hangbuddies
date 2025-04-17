@@ -7,7 +7,7 @@ import {
 } from './schemas/survey-response.schema'
 import { SurveyService } from './survey.service'
 import { SurveyController } from './survey.controller'
-import { DeviceModule } from '../../utils/device/device.module'
+import { DeviceModule } from '../device/device.module'
 import { LogModule } from '../../utils/logger/log.module'
 
 @Module({

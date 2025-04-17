@@ -6,13 +6,13 @@ export type SurveyResponseDocument = SurveyResponse & Document
 
 @Schema({ timestamps: true })
 export class SurveyResponse {
-    @Prop({ required: true, type: Types.ObjectId, ref: 'Survey' })
+    @Prop({ required: true, type: Types.ObjectId, ref: 'Survey', index: true })
     surveyId: Types.ObjectId
 
-    @Prop({ required: true, type: Types.ObjectId, ref: 'Device' })
-    device: Types.ObjectId
+    @Prop({ required: true, type: Types.ObjectId, ref: 'Device', index: true })
+    deviceId: Types.ObjectId
 
-    @Prop({ type: [ResponseAnswerSchema], default: [] })
+    @Prop({ type: [ResponseAnswerSchema], required: true })
     answers: ResponseAnswer[]
 }
 

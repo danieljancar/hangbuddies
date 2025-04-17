@@ -1,12 +1,12 @@
 import {
+    CallHandler,
+    ExecutionContext,
     Injectable,
     NestInterceptor,
-    ExecutionContext,
-    CallHandler,
 } from '@nestjs/common'
 import { Observable } from 'rxjs'
 import { Request } from 'express'
-import { DeviceService } from '../../utils/device/device.service'
+import { DeviceService } from '../../modules/device/device.service'
 import {
     DEVICE_ID_HEADER,
     DEVICE_ID_HEADER_UNKNOWN,
