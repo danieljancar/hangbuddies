@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Types, Schema as MongooseSchema } from 'mongoose'
+import { Schema as MongooseSchema, Types } from 'mongoose'
 
 @Schema({ _id: false })
 export class ResponseAnswer {

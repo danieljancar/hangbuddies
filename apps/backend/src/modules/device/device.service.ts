@@ -10,7 +10,9 @@ import { LogCategoryType } from '../../utils/logger/types/log.types'
 export class DeviceService {
     constructor(
         @InjectModel(Device.name)
-        private readonly deviceModel: Model<DeviceDocument>,
+        private readonly deviceModel: Model<
+            DeviceDocument & { createdAt: Date; updatedAt: Date }
+        >,
         private readonly logService: LogService
     ) {}
 
@@ -18,19 +20,42 @@ export class DeviceService {
         deviceId: string,
         createDto?: CreateDeviceDto
     ): Promise<DeviceDocument> {
-        let device = await this.deviceModel.findOne({ deviceId }).exec()
+        const update = {
+            $setOnInsert: {
+                deviceId,
+                userAgent: createDto?.userAgent,
+                deviceType: createDto?.deviceType,
+            },
+        }
+
+        const options = {
+            new: true,
+            upsert: true,
+            setDefaultsOnInsert: true,
+        }
+
+        const device = await this.deviceModel
+            .findOneAndUpdate({ deviceId }, update, options)
+            .exec()
+
         if (!device) {
+            throw new Error(
+                `Failed to find or create device with id ${deviceId}`
+            )
+        }
+
+        const isNew =
+            device.createdAt &&
+            device.updatedAt &&
+            device.createdAt.getTime() === device.updatedAt.getTime()
+
+        if (isNew) {
             await this.logService.log(
                 `Device with id ${deviceId} not found, creating a new one`,
                 LogCategoryType.DEVICE
             )
-            device = new this.deviceModel({
-                deviceId,
-                userAgent: createDto?.userAgent,
-                deviceType: createDto?.deviceType,
-            })
-            await device.save()
         }
+
         return device
     }
 

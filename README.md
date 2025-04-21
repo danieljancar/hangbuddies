@@ -25,6 +25,7 @@
 
 - [Features](#features)
 - [Contributing](#contributing)
+    - [Requirements](#requirements)
     - [Installation](#installation)
     - [Configuration](#configuration)
 - [License](#license)
@@ -45,6 +46,17 @@
 
 Contributions are welcome! Please read the [contribution guidelines](CONTRIBUTING.md) and other
 relevant [documents](docs/) for developers before getting started.
+
+## Requirements
+
+We use multiple tools to build HangBuddies. The following are the minimum requirements to get started:
+
+- **Node.js**: Version 20 or higher
+- **npm**: Version 10 or higher
+- **Docker**: Needed for running the backend locally (with Docker Compose)
+- **Bruno**: Free and open-source API client (find useful collections in `bruno/`)
+- **Angular CLI**: For building and running the frontend
+- **NestJS CLI**: For building and running the backend
 
 ## Installation
 

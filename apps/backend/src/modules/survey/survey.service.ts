@@ -16,6 +16,7 @@ import { DeviceService } from '../device/device.service'
 import { LogService } from '../../utils/logger/log.service'
 import { LogCategoryType } from '../../utils/logger/types/log.types'
 import { QuestionType } from './types/question.types'
+import { SurveyQuestion } from './schemas/survey-question.schema'
 
 @Injectable()
 export class SurveyService {
@@ -54,6 +55,18 @@ export class SurveyService {
             throw new NotFoundException(`Survey with id ${id} not found`)
         }
         return survey
+    }
+
+    async getSurveyQuestions(id: string): Promise<SurveyQuestion[]> {
+        const survey = await this.surveyModel.findById(id).exec()
+        if (!survey) {
+            await this.logService.warn(
+                `Survey with id ${id} not found`,
+                LogCategoryType.SURVEY
+            )
+            throw new NotFoundException(`Survey with id ${id} not found`)
+        }
+        return survey.questions
     }
 
     async submitSurveyResponse(

@@ -5,6 +5,7 @@ import { Survey } from './schemas/survey.schema'
 import { CreateSurveyDto } from './dto/create-survey.dto'
 import { SurveyService } from './survey.service'
 import { DeviceId } from '../../common/decorators/device.decorator'
+import { SurveyQuestion } from './schemas/survey-question.schema'
 
 @Controller('surveys')
 export class SurveyController {
@@ -26,6 +27,13 @@ export class SurveyController {
     @Get(':surveyId')
     async getSurvey(@Param('surveyId') id: string): Promise<Survey> {
         return this.surveyService.getSurveyById(id)
+    }
+
+    @Get(':surveyId/questions')
+    async getSurveyQuestions(
+        @Param('surveyId') id: string
+    ): Promise<SurveyQuestion[]> {
+        return this.surveyService.getSurveyQuestions(id)
     }
 
     @Post(':surveyId/responses')

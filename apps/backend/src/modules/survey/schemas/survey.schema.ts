@@ -15,7 +15,7 @@ export class Survey {
     @Prop()
     description?: string
 
-    @Prop({ required: true })
+    @Prop({ required: true, index: true })
     deviceId: string
 
     @Prop({ type: [SurveyQuestionSchema], default: [] })
