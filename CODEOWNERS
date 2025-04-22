@@ -1,7 +1,12 @@
-* @danieljancar
-
+# CI & CD
 .github/workflows/ @manu2107el @danieljancar
-
 .husky/ @manu2107el @danieljancar
 
-docs/ @manu2107el
+# Docs
+docs/ @danieljancar
+README.md @danieljancar
+CONTRIBUTING.md @danieljancar
+LICENSE @danieljancar
+SECURITY.md @danieljancar
+CODEOWNERS @danieljancar
+CODE_OF_CONDUCT.md @danieljancar
