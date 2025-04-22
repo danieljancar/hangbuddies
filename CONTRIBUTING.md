@@ -72,12 +72,12 @@ We use the following branching strategy:
 
 - `develop` - Main development branch (default).
 - `{issue-nr}-issue-description` - Branch off from `develop` for each issue.
-- `beta` - Branch for the next release.
+- `staging` - Branch for the next release.
 - `hotfix/{description}` - Branch for critical bug fixes.
 
-Before a new release comes out, we create a beta branch from `develop` where last minute changes and testing can be done
-and a beta prerelease is published. Once the beta is stable, it is merged into `master` and tagged with the release
-version. After the release, the `beta` branch is merged back into `develop`.
+Before a new release comes out, we use `staging` branch from `develop` where last minute changes and testing can be done
+and a beta prerelease is published. Once the `staging` is stable, it is merged into `master` and tagged with the release
+version. After the release, the `staging` branch is merged back into `develop`.
 
 #### Example
 
@@ -115,7 +115,7 @@ git commit -m "fix(ui): resolve survey form validation error"
 
 ### Pull Requests
 
-1. (Checkout) and open a PR against `develop` (or `beta` for pre-releases).
+1. (Checkout) and open a PR against `develop` (or `staging` for pre-releases).
 2. Reference the related issue in the PR description.
 3. Provide a summary of changes and request a review.
 4. Address feedback, update the issue/milestone and project if needed.

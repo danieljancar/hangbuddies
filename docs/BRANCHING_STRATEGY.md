@@ -3,8 +3,8 @@
 ## Branch Overview
 
 - **`develop`** → Default branch where active development happens.
-- **`beta`** → Stabilization branch for final testing and fixes before production.
-- **`master`** → Production branch, only updated from `beta` or hotfixes.
+- **`staging`** → Stabilization branch for final testing and fixes before production.
+- **`master`** → Production branch, only updated from `staging` or hotfixes.
 
 > [!Tip]
 > Releases are automated using **Semantic Release** and **GitHub Actions**.
@@ -19,19 +19,19 @@
 
 2. **Beta Release Preparation:**
 
-    - Once key features and fixes are completed for an iteration, `develop` is merged into `beta`.
-    - Final testing and hotfixes are done directly in `beta`.
+    - Once key features and fixes are completed for an iteration, `develop` is merged into `staging`.
+    - Final testing and hotfixes are done directly in `staging`.
 
 3. **Production Release:**
 
-    - After confirming stability, `beta` is merged into `master` (production).
+    - After confirming stability, `staging` is merged into `master` (production).
     - **Automated GitHub Actions** handle:
         - **Semantic Release** → Determines version bump and generates changelogs.
         - **CI/CD Pipelines** → Run tests, build the project, and verify stability.
-        - **Deployment** → Deploys the latest release to the production environment.
+        - **Deployment** → Deploys the latest release to the production environment (tag).
 
 4. **Post-Release Sync:**
-    - If any changes were made in `beta`, they are merged back into `develop` to keep it up-to-date.
+    - If any changes were made in `staging`, they are merged back into `develop` to keep it up-to-date.
     - Meanwhile, new development for the next iteration may have already started on `develop`.
 
 > [!TIP]
@@ -50,9 +50,9 @@ Semantic Release determines version bumps based on commit messages:
 ## Additional Notes
 
 - Merges into `master` must be **fast-forwarded** and **trigger semantic-release**.
-- Hotfixes for production should be done in `beta`, then merged forward to `develop`.
+- Hotfixes for production should be done in `staging`, then merged forward to `develop`.
 - If a critical fix must be applied to `master` immediately, branch from `master`, apply the fix, merge into `master`,
-  then cherry-pick into `beta` and `develop`.
+  then cherry-pick into `staging` and `develop`.
 - **CI/CD and Semantic Release Automation**:
     - GitHub Actions ensure releases follow semantic versioning.
     - Builds, dockerization and deployments happen automatically when a new release is created in `master`.

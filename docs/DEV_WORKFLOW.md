@@ -29,7 +29,7 @@
     npm install
     ```
 3. **Create a Branch:**
-    - Branch off from `develop` or `beta` in certain cases.
+    - Branch off from `develop` or `staging` in certain cases.
     ```bash
     git checkout -b {issue-nr}-short-description develop
     ```
