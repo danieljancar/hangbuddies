@@ -113,6 +113,35 @@ export class SurveyService {
         return savedResponse
     }
 
+    async getSurveyResponses(surveyId: string): Promise<SurveyResponse[]> {
+        const survey = await this.surveyModel.findById(surveyId).exec()
+        if (!survey) {
+            await this.logService.warn(
+                `Survey with id ${surveyId} not found`,
+                LogCategoryType.SURVEY
+            )
+            throw new NotFoundException(`Survey with id ${surveyId} not found`)
+        }
+
+        const responses = await this.surveyResponseModel
+            .find({ surveyId: survey._id })
+            .exec()
+
+        console.log(responses)
+
+        if (!responses || responses.length === 0) {
+            await this.logService.warn(
+                `No responses found for survey with id ${surveyId}`,
+                LogCategoryType.SURVEY
+            )
+            throw new NotFoundException(
+                `No responses found for survey with id ${surveyId}`
+            )
+        }
+
+        return responses
+    }
+
     private async validateSurveyResponses(
         survey: SurveyDocument,
         responseDto: CreateSurveyResponseDto,

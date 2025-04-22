@@ -25,18 +25,18 @@ export class SurveyController {
     }
 
     @Get(':surveyId')
-    async getSurvey(@Param('surveyId') id: string): Promise<Survey> {
-        return this.surveyService.getSurveyById(id)
+    async getSurvey(@Param('surveyId') surveyId: string): Promise<Survey> {
+        return this.surveyService.getSurveyById(surveyId)
     }
 
     @Get(':surveyId/questions')
     async getSurveyQuestions(
-        @Param('surveyId') id: string
+        @Param('surveyId') surveyId: string
     ): Promise<SurveyQuestion[]> {
-        return this.surveyService.getSurveyQuestions(id)
+        return this.surveyService.getSurveyQuestions(surveyId)
     }
 
-    @Post(':surveyId/responses')
+    @Post(':surveyId/respond')
     async submitResponse(
         @DeviceId() deviceId: string,
         @Param('surveyId') surveyId: string,
@@ -47,5 +47,12 @@ export class SurveyController {
             deviceId,
             createSurveyResponseDto
         )
+    }
+
+    @Get(':surveyId/responses')
+    async getSurveyResponses(
+        @Param('surveyId') surveyId: string
+    ): Promise<SurveyResponse[]> {
+        return this.surveyService.getSurveyResponses(surveyId)
     }
 }

@@ -47,6 +47,19 @@ Semantic Release determines version bumps based on commit messages:
 | `fix:`             | Patch (`x.x.1`) | `fix: resolve payment gateway bug` |
 | `BREAKING CHANGE:` | Major (`1.0.0`) | `feat!: refactor API endpoints`    |
 
+### Commit Types
+
+| Type         | Description                                                                                         |
+| ------------ | --------------------------------------------------------------------------------------------------- |
+| **build**    | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) |
+| **ci**       | Changes to our CI configuration files and scripts (examples: Github Actions, SauceLabs)             |
+| **docs**     | Documentation only changes                                                                          |
+| **feat**     | A new feature                                                                                       |
+| **fix**      | A bug fix                                                                                           |
+| **perf**     | A code change that improves performance                                                             |
+| **refactor** | A code change that neither fixes a bug nor adds a feature                                           |
+| **test**     | Adding missing tests or correcting existing tests                                                   |
+
 ## Additional Notes
 
 - Merges into `master` must be **fast-forwarded** and **trigger semantic-release**.
