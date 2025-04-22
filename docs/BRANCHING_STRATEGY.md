@@ -52,12 +52,14 @@ Semantic Release determines version bumps based on commit messages:
 | Type         | Description                                                                                         |
 | ------------ | --------------------------------------------------------------------------------------------------- |
 | **build**    | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) |
-| **ci**       | Changes to our CI configuration files and scripts (examples: Github Actions, SauceLabs)             |
+| **ci**       | Changes to our CI configuration files and scripts (examples: Github Actions, Git hooks)             |
+| **chore**    | Changes to the build process or auxiliary tools and libraries such as dev-scripts or -dependencies  |
 | **docs**     | Documentation only changes                                                                          |
 | **feat**     | A new feature                                                                                       |
 | **fix**      | A bug fix                                                                                           |
 | **perf**     | A code change that improves performance                                                             |
 | **refactor** | A code change that neither fixes a bug nor adds a feature                                           |
+| **revert**   | Reverts a previous commit (use only for reverting a commit)                                         |
 | **test**     | Adding missing tests or correcting existing tests                                                   |
 
 ## Additional Notes

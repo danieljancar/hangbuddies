@@ -7,6 +7,7 @@ export default {
             [
                 'build',
                 'ci',
+                'chore',
                 'docs',
                 'feat',
                 'fix',
@@ -14,7 +15,6 @@ export default {
                 'refactor',
                 'revert',
                 'test',
-                'chore',
             ],
         ],
     },
