@@ -30,7 +30,7 @@ The API uses environment variables for configuration. You can find the `.env.exa
 `apps/backend`. Copy this file to `.env` and fill in the required values.
 
 > [!Important]
-> Make sure to keep your `.env` file secure and do not share it publicly.
+> Make sure to keep your `.env` files secure and do not share them publicly.
 
 # Running the API
 
