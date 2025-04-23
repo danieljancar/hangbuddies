@@ -3,8 +3,8 @@
 ## Branch Overview
 
 - **`develop`** → Default branch where active development happens.
-- **`beta`** → Stabilization branch for final testing and fixes before production.
-- **`master`** → Production branch, only updated from `beta` or hotfixes.
+- **`staging`** → Stabilization branch for final testing and fixes before production.
+- **`master`** → Production branch, only updated from `staging` or hotfixes.
 
 > [!Tip]
 > Releases are automated using **Semantic Release** and **GitHub Actions**.
@@ -19,19 +19,19 @@
 
 2. **Beta Release Preparation:**
 
-    - Once key features and fixes are completed for an iteration, `develop` is merged into `beta`.
-    - Final testing and hotfixes are done directly in `beta`.
+    - Once key features and fixes are completed for an iteration, `develop` is merged into `staging`.
+    - Final testing and hotfixes are done directly in `staging`.
 
 3. **Production Release:**
 
-    - After confirming stability, `beta` is merged into `master` (production).
+    - After confirming stability, `staging` is merged into `master` (production).
     - **Automated GitHub Actions** handle:
         - **Semantic Release** → Determines version bump and generates changelogs.
         - **CI/CD Pipelines** → Run tests, build the project, and verify stability.
-        - **Deployment** → Deploys the latest release to the production environment.
+        - **Deployment** → Deploys the latest release to the production environment (tag).
 
 4. **Post-Release Sync:**
-    - If any changes were made in `beta`, they are merged back into `develop` to keep it up-to-date.
+    - If any changes were made in `staging`, they are merged back into `develop` to keep it up-to-date.
     - Meanwhile, new development for the next iteration may have already started on `develop`.
 
 > [!TIP]
@@ -47,12 +47,27 @@ Semantic Release determines version bumps based on commit messages:
 | `fix:`             | Patch (`x.x.1`) | `fix: resolve payment gateway bug` |
 | `BREAKING CHANGE:` | Major (`1.0.0`) | `feat!: refactor API endpoints`    |
 
+### Commit Types
+
+| Type         | Description                                                                                         |
+| ------------ | --------------------------------------------------------------------------------------------------- |
+| **build**    | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) |
+| **ci**       | Changes to our CI configuration files and scripts (examples: Github Actions, build scripts, etc.)   |
+| **chore**    | Changes to the DX or auxiliary tools and libraries such as dev-scripts or -dependencies             |
+| **docs**     | Documentation only changes                                                                          |
+| **feat**     | A new feature                                                                                       |
+| **fix**      | A bug fix                                                                                           |
+| **perf**     | A code change that improves performance                                                             |
+| **refactor** | A code change that neither fixes a bug nor adds a feature                                           |
+| **revert**   | Reverts a previous commit (use only for reverting a commit)                                         |
+| **test**     | Adding missing tests or correcting existing tests                                                   |
+
 ## Additional Notes
 
 - Merges into `master` must be **fast-forwarded** and **trigger semantic-release**.
-- Hotfixes for production should be done in `beta`, then merged forward to `develop`.
+- Hotfixes for production should be done in `staging`, then merged forward to `develop`.
 - If a critical fix must be applied to `master` immediately, branch from `master`, apply the fix, merge into `master`,
-  then cherry-pick into `beta` and `develop`.
+  then cherry-pick into `staging` and `develop`.
 - **CI/CD and Semantic Release Automation**:
     - GitHub Actions ensure releases follow semantic versioning.
     - Builds, dockerization and deployments happen automatically when a new release is created in `master`.

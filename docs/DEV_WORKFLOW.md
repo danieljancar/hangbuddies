@@ -29,7 +29,7 @@
     npm install
     ```
 3. **Create a Branch:**
-    - Branch off from `develop` or `beta` in certain cases.
+    - Branch off from `develop` or `staging` in certain cases.
     ```bash
     git checkout -b {issue-nr}-short-description develop
     ```
@@ -41,7 +41,8 @@
     - Update the documentation (if applicable).
     - Make sure your code is [clean](https://refactoring.guru/) and [guidelines-compliant](../CONTRIBUTING.md).
 5. **Commit & Push:**
-    - Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for your commit messages.
+    - Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for your commit messages. Find the
+      proper types in [CONTRIBUTING.md](../CONTRIBUTING.md) under **Types**.
     ```bash
     <type>(<scope>): <message>
     ```

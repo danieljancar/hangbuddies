@@ -1,0 +1,22 @@
+meta {
+  name: Create response
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/surveys/6808d4f55ea79c78811054a0/respond
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "answers": [
+      {
+        "questionId": "6808d4f55ea79c78811054a1",
+        "answer": "Good"
+      }
+    ]
+  }
+}

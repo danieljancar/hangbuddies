@@ -1,6 +1,6 @@
 {
     "version": "1",
-    "name": "Survey",
+    "name": "HB/Core API Manual",
     "type": "collection",
     "ignore": ["node_modules", ".git"]
 }
