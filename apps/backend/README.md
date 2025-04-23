@@ -77,6 +77,6 @@ Find out more about the seeder in the [Seeder README](./scripts/seed/README.md).
 
 ## API Client
 
-We use [Bruno](https://userbruno.com/) as our API client for testing and development. You can find the API collections
+We use [Bruno](https://www.userbruno.com/) as our API client for testing and development. You can find the API collections
 in the `bruno/core-api` directory. These collections include requests for all relevant endpoints in the API, making it
 easy to test and develop.
