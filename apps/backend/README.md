@@ -22,6 +22,8 @@ Our API is organized into several core modules, each responsible for a specific 
 - **Device**: Manages device-related functionality, including device registration and management.
 - **Survey**: Handles survey creation, management, and responses.
 
+---
+
 - **Logger**: Provides logging functionality for the application.
 
 # Environment Variables
