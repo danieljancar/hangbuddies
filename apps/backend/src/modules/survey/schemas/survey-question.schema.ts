@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Document } from 'mongoose'
+import { HydratedDocument, Types } from 'mongoose'
 import { QuestionType } from '../types/question.types'
 
-export type SurveyQuestionDocument = SurveyQuestion & Document
+export type SurveyQuestionDocument = HydratedDocument<SurveyQuestion>
 
-@Schema()
+@Schema({ timestamps: false })
 export class SurveyQuestion {
-    _id: string
+    _id: Types.ObjectId
+
+    id: string
 
     @Prop({ required: true })
     text: string
@@ -14,7 +16,7 @@ export class SurveyQuestion {
     @Prop({ required: true, enum: QuestionType })
     type: number
 
-    @Prop({ required: false, type: [String] })
+    @Prop({ type: [String], default: [] })
     options?: string[]
 
     @Prop({ default: false })
@@ -22,3 +24,15 @@ export class SurveyQuestion {
 }
 
 export const SurveyQuestionSchema = SchemaFactory.createForClass(SurveyQuestion)
+
+SurveyQuestionSchema.virtual('id').get(function (this: SurveyQuestionDocument) {
+    return this._id.toHexString()
+})
+
+SurveyQuestionSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: (_doc, ret: Record<string, unknown>) => {
+        delete ret._id
+    },
+})

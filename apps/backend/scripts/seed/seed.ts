@@ -9,50 +9,48 @@ import { SurveyService } from '../../src/modules/survey/survey.service'
 import { createDevices } from './factories/device.factory'
 import { createSurveys } from './factories/survey.factory'
 import { createResponses } from './factories/response.factory'
+import { faker } from '@faker-js/faker'
 
-const DEVICE_COUNT = Math.floor(Math.random() * 30) + 15
-const CREATORS_COUNT = Math.floor(Math.random() * 5) + 2
+const DEVICE_COUNT = faker.number.int({ min: 30, max: 50 })
+const CREATORS_COUNT = faker.number.int({ min: 2, max: 5 })
 
 async function seed(): Promise<void> {
     const app = await NestFactory.createApplicationContext(AppModule)
     const config = app.get(ConfigService)
     const uri = config.get<string>('MONGO_URI')
     const db = config.get<string>('MONGO_APP_NAME')
-    Logger.debug(`Connecting to ${uri}${db}`, 'Seed')
+    Logger.log(`Connecting to ${uri}${db}`, 'SeedScript')
 
     const conn = app.get<Connection>(getConnectionToken())
     await conn.dropDatabase()
-    Logger.debug('Database dropped', 'Seed')
+    Logger.warn('Database dropped', 'SeedScript')
 
     const deviceService = app.get(DeviceService)
     const surveyService = app.get(SurveyService)
 
     const devices = await createDevices(deviceService, DEVICE_COUNT)
-    Logger.debug(`${devices.length} devices created`, 'Seed')
+    Logger.debug(`${devices.length} devices created`, 'SeedScript')
 
     const creators = devices.slice(0, CREATORS_COUNT)
-    const surveys: Awaited<ReturnType<typeof createSurveys>> = []
+    const surveysNested = await Promise.all(
+        creators.map((creator) => {
+            const count = faker.number.int({ min: 2, max: 5 })
+            return createSurveys(surveyService, count, creator.deviceId)
+        })
+    )
 
-    for (const creator of creators) {
-        const count = Math.floor(Math.random() * 5) + 2
-        const batch = await createSurveys(
-            surveyService,
-            count,
-            creator.deviceId
-        )
-        surveys.push(...batch)
-    }
-    Logger.debug(`${surveys.length} surveys created`, 'Seed')
+    const surveys = surveysNested.flat()
+    Logger.debug(`${surveys.length} surveys created`, 'SeedScript')
 
     const responses = await createResponses(surveyService, surveys, devices)
-    Logger.debug(`${responses.length} responses created`, 'Seed')
+    Logger.debug(`${responses.length} responses created`, 'SeedScript')
 
-    Logger.debug('Seeding complete', 'Seed')
     await app.close()
+    Logger.log('Seeding completed successfully', 'SeedScript')
     process.exit(0)
 }
 
 seed().catch((err) => {
-    Logger.error('Seeding failed', err, 'Seed')
+    Logger.error('Seeding failed', err, 'SeedScript')
     process.exit(1)
 })

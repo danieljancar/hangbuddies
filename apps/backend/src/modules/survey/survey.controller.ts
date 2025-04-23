@@ -1,58 +1,54 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
-import { SurveyResponse } from './schemas/survey-response.schema'
+import { Controller, Get, Post, Param, Body } from '@nestjs/common'
+import { SurveyService } from './survey.service'
+import { CreateSurveyDto } from './dto/create-survey.dto'
 import { CreateSurveyResponseDto } from './dto/create-survey-response.dto'
 import { Survey } from './schemas/survey.schema'
-import { CreateSurveyDto } from './dto/create-survey.dto'
-import { SurveyService } from './survey.service'
-import { DeviceId } from '../../common/decorators/device.decorator'
+import { SurveyResponse } from './schemas/survey-response.schema'
 import { SurveyQuestion } from './schemas/survey-question.schema'
+import { DeviceId } from '../../common/decorators/device.decorator'
 
 @Controller('surveys')
 export class SurveyController {
     constructor(private readonly surveyService: SurveyService) {}
 
     @Post()
-    async createSurvey(
+    createSurvey(
         @DeviceId() deviceId: string,
-        @Body() createSurveyDto: CreateSurveyDto
+        @Body() dto: CreateSurveyDto
     ): Promise<Survey> {
-        return this.surveyService.createSurvey(deviceId, createSurveyDto)
+        return this.surveyService.createSurvey(deviceId, dto)
     }
 
     @Get()
-    async getSurveys(): Promise<Survey[]> {
+    getSurveys(): Promise<Survey[]> {
         return this.surveyService.getSurveys()
     }
 
     @Get(':surveyId')
-    async getSurvey(@Param('surveyId') surveyId: string): Promise<Survey> {
-        return this.surveyService.getSurveyById(surveyId)
+    getSurvey(@Param('surveyId') id: string): Promise<Survey> {
+        return this.surveyService.getSurveyById(id)
     }
 
     @Get(':surveyId/questions')
-    async getSurveyQuestions(
-        @Param('surveyId') surveyId: string
+    getSurveyQuestions(
+        @Param('surveyId') id: string
     ): Promise<SurveyQuestion[]> {
-        return this.surveyService.getSurveyQuestions(surveyId)
+        return this.surveyService.getSurveyQuestions(id)
     }
 
     @Post(':surveyId/respond')
-    async submitResponse(
+    submitResponse(
         @DeviceId() deviceId: string,
         @Param('surveyId') surveyId: string,
-        @Body() createSurveyResponseDto: CreateSurveyResponseDto
+        @Body() dto: CreateSurveyResponseDto
     ): Promise<SurveyResponse> {
-        return this.surveyService.submitSurveyResponse(
-            surveyId,
-            deviceId,
-            createSurveyResponseDto
-        )
+        return this.surveyService.submitSurveyResponse(surveyId, deviceId, dto)
     }
 
     @Get(':surveyId/responses')
-    async getSurveyResponses(
-        @Param('surveyId') surveyId: string
+    getSurveyResponses(
+        @Param('surveyId') id: string
     ): Promise<SurveyResponse[]> {
-        return this.surveyService.getSurveyResponses(surveyId)
+        return this.surveyService.getSurveyResponses(id)
     }
 }

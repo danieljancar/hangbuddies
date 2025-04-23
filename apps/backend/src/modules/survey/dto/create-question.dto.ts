@@ -4,8 +4,9 @@ import {
     IsEnum,
     IsOptional,
     IsArray,
+    IsBoolean,
 } from 'class-validator'
-import { QuestionType } from '../types/question.types'
+import { QuestionEnumType, QuestionType } from '../types/question.types'
 
 export class CreateQuestionDto {
     @IsString()
@@ -13,12 +14,14 @@ export class CreateQuestionDto {
     text: string
 
     @IsEnum(QuestionType)
-    type: (typeof QuestionType)[keyof typeof QuestionType]
+    type: QuestionEnumType
 
     @IsOptional()
     @IsArray()
+    @IsString({ each: true })
     options?: string[]
 
     @IsOptional()
+    @IsBoolean()
     isRequired?: boolean
 }

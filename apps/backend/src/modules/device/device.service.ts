@@ -1,8 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+    Injectable,
+    NotFoundException,
+    InternalServerErrorException,
+} from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { Device, DeviceDocument } from './schemas/device.schema'
 import { CreateDeviceDto } from './dto/create-device.dto'
+import { DeviceType } from './types/device-type.types'
+import { DevicePartial } from './types/device-partial.types'
 import { LogService } from '../../utils/logger/log.service'
 import { LogCategoryType } from '../../utils/logger/types/log.types'
 
@@ -10,9 +16,7 @@ import { LogCategoryType } from '../../utils/logger/types/log.types'
 export class DeviceService {
     constructor(
         @InjectModel(Device.name)
-        private readonly deviceModel: Model<
-            DeviceDocument & { createdAt: Date; updatedAt: Date }
-        >,
+        private readonly deviceModel: Model<DeviceDocument>,
         private readonly logService: LogService
     ) {}
 
@@ -20,38 +24,31 @@ export class DeviceService {
         deviceId: string,
         createDto?: CreateDeviceDto
     ): Promise<DeviceDocument> {
-        const update = {
-            $setOnInsert: {
-                deviceId,
-                userAgent: createDto?.userAgent,
-                deviceType: createDto?.deviceType,
-            },
-        }
-
-        const options = {
-            new: true,
-            upsert: true,
-            setDefaultsOnInsert: true,
+        const updateOnInsert: Partial<
+            Pick<Device, 'deviceId' | 'userAgent' | 'deviceType'>
+        > = {
+            deviceId,
+            userAgent: createDto?.userAgent,
+            deviceType: createDto?.deviceType ?? DeviceType.OTHER,
         }
 
         const device = await this.deviceModel
-            .findOneAndUpdate({ deviceId }, update, options)
+            .findOneAndUpdate(
+                { deviceId },
+                { $setOnInsert: updateOnInsert },
+                { new: true, upsert: true, setDefaultsOnInsert: true }
+            )
             .exec()
 
         if (!device) {
-            throw new Error(
+            throw new InternalServerErrorException(
                 `Failed to find or create device with id ${deviceId}`
             )
         }
 
-        const isNew =
-            device.createdAt &&
-            device.updatedAt &&
-            device.createdAt.getTime() === device.updatedAt.getTime()
-
-        if (isNew) {
+        if (device.createdAt.getTime() === device.updatedAt.getTime()) {
             await this.logService.log(
-                `Device with id ${deviceId} not found, creating a new one`,
+                `Created new device with id ${deviceId}`,
                 LogCategoryType.DEVICE
             )
         }
@@ -61,20 +58,27 @@ export class DeviceService {
 
     async recordSubmission(deviceId: string): Promise<DeviceDocument> {
         const now = new Date()
-        return this.deviceModel
+
+        const device = await this.deviceModel
             .findOneAndUpdate(
                 { deviceId },
-                {
-                    $set: { lastActive: now },
-                    $inc: { totalSubmissions: 1 },
-                },
+                { $set: { lastActive: now }, $inc: { totalSubmissions: 1 } },
                 { new: true, upsert: true }
             )
             .exec()
+
+        if (!device) {
+            throw new InternalServerErrorException(
+                `Failed to record submission for deviceId: ${deviceId}`
+            )
+        }
+
+        return device
     }
 
     async updateLastActive(deviceId: string): Promise<DeviceDocument> {
         const now = new Date()
+
         const device = await this.deviceModel
             .findOneAndUpdate(
                 { deviceId },
@@ -84,19 +88,21 @@ export class DeviceService {
             .exec()
 
         if (!device) {
-            throw new Error(
-                `Failed to update or create device with deviceId: ${deviceId}`
+            throw new InternalServerErrorException(
+                `Failed to update last active for deviceId: ${deviceId}`
             )
         }
+
         return device
     }
 
-    async getDevice(deviceId: string): Promise<Partial<DeviceDocument>> {
+    async getDevice(deviceId: string): Promise<DevicePartial> {
         const device = await this.deviceModel
             .findOne({ deviceId })
             .select('deviceId totalSubmissions lastActive -_id')
-            .lean()
+            .lean<DevicePartial>()
             .exec()
+
         if (!device) {
             await this.logService.warn(
                 `Device with id ${deviceId} not found`,
@@ -104,6 +110,7 @@ export class DeviceService {
             )
             throw new NotFoundException(`Device with id ${deviceId} not found`)
         }
+
         return device
     }
 }

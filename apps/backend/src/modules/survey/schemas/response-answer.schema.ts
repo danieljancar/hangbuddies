@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Schema as MongooseSchema, Types } from 'mongoose'
+import { HydratedDocument, Types, Schema as MongooseSchema } from 'mongoose'
+
+export type ResponseAnswerDocument = HydratedDocument<ResponseAnswer>
 
 @Schema({ _id: false })
 export class ResponseAnswer {

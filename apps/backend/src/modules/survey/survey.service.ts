@@ -1,7 +1,7 @@
 import {
-    BadRequestException,
     Injectable,
     NotFoundException,
+    BadRequestException,
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model, Types } from 'mongoose'
@@ -12,11 +12,11 @@ import {
 } from './schemas/survey-response.schema'
 import { CreateSurveyDto } from './dto/create-survey.dto'
 import { CreateSurveyResponseDto } from './dto/create-survey-response.dto'
+import { SurveyQuestion } from './schemas/survey-question.schema'
 import { DeviceService } from '../device/device.service'
 import { LogService } from '../../utils/logger/log.service'
 import { LogCategoryType } from '../../utils/logger/types/log.types'
 import { QuestionType } from './types/question.types'
-import { SurveyQuestion } from './schemas/survey-question.schema'
 
 @Injectable()
 export class SurveyService {
@@ -31,216 +31,117 @@ export class SurveyService {
 
     async createSurvey(
         deviceId: string,
-        createSurveyDto: CreateSurveyDto
-    ): Promise<Survey> {
-        const survey = new this.surveyModel({
-            ...createSurveyDto,
-            deviceId,
-        })
-        await this.deviceService.recordSubmission(deviceId)
+        dto: CreateSurveyDto
+    ): Promise<SurveyDocument> {
+        const device = await this.deviceService.recordSubmission(deviceId)
+        const survey = new this.surveyModel({ ...dto, deviceId: device._id })
         return survey.save()
     }
 
-    async getSurveys(): Promise<Survey[]> {
+    async getSurveys(): Promise<SurveyDocument[]> {
         return this.surveyModel.find().exec()
     }
 
-    async getSurveyById(id: string): Promise<Survey> {
+    async getSurveyById(id: string): Promise<SurveyDocument> {
         const survey = await this.surveyModel.findById(id).exec()
         if (!survey) {
-            await this.logService.warn(
-                `Survey with id ${id} not found`,
-                LogCategoryType.SURVEY
-            )
             throw new NotFoundException(`Survey with id ${id} not found`)
         }
         return survey
     }
 
     async getSurveyQuestions(id: string): Promise<SurveyQuestion[]> {
-        const survey = await this.surveyModel.findById(id).exec()
-        if (!survey) {
-            await this.logService.warn(
-                `Survey with id ${id} not found`,
-                LogCategoryType.SURVEY
-            )
-            throw new NotFoundException(`Survey with id ${id} not found`)
-        }
+        const survey = await this.getSurveyById(id)
         return survey.questions
     }
 
     async submitSurveyResponse(
         surveyId: string,
         deviceId: string,
-        createSurveyResponseDto: CreateSurveyResponseDto
+        dto: CreateSurveyResponseDto
     ): Promise<SurveyResponse> {
-        const survey = await this.surveyModel.findById(surveyId).exec()
-        if (!survey) {
-            await this.logService.warn(
-                `Survey with id ${surveyId} not found`,
-                LogCategoryType.SURVEY
-            )
-            throw new NotFoundException(`Survey with id ${surveyId} not found`)
-        }
+        const survey = await this.getSurveyById(surveyId)
+        await this.validateSurveyResponses(survey, dto, deviceId)
 
-        await this.validateSurveyResponses(
-            survey,
-            createSurveyResponseDto,
-            deviceId
-        )
+        const device = await this.deviceService.recordSubmission(deviceId)
+        const answers = dto.answers.map((a) => ({
+            questionId: new Types.ObjectId(a.questionId),
+            answer: a.answer,
+        }))
 
-        const mappedAnswers = createSurveyResponseDto.answers.map(
-            (answerDto) => ({
-                questionId: new Types.ObjectId(answerDto.questionId),
-                answer: answerDto.answer,
-            })
-        )
-
-        const deviceRecord = await this.deviceService.recordSubmission(deviceId)
-
-        const surveyResponse = new this.surveyResponseModel({
-            surveyId: new Types.ObjectId(surveyId),
-            deviceId: deviceRecord._id as Types.ObjectId,
-            answers: mappedAnswers,
+        const response = new this.surveyResponseModel({
+            surveyId: survey._id,
+            deviceId: device._id,
+            answers,
         })
-        const savedResponse = await surveyResponse.save()
-
+        const saved = await response.save()
         await this.logService.log(
-            `Survey response created for survey id ${surveyId} by device ${deviceId}`,
+            `Survey response created for survey ${surveyId}`,
             LogCategoryType.SURVEY,
             { deviceId }
         )
-        return savedResponse
+        return saved
     }
 
     async getSurveyResponses(surveyId: string): Promise<SurveyResponse[]> {
-        const survey = await this.surveyModel.findById(surveyId).exec()
-        if (!survey) {
-            await this.logService.warn(
-                `Survey with id ${surveyId} not found`,
-                LogCategoryType.SURVEY
-            )
-            throw new NotFoundException(`Survey with id ${surveyId} not found`)
-        }
-
-        const responses = await this.surveyResponseModel
+        const survey = await this.getSurveyById(surveyId)
+        const list = await this.surveyResponseModel
             .find({ surveyId: survey._id })
             .exec()
-
-        console.log(responses)
-
-        if (!responses || responses.length === 0) {
-            await this.logService.warn(
-                `No responses found for survey with id ${surveyId}`,
-                LogCategoryType.SURVEY
-            )
-            throw new NotFoundException(
-                `No responses found for survey with id ${surveyId}`
-            )
+        if (!list.length) {
+            throw new NotFoundException(`No responses for survey ${surveyId}`)
         }
-
-        return responses
+        return list
     }
 
     private async validateSurveyResponses(
         survey: SurveyDocument,
-        responseDto: CreateSurveyResponseDto,
+        dto: CreateSurveyResponseDto,
         deviceId: string
     ): Promise<void> {
-        const validQuestionIds = survey.questions.map((q) => q._id.toString())
-        const answeredQuestionIds = new Set(
-            responseDto.answers.map((a) => a.questionId)
-        )
+        const validIds = survey.questions.map((q) => q.id)
+        const answeredIds = dto.answers.map((a) => a.questionId)
 
         for (const question of survey.questions) {
-            if (
-                question.isRequired &&
-                !answeredQuestionIds.has(question._id.toString())
-            ) {
-                await this.logService.warn(
-                    `Required question with id ${question._id} was not answered`,
-                    LogCategoryType.SURVEY,
-                    { deviceId }
-                )
+            if (question.isRequired && !answeredIds.includes(question.id)) {
                 throw new BadRequestException(
-                    `Required question with id ${question._id} was not answered`
+                    `Required question ${question.id} was not answered`
                 )
             }
         }
 
-        for (const answer of responseDto.answers) {
-            if (!validQuestionIds.includes(answer.questionId)) {
-                await this.logService.warn(
-                    `Question with id ${answer.questionId} is not part of survey ${survey._id}`,
-                    LogCategoryType.SURVEY,
-                    { deviceId }
-                )
+        for (const answer of dto.answers) {
+            if (!validIds.includes(answer.questionId)) {
                 throw new BadRequestException(
-                    `Question with id ${answer.questionId} is not part of survey ${survey._id}`
+                    `Question ${answer.questionId} not in survey`
                 )
             }
-
             const question = survey.questions.find(
-                (q) => q._id.toString() === answer.questionId
+                (q) => q.id === answer.questionId
             )
-            if (question) {
-                switch (question.type) {
-                    case QuestionType.SINGLE_CHOICE: {
-                        if (typeof answer.answer !== 'string') {
-                            await this.logService.warn(
-                                `Expected a string answer for question ${question._id}`,
-                                LogCategoryType.SURVEY,
-                                { deviceId }
-                            )
-                            throw new BadRequestException(
-                                `Expected a string answer for question ${question._id}`
-                            )
-                        }
-                        if (
-                            question.options &&
-                            !question.options.includes(answer.answer)
-                        ) {
-                            await this.logService.warn(
-                                `Answer "${answer.answer}" is not a valid option for question ${question._id}`,
-                                LogCategoryType.SURVEY,
-                                { deviceId }
-                            )
-                            throw new BadRequestException(
-                                `Answer "${answer.answer}" is not a valid option for question ${question._id}`
-                            )
-                        }
-                        break
-                    }
-                    case QuestionType.MULTIPLE_CHOICE: {
-                        if (!Array.isArray(answer.answer)) {
-                            await this.logService.warn(
-                                `Expected an array answer for question ${question._id}`,
-                                LogCategoryType.SURVEY,
-                                { deviceId }
-                            )
-                            throw new BadRequestException(
-                                `Expected an array answer for question ${question._id}`
-                            )
-                        }
-                        if (
-                            question.options &&
-                            !answer.answer.every((a) =>
-                                question.options?.includes(a)
-                            )
-                        ) {
-                            await this.logService.warn(
-                                `One or more answers for question ${question._id} are not valid options`,
-                                LogCategoryType.SURVEY,
-                                { deviceId }
-                            )
-                            throw new BadRequestException(
-                                `One or more answers for question ${question._id} are not valid options`
-                            )
-                        }
-                        break
-                    }
-                    default:
-                        break
+            if (!question) continue
+
+            if (question.type === QuestionType.SINGLE_CHOICE) {
+                if (
+                    typeof answer.answer !== 'string' ||
+                    question.options === undefined ||
+                    !question.options.includes(answer.answer)
+                ) {
+                    throw new BadRequestException(
+                        `Invalid answer for question ${question.id}`
+                    )
+                }
+            } else if (question.type === QuestionType.MULTIPLE_CHOICE) {
+                if (
+                    !Array.isArray(answer.answer) ||
+                    question.options === undefined ||
+                    answer.answer.some(
+                        (val) => !question.options!.includes(val)
+                    )
+                ) {
+                    throw new BadRequestException(
+                        `Invalid answers for question ${question.id}`
+                    )
                 }
             }
         }

@@ -20,5 +20,5 @@ export class SurveyMetaDto {
 
     @IsOptional()
     @IsObject()
-    additional?: Record<string, any>
+    additional?: Record<string, unknown>
 }
