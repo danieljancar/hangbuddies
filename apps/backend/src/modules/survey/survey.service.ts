@@ -1,7 +1,7 @@
 import {
+    BadRequestException,
     Injectable,
     NotFoundException,
-    BadRequestException,
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model, Types } from 'mongoose'
@@ -61,7 +61,7 @@ export class SurveyService {
         dto: CreateSurveyResponseDto
     ): Promise<SurveyResponse> {
         const survey = await this.getSurveyById(surveyId)
-        await this.validateSurveyResponses(survey, dto, deviceId)
+        this.validateSurveyResponses(survey, dto)
 
         const device = await this.deviceService.recordSubmission(deviceId)
         const answers = dto.answers.map((a) => ({
@@ -94,11 +94,10 @@ export class SurveyService {
         return list
     }
 
-    private async validateSurveyResponses(
+    private validateSurveyResponses(
         survey: SurveyDocument,
-        dto: CreateSurveyResponseDto,
-        deviceId: string
-    ): Promise<void> {
+        dto: CreateSurveyResponseDto
+    ) {
         const validIds = survey.questions.map((q) => q.id)
         const answeredIds = dto.answers.map((a) => a.questionId)
 
@@ -121,7 +120,13 @@ export class SurveyService {
             )
             if (!question) continue
 
-            if (question.type === QuestionType.SINGLE_CHOICE) {
+            if (question.type === QuestionType.TEXT) {
+                if (typeof answer.answer !== 'string') {
+                    throw new BadRequestException(
+                        `Invalid answer for question ${question.id}`
+                    )
+                }
+            } else if (question.type === QuestionType.SINGLE_CHOICE) {
                 if (
                     typeof answer.answer !== 'string' ||
                     question.options === undefined ||

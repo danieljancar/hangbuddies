@@ -14,7 +14,7 @@ export class SurveyQuestion {
     text: string
 
     @Prop({ required: true, enum: QuestionType })
-    type: number
+    type: QuestionType
 
     @Prop({ type: [String], default: [] })
     options?: string[]

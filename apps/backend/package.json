@@ -11,7 +11,7 @@
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
-        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+        "lint": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\"",
         "lint:fix": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\" --fix",
         "seed:dev": "ts-node --transpile-only scripts/seed/seed.ts",
         "test": "jest",
