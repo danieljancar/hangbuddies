@@ -1,6 +1,6 @@
 services:
   backend:
-    image: hangbuddies/backend:latest
+    image: hangbuddies/backend:${DEPLOYMENT}
     restart: always
     environment:
       - MONGO_URI=${MONGO_URI}
@@ -18,7 +18,7 @@ services:
       - traefik.docker.network=traefik-net
   
   frontend:
-    image: hangbuddies/frontend:latest
+    image: hangbuddies/frontend:${DEPLOYMENT}
     restart: always
     depends_on:
       - backend
