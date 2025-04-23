@@ -1,0 +1,54 @@
+name: Deploy development Frontend
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - 'apps/frontend/**'
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH Agent and Key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Set up WireGuard
+        uses: egor-tensin/setup-wireguard@v1
+        with:
+          endpoint: '${{ secrets.WG_ENDPOINT }}'
+          endpoint_public_key: '${{ secrets.WG_ENDPOINT_PUBLIC }}'
+          ips: '${{ secrets.WG_IPS }}'
+          allowed_ips: '${{ secrets.WG_ALLOWED_IPS }}'
+          private_key: '${{ secrets.WG_PRIVATE }}'
+  
+      - name: Add Server's Host Key to known_hosts
+        run: ssh-keyscan -H ${{ secrets.SERVER_HOST_NAME }} >> ~/.ssh/known_hosts
+
+      - name: Create SSH Config File
+        run: |
+          mkdir -p ~/.ssh
+          cat <<EOF > ~/.ssh/config
+          Host server
+            HostName ${{ secrets.SERVER_HOST_NAME }}
+            User ${{ secrets.SERVER_USER }}
+            IdentityFile ~/.ssh/id_rsa
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Prepare Deployment on Remote Server
+        run: |
+          ssh server << EOF
+            cd ${{ secrets.DEV_DEPLOYMENT_DIR }}
+            git pull
+            docker build -t hangbuddies/frontend:dev apps/frontend/ --no-cache
+            cd devops
+            docker-compose down
+            docker-compose up -d
+          EOF
