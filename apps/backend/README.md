@@ -67,12 +67,12 @@ Find out more about the seeder in the [Seeder README](./scripts/seed/README.md).
 
 ## Unit Tests
 
-> [!Warn]
+> [!Warning]
 > Unit tests are not yet implemented.
 
 ## E2E Tests
 
-> [!Warn]
+> [!Warning]
 > E2E tests are not yet implemented.
 
 ## API Client
