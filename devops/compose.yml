@@ -1,11 +1,11 @@
 services:
   backend:
     image: hangbuddies/backend:${DEPLOYMENT}
+    container_name: hangbuddies-backend-${DEPLOYMENT}
     restart: always
     environment:
       - MONGO_URI=${MONGO_URI}
       - MONGO_APP_NAME=${MONGO_APP_NAME}
-      - PORT=27017
     networks:
       - traefik-net
     labels:
@@ -19,6 +19,7 @@ services:
   
   frontend:
     image: hangbuddies/frontend:${DEPLOYMENT}
+    container_name: hangbuddies-frontend-${DEPLOYMENT}
     restart: always
     depends_on:
       - backend
@@ -37,7 +38,7 @@ services:
         image: mongo
         container_name: mongo-${DEPLOYMENT}
         volumes:
-            - mongodb_data:/data/db
+            - ./mongodb_data:/data/db
         environment:
             MONGO_INITDB_DATABASE: hangbuddies
         networks:
