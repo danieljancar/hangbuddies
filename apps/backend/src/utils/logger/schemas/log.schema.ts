@@ -1,22 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
-import {
-    LogCategoryEnumType,
-    LogCategoryType,
-    LogLevelEnumType,
-    LogLevelType,
-} from '../types/log.types'
+import { LogCategoryType, LogLevelType } from '../types/log.types'
 
 @Schema({ timestamps: false })
 export class Log {
     @Prop({ required: true, enum: LogLevelType })
-    level: LogLevelEnumType
+    level: string
 
     @Prop({ required: true })
     message: string
 
-    @Prop({ enum: LogCategoryType })
-    category: LogCategoryEnumType
+    @Prop({ required: true, enum: LogCategoryType })
+    category: string
 
     @Prop({ type: Object })
     extra?: Record<string, any>

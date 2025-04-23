@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
-import { QuestionEnumType, QuestionType } from '../types/question.types'
+import { QuestionType } from '../types/question.types'
 
 export type SurveyQuestionDocument = SurveyQuestion & Document
 
@@ -12,7 +12,7 @@ export class SurveyQuestion {
     text: string
 
     @Prop({ required: true, enum: QuestionType })
-    type: QuestionEnumType
+    type: number
 
     @Prop({ required: false, type: [String] })
     options?: string[]

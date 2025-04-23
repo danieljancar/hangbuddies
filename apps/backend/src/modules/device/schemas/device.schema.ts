@@ -13,7 +13,7 @@ export class Device {
     userAgent?: string
 
     @Prop({ enum: DeviceType, default: DeviceType.OTHER })
-    deviceType: DeviceType
+    deviceType: number
 
     @Prop({ default: 0 })
     totalSubmissions: number

@@ -12,7 +12,7 @@ export const DeviceId = createParamDecorator(
         const deviceId = request.header(DEVICE_ID_HEADER)
 
         if (!deviceId) {
-            throw new BadRequestException(`Device ID is required`)
+            throw new BadRequestException(`Device ID is required as a header`)
         }
         return deviceId
     }
