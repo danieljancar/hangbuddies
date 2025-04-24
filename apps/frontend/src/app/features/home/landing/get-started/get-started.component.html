@@ -1,5 +1,5 @@
 <section class="get-started">
-    <div class="get-started__header">
+    <div class="get-started__header" id="get-started">
         <h1>Get Started</h1>
         <p>
             Scheduling made simple. Create a poll, invite instantly, and let
@@ -23,5 +23,12 @@
                 </mat-card-content>
             </mat-card>
         }
+    </div>
+
+    <div class="get-started_hide">
+        <button (click)="hideSection()" color="tertiary" mat-button>
+            <mat-icon>visibility_off</mat-icon>
+            Hide Section
+        </button>
     </div>
 </section>

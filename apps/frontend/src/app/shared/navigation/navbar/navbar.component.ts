@@ -7,8 +7,12 @@ import {
 import { MatButton, MatIconButton } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
 import { MatToolbar } from '@angular/material/toolbar'
-import { RouterOutlet } from '@angular/router'
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
 import { NgOptimizedImage } from '@angular/common'
+import { EXTERNAL_LINKS } from '../../../common/link.constants'
+import { APP_ROUTES } from '../../../common/routes'
+import { CloseDrawerDirective } from '../../directives'
+import { FooterComponent } from '../footer/footer.component'
 
 @Component({
     selector: 'app-navbar',
@@ -22,9 +26,26 @@ import { NgOptimizedImage } from '@angular/common'
         MatToolbar,
         RouterOutlet,
         NgOptimizedImage,
+        RouterLink,
+        RouterLinkActive,
+        CloseDrawerDirective,
+        FooterComponent,
     ],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',
     standalone: true,
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+    readonly year = new Date().getFullYear()
+    protected readonly EXTERNAL_LINKS = EXTERNAL_LINKS
+
+    protected onDrawerOpened(): void {
+        document.body.style.overflow = 'hidden'
+    }
+
+    protected onDrawerClosed(): void {
+        document.body.style.overflow = ''
+    }
+
+    protected readonly APP_ROUTES = APP_ROUTES
+}

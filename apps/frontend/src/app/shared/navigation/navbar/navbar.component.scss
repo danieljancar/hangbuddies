@@ -1,14 +1,24 @@
 @use 'breakpoints' as *;
 @use 'mixins' as *;
 
+.is-active {
+    font-weight: 900 !important;
+    color: var(--mat-sys-primary) !important;
+
+    mat-icon {
+        color: var(--mat-sys-primary) !important;
+    }
+}
+
 .navbar {
     height: 100%;
+    overflow-x: hidden;
 
     &__toolbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 1rem;
+        padding: 2rem 1rem 2rem;
         background-color: var(--mat-sys-secondary);
     }
 
@@ -34,10 +44,6 @@
         button {
             font-weight: 500;
         }
-
-        mat-icon {
-            margin-right: 4px;
-        }
     }
 
     &__toggle {
@@ -46,21 +52,34 @@
         }
     }
 
+    ::ng-deep .mat-drawer {
+        border-radius: 0 !important;
+    }
+
     &__drawer {
         width: 100%;
-        display: flex;
-        flex-direction: column;
+        padding: 0;
         height: 100%;
+        display: flex;
+        opacity: 0.97;
+
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         &-header {
             display: flex;
             justify-content: space-between;
+            padding: 0.8rem 1rem 0;
             align-items: center;
-            padding: 1rem;
         }
 
         &-logo {
-            height: 36px;
+            height: 80px;
             width: auto;
         }
 
@@ -68,11 +87,13 @@
             display: flex;
             flex-direction: column;
             padding: 0 1rem;
+            margin-top: 1rem;
 
             button {
                 justify-content: flex-start;
                 text-align: left;
                 margin: 0.25rem 0;
+                font-weight: 500;
 
                 mat-icon {
                     margin-right: 0.75rem;
@@ -84,6 +105,24 @@
             margin-top: auto;
             padding: 1rem;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &-social {
+                margin-top: 1vh;
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &-text {
+                margin-top: 1vh;
+                text-align: center;
+                font-size: 0.9rem;
+            }
         }
     }
 }
