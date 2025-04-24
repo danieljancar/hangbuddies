@@ -67,6 +67,12 @@ Collaborators can clone this original repository, as a contributor you should ma
 ```shell
 git clone https://github.com/danieljancar/hangbuddies.git
 cd hangbuddies
+```
+
+To make sure, all dev-tools and hooks are set up before we make any changes run `npm install` in **root**:
+
+```shell
+# Node > 20
 npm install
 ```
 
