@@ -1,0 +1,80 @@
+<mat-sidenav-container class="navbar">
+    <!-- Mobile Drawer -->
+    <mat-sidenav
+        #drawer
+        class="navbar__drawer util-show-mobile"
+        fixedInViewport="true"
+        mode="over"
+    >
+        <div class="navbar__drawer-header">
+            <img
+                alt="Logo"
+                class="navbar__drawer-logo"
+                height="200"
+                ngSrc="/primary_logo.png"
+                priority
+                width="500"
+            />
+            <button (click)="drawer.close()" mat-icon-button>
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <nav class="navbar__drawer-nav">
+            <button mat-button>
+                <mat-icon>home</mat-icon>
+                Home
+            </button>
+            <button mat-button>
+                <mat-icon>groups</mat-icon>
+                My Activity
+            </button>
+            <button mat-button>
+                <mat-icon>description</mat-icon>
+                Blog
+            </button>
+            <button mat-button>
+                <mat-icon>group</mat-icon>
+                About
+            </button>
+        </nav>
+
+        <div class="navbar__drawer-footer">
+            <a class="util-external-link" target="_blank">
+                <mat-icon>code</mat-icon>
+            </a>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!-- Top Navigation Bar -->
+        <mat-toolbar class="navbar__toolbar" color="primary">
+            <div class="navbar__logo-container">
+                <img alt="Logo" class="navbar__logo" src="/primary_logo.png" />
+            </div>
+
+            <span class="navbar__spacer"></span>
+
+            <!-- Desktop Menu -->
+            <div class="navbar__menu util-hide-mobile">
+                <button mat-button>Home</button>
+                <button mat-button>My Activity</button>
+                <button mat-button>Blog</button>
+                <button mat-button>About</button>
+                <button color="accent" mat-raised-button>
+                    <mat-icon>add</mat-icon>
+                    Create
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Icon -->
+            <div class="navbar__toggle util-show-mobile">
+                <button (click)="drawer.toggle()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar>
+
+        <router-outlet />
+    </mat-sidenav-content>
+</mat-sidenav-container>

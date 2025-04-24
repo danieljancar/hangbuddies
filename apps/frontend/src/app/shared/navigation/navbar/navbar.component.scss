@@ -1,0 +1,89 @@
+@use 'breakpoints' as *;
+@use 'mixins' as *;
+
+.navbar {
+    height: 100%;
+
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        background-color: var(--mat-sys-secondary);
+    }
+
+    &__logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        height: 80px;
+        width: auto;
+    }
+
+    &__spacer {
+        flex-grow: 1;
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        button {
+            font-weight: 500;
+        }
+
+        mat-icon {
+            margin-right: 4px;
+        }
+    }
+
+    &__toggle {
+        button {
+            margin-left: 1rem;
+        }
+    }
+
+    &__drawer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        &-logo {
+            height: 36px;
+            width: auto;
+        }
+
+        &-nav {
+            display: flex;
+            flex-direction: column;
+            padding: 0 1rem;
+
+            button {
+                justify-content: flex-start;
+                text-align: left;
+                margin: 0.25rem 0;
+
+                mat-icon {
+                    margin-right: 0.75rem;
+                }
+            }
+        }
+
+        &-footer {
+            margin-top: auto;
+            padding: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    }
+}

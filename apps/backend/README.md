@@ -79,6 +79,8 @@ Find out more about the seeder in the [Seeder README](./scripts/seed/README.md).
 
 ## API Client
 
-We use [Bruno](https://www.userbruno.com/) as our API client for testing and development. You can find the API collections
+We use [Bruno](https://www.userbruno.com/) as our API client for testing and development. You can find the API
+collections
 in the `bruno/core-api` directory. These collections include requests for all relevant endpoints in the API, making it
-easy to test and develop.
+easy to test and
+develop. [<img src="https://fetch.usebruno.com/button.svg" alt="Fetch in Bruno" style="width: 130px; height: 30px;" width="128" height="32">](https://fetch.usebruno.com?url=https%3A%2F%2Fgithub.com%2Fdanieljancar%2Fhangbuddies.git 'target=_blank rel=noopener noreferrer')

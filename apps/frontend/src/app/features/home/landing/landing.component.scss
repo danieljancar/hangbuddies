@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @use 'breakpoints' as bp;
 
-#cont__hero {
+.hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,41 +9,42 @@
     padding: 3rem;
     background-color: var(--mat-sys-secondary);
     height: 60vh;
-}
 
-#cont__img {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &__image {
+        flex: 1;
+        display: flex;
+        justify-content: right;
+        align-items: center;
 
-    img {
-        max-width: 600px;
-        width: 100%;
-        height: auto;
-    }
-}
-
-#cont__txt {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .text-content {
-        max-width: 500px;
-
-        h1 {
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            line-height: 1.5;
+        img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
         }
     }
 
-    #cont__btn {
+    &__text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        &-content {
+            max-width: 500px;
+
+            h1 {
+                margin-bottom: 1rem;
+            }
+
+            p {
+                margin-bottom: 1rem;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    &__buttons {
         display: flex;
         gap: 1rem;
         margin-top: 1rem;
@@ -51,22 +52,22 @@
 }
 
 @media (max-width: map-get(bp.$breakpoints, md)) {
-    #cont__hero {
+    .hero {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
         height: auto;
-    }
 
-    #cont__img {
-        margin-bottom: 1rem;
-    }
+        &__image {
+            margin-bottom: 1rem;
+        }
 
-    #cont__txt {
-        align-items: center;
+        &__text {
+            align-items: center;
 
-        #cont__btn {
-            justify-content: center;
+            .hero__buttons {
+                justify-content: center;
+            }
         }
     }
 }
