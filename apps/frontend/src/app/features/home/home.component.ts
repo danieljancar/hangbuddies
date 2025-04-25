@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core'
+import { Component, effect, inject } from '@angular/core'
 import { LandingComponent } from './landing/landing.component'
 import { LocalStorageService } from '../../utils/local-storage.service'
 import { LOCAL_STORAGE_KEYS } from '../../common/storage.constants'
@@ -11,16 +11,16 @@ import { LOCAL_STORAGE_KEYS } from '../../common/storage.constants'
     standalone: true,
 })
 export class HomeComponent {
-    protected hideLanding = signal<boolean>(false)
+    protected hideLanding: boolean = false
     readonly #localStorageService = inject(LocalStorageService)
 
     constructor() {
         effect(() => {
-            this.hideLanding.set(
+            this.#localStorageService.setLocalStorage()
+            this.hideLanding =
                 this.#localStorageService.getWithExpiry(
                     LOCAL_STORAGE_KEYS.UI_STATE.HIDE_LANDING
-                ) || false
-            )
+                ) ?? false
         })
     }
 }

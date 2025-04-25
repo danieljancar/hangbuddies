@@ -1,15 +1,6 @@
 @use 'breakpoints' as *;
 @use 'mixins' as *;
 
-.is-active {
-    font-weight: 900 !important;
-    color: var(--mat-sys-primary) !important;
-
-    mat-icon {
-        color: var(--mat-sys-primary) !important;
-    }
-}
-
 .navbar {
     height: 100%;
     overflow-x: hidden;
@@ -41,7 +32,7 @@
         align-items: center;
         gap: 1rem;
 
-        button {
+        a {
             font-weight: 500;
         }
     }
@@ -84,12 +75,13 @@
         }
 
         &-nav {
+            justify-content: start;
             display: flex;
             flex-direction: column;
             padding: 0 1rem;
             margin-top: 1rem;
 
-            button {
+            a {
                 justify-content: flex-start;
                 text-align: left;
                 margin: 0.25rem 0;
@@ -123,6 +115,15 @@
                 text-align: center;
                 font-size: 0.9rem;
             }
+        }
+    }
+
+    &__nav-button--active {
+        font-weight: 900 !important;
+        color: var(--mat-sys-primary) !important;
+
+        mat-icon {
+            color: var(--mat-sys-primary) !important;
         }
     }
 }

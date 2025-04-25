@@ -4,7 +4,7 @@ import {
     MatSidenavContainer,
     MatSidenavContent,
 } from '@angular/material/sidenav'
-import { MatButton, MatIconButton } from '@angular/material/button'
+import { MatAnchor, MatIconButton } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
 import { MatToolbar } from '@angular/material/toolbar'
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
@@ -22,7 +22,6 @@ import { FooterComponent } from '../footer/footer.component'
         MatSidenavContent,
         MatIconButton,
         MatIcon,
-        MatButton,
         MatToolbar,
         RouterOutlet,
         NgOptimizedImage,
@@ -30,6 +29,7 @@ import { FooterComponent } from '../footer/footer.component'
         RouterLinkActive,
         CloseDrawerDirective,
         FooterComponent,
+        MatAnchor,
     ],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',
@@ -38,6 +38,7 @@ import { FooterComponent } from '../footer/footer.component'
 export class NavbarComponent {
     readonly year = new Date().getFullYear()
     protected readonly EXTERNAL_LINKS = EXTERNAL_LINKS
+    protected readonly APP_ROUTES = APP_ROUTES
 
     protected onDrawerOpened(): void {
         document.body.style.overflow = 'hidden'
@@ -46,6 +47,4 @@ export class NavbarComponent {
     protected onDrawerClosed(): void {
         document.body.style.overflow = ''
     }
-
-    protected readonly APP_ROUTES = APP_ROUTES
 }

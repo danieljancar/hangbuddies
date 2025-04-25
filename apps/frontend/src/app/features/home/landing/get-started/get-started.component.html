@@ -24,11 +24,15 @@
             </mat-card>
         }
     </div>
-
-    <div class="get-started_hide">
-        <button (click)="hideSection()" color="tertiary" mat-button>
-            <mat-icon>visibility_off</mat-icon>
-            Hide Section
-        </button>
-    </div>
 </section>
+<div class="get-started_hide">
+    <button
+        (click)="hideSection()"
+        T
+        mat-icon-button
+        matTooltip="Hide section above"
+        matTooltipPosition="left"
+    >
+        <mat-icon>visibility_off</mat-icon>
+    </button>
+</div>

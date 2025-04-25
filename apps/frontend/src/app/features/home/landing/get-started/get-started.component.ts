@@ -7,9 +7,10 @@ import {
     MatCardTitle,
 } from '@angular/material/card'
 import { MatIcon } from '@angular/material/icon'
-import { MatButton } from '@angular/material/button'
+import { MatIconButton } from '@angular/material/button'
 import { LocalStorageService } from '../../../../utils/local-storage.service'
 import { LOCAL_STORAGE_KEYS } from '../../../../common/storage.constants'
+import { MatTooltip } from '@angular/material/tooltip'
 
 @Component({
     selector: 'app-get-started',
@@ -20,7 +21,8 @@ import { LOCAL_STORAGE_KEYS } from '../../../../common/storage.constants'
         MatIcon,
         MatCardTitle,
         MatCardAvatar,
-        MatButton,
+        MatIconButton,
+        MatTooltip,
     ],
     templateUrl: './get-started.component.html',
     styleUrl: './get-started.component.scss',
