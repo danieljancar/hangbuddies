@@ -1,1 +1,18 @@
-<p>footer works!</p>
+<footer class="footer">
+    <mat-toolbar class="footer__toolbar">
+        <div class="footer__toolbar-brand">
+            <a [routerLink]="APP_ROUTES.HOME.LANDING" class="util-link-image">
+                <img
+                    alt="Logo"
+                    class="footer__toolbar-logo"
+                    height="120"
+                    ngSrc="/icon.png"
+                    priority
+                    width="120"
+                />
+            </a>
+        </div>
+    </mat-toolbar>
+</footer>
+
+<a [routerLink]="APP_ROUTES.HOME.LANDING" mat-stroked-button> Preferences </a>

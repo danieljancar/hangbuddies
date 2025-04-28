@@ -12,15 +12,19 @@
         <nav class="navbar__drawer-inner">
             <!-- Header -->
             <div class="navbar__drawer-header">
-                <img
+                <a
                     [routerLink]="APP_ROUTES.HOME.LANDING"
-                    alt="Logo"
-                    class="navbar__drawer-logo util-link-image"
-                    height="200"
-                    ngSrc="/primary_logo.png"
-                    priority
-                    width="500"
-                />
+                    class="util-link-image"
+                >
+                    <img
+                        alt="Logo"
+                        class="navbar__drawer-logo"
+                        height="200"
+                        ngSrc="/primary_logo.png"
+                        priority
+                        width="500"
+                    />
+                </a>
                 <button (click)="drawer.close()" mat-icon-button>
                     <mat-icon>close</mat-icon>
                 </button>
