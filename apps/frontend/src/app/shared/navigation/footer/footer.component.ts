@@ -2,18 +2,12 @@ import { Component } from '@angular/core'
 import { MatToolbar } from '@angular/material/toolbar'
 import { NgOptimizedImage } from '@angular/common'
 import { APP_ROUTES } from '../../../common/routes'
-import { RouterLink, RouterLinkActive } from '@angular/router'
+import { RouterLink } from '@angular/router'
 import { MatAnchor } from '@angular/material/button'
 
 @Component({
     selector: 'app-footer',
-    imports: [
-        MatToolbar,
-        NgOptimizedImage,
-        RouterLink,
-        MatAnchor,
-        RouterLinkActive,
-    ],
+    imports: [MatToolbar, NgOptimizedImage, RouterLink, MatAnchor],
     templateUrl: './footer.component.html',
     styleUrl: './footer.component.scss',
     standalone: true,

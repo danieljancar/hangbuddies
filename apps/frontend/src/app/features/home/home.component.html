@@ -1,3 +1,10 @@
-@if (!hideLanding) {
+@if (!isLandingHidden()) {
     <app-landing />
 }
+<div class="home__checkbox-hide">
+    <mat-checkbox (change)="toggleLanding()" [checked]="isLandingHidden()">
+        <span class="home__checkbox-label"
+            >{{ landingToggleLabel() }} landing</span
+        >
+    </mat-checkbox>
+</div>

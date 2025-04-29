@@ -25,9 +25,17 @@
                         width="500"
                     />
                 </a>
-                <button (click)="drawer.close()" mat-icon-button>
-                    <mat-icon>close</mat-icon>
-                </button>
+                <div class="navbar__drawer-actions">
+                    <button
+                        [routerLink]="APP_ROUTES.SURVEY.CREATE"
+                        mat-mini-fab
+                    >
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button (click)="drawer.close()" mat-icon-button>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
             </div>
 
             <!-- Navigation -->
@@ -155,7 +163,7 @@
                 >
                     About
                 </a>
-                <a
+                <button
                     [closeDrawer]="drawer"
                     [routerLink]="APP_ROUTES.SURVEY.CREATE"
                     color="primary"
@@ -163,11 +171,14 @@
                 >
                     <mat-icon>add</mat-icon>
                     Create
-                </a>
+                </button>
             </nav>
 
             <!-- Mobile Toggle -->
             <div class="navbar__toggle util-show-mobile">
+                <button [routerLink]="APP_ROUTES.SURVEY.CREATE" mat-mini-fab>
+                    <mat-icon>add</mat-icon>
+                </button>
                 <button (click)="drawer.toggle()" mat-icon-button>
                     <mat-icon>menu</mat-icon>
                 </button>

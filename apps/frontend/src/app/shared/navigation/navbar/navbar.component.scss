@@ -39,7 +39,7 @@
 
     &__toggle {
         button {
-            margin-left: 1rem;
+            margin-left: 0.5rem;
         }
     }
 
@@ -72,6 +72,10 @@
         &-logo {
             height: 80px;
             width: auto;
+        }
+
+        &-actions {
+            margin-left: 0.5rem;
         }
 
         &-nav {

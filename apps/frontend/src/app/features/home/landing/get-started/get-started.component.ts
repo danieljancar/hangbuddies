@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component } from '@angular/core'
 import {
     MatCard,
     MatCardAvatar,
@@ -7,10 +7,6 @@ import {
     MatCardTitle,
 } from '@angular/material/card'
 import { MatIcon } from '@angular/material/icon'
-import { MatIconButton } from '@angular/material/button'
-import { LocalStorageService } from '../../../../utils/local-storage.service'
-import { LOCAL_STORAGE_KEYS } from '../../../../common/storage.constants'
-import { MatTooltip } from '@angular/material/tooltip'
 
 @Component({
     selector: 'app-get-started',
@@ -21,8 +17,6 @@ import { MatTooltip } from '@angular/material/tooltip'
         MatIcon,
         MatCardTitle,
         MatCardAvatar,
-        MatIconButton,
-        MatTooltip,
     ],
     templateUrl: './get-started.component.html',
     styleUrl: './get-started.component.scss',
@@ -49,13 +43,4 @@ export class GetStartedComponent {
                 'Pick the best time based on the majority’s preference. Planning meetups, organizing events, or just picking a date has never been simpler.',
         },
     ]
-    readonly #localStorageService = inject(LocalStorageService)
-
-    hideSection() {
-        this.#localStorageService.setWithExpiry(
-            LOCAL_STORAGE_KEYS.UI_STATE.HIDE_LANDING,
-            true,
-            1
-        )
-    }
 }

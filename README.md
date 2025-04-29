@@ -42,7 +42,7 @@
 # Contributing
 
 > [!Important]
-> This project is still in initial development and we are working on setting up configuration for contributors.
+> This project is still in initial development, and we are working on setting up configuration for contributors.
 
 Contributions are welcome! Please read the [contribution guidelines](CONTRIBUTING.md) and other
 relevant [documents](docs/) for developers before getting started.
@@ -51,8 +51,8 @@ relevant [documents](docs/) for developers before getting started.
 
 We use multiple tools to build HangBuddies. The following are the minimum requirements to get started:
 
-- **Node.js**: Version 20 or higher
-    - **npm**: Version 10 or higher
+- **Node.js**: Version `^20` or higher
+    - **npm**: Version `^10` or higher
     - **pnpm**
     - **yarn**
 - **Docker**: Needed for running the backend locally (with Docker Compose)
