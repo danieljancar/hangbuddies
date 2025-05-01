@@ -6,4 +6,21 @@ updates:
           - '/apps/frontend'
           - '/apps/backend'
       schedule:
-          interval: 'daily'
+          interval: 'weekly'
+          day: 'friday'
+          time: '08:00'
+      rebase-strategy: 'auto'
+      open-pull-requests-limit: 1
+      allow:
+          - dependency-type: 'all'
+            update-types:
+                - 'semver-minor'
+                - 'semver-patch'
+      reviewers:
+          - 'danieljancar'
+      milestone: 'D11 - Operations and maintenance'
+      labels:
+          - 'dependencies'
+      automerged_updates:
+          - match:
+                update_type: 'semver-patch'
