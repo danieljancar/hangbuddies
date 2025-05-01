@@ -10,3 +10,11 @@ LICENSE @danieljancar
 SECURITY.md @danieljancar
 CODEOWNERS @danieljancar
 CODE_OF_CONDUCT.md @danieljancar
+CHANGELOG.md @danieljancar
+
+# Versioning
+**/package.json @danieljancar
+
+# Configuration
+**/.gitignore @danieljancar
+

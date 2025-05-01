@@ -16,8 +16,6 @@ updates:
             update-types:
                 - 'semver-minor'
                 - 'semver-patch'
-      reviewers:
-          - 'danieljancar'
       milestone: 'D11 - Operations and maintenance'
       labels:
           - 'dependencies'
