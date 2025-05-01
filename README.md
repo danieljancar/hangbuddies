@@ -75,6 +75,25 @@ npm install
 > [!Note]
 > As already mentioned, we are working on setting up configuration for contributors. Please check back later.
 
+## Live Previews
+
+We have multiple live previews of different environments. You can find them in the following links:
+
+### Staging (Pre-Production)
+
+- **Frontend**: `not available yet`
+- **Backend**: `not available yet`
+
+### Development (Pre-Staging/active development)
+
+- **Frontend**: [https://dev.mrbeast.ch](https://dev.mrbeast.ch)
+- **Backend**: [https://api-dev.mrbeast.ch](https://api-dev.mrbeast.ch)
+
+> [!Note]
+> The environments above are hosting the latest `staging` and `develop` branches. The `staging` branch is the latest
+> stable version of the application, while the `develop` branch is the latest development version. They are seeded with
+> test data and are not meant for production use.
+
 # License
 
 This project is licensed under [MIT License](LICENSE). By contributing to HangBuddies, you agree that your contributions
