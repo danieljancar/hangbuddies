@@ -41,7 +41,7 @@
         "@nestjs/schematics": "^11.0.5",
         "@nestjs/testing": "^11.1.0",
         "@swc/cli": "^0.7.3",
-        "@swc/core": "^1.10.7",
+        "@swc/core": "^1.11.24",
         "@types/express": "^5.0.0",
         "@types/faker": "^6.6.8",
         "@types/jest": "^29.5.14",
