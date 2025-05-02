@@ -1,15 +1,25 @@
 .footer {
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    top: auto;
     width: 100%;
-    min-height: 20vh;
-    bottom: 0;
-    background-color: var(--mat-sys-on-primary-container);
-    color: var(--mat-sys-primary-container);
+    background-color: var(--mat-sys-on-surface);
+    color: var(--mat-sys-surface);
 
     &__toolbar {
+        padding: 3rem 2rem;
+        background-color: var(--mat-sys-on-surface);
+
         &-brand {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        &-logo {
+            height: 4rem;
+            width: auto;
         }
     }
 }

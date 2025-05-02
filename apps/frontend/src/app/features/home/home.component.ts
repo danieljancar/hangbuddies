@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core'
+import { Component, effect, inject, signal } from '@angular/core'
 import { LandingComponent } from './landing/landing.component'
 import { LocalStorageService } from '../../utils/local-storage.service'
 import { LOCAL_STORAGE_KEYS } from '../../common/storage.constants'
@@ -13,9 +13,6 @@ import { MatCheckbox } from '@angular/material/checkbox'
 })
 export class HomeComponent {
     isLandingHidden = signal<boolean>(false)
-    landingToggleLabel = computed(() => {
-        return this.isLandingHidden() ? 'Reveal' : 'Hide'
-    })
 
     readonly #localStorageService = inject(LocalStorageService)
 

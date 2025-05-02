@@ -43,7 +43,6 @@ import { FooterComponent } from '../footer/footer.component'
     standalone: true,
 })
 export class NavbarComponent {
-    readonly year = new Date().getFullYear()
     protected readonly EXTERNAL_LINKS = EXTERNAL_LINKS
     protected readonly APP_ROUTES = APP_ROUTES
 
