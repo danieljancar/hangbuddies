@@ -33,17 +33,17 @@
     },
     "homepage": "https://github.com/danieljancar/hangbuddies#readme",
     "devDependencies": {
-        "@commitlint/cli": "^19.7.1",
-        "@commitlint/config-conventional": "^19.7.1",
+        "@commitlint/config-conventional": "^19.8.0",
+        "@commitlint/cli": "^19.8.0",
         "husky": "^9.1.7",
-        "lint-staged": "^15.4.3",
-        "prettier": "3.5.1"
+        "lint-staged": "^15.5.1",
+        "prettier": "3.5.3"
     },
     "engines": {
         "node": ">=20.0.0",
         "npm": ">=10.9.0"
     },
     "dependencies": {
-        "dotenv": "^16.4.7"
+        "dotenv": "^16.5.0"
     }
 }
