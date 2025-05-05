@@ -1,14 +1,13 @@
 .footer {
     margin-top: 5rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: var(--mat-sys-on-surface);
-    color: var(--mat-sys-surface);
 
     &__toolbar {
         padding: 3rem 2rem;
-        background-color: var(--mat-sys-on-surface);
+        background-color: #3b2c35;
 
         &-brand {
             display: flex;
@@ -21,5 +20,9 @@
             height: 4rem;
             width: auto;
         }
+    }
+
+    &__content {
+        padding: 0 2rem;
     }
 }

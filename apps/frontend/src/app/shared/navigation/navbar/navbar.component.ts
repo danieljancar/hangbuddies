@@ -4,12 +4,7 @@ import {
     MatSidenavContainer,
     MatSidenavContent,
 } from '@angular/material/sidenav'
-import {
-    MatAnchor,
-    MatButton,
-    MatIconButton,
-    MatMiniFabButton,
-} from '@angular/material/button'
+import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
 import { MatToolbar } from '@angular/material/toolbar'
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
@@ -36,7 +31,6 @@ import { FooterComponent } from '../footer/footer.component'
         FooterComponent,
         MatAnchor,
         MatButton,
-        MatMiniFabButton,
     ],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',

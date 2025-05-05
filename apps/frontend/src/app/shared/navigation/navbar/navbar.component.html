@@ -26,12 +26,6 @@
                     />
                 </a>
                 <div class="navbar__drawer-actions">
-                    <button
-                        [routerLink]="APP_ROUTES.SURVEY.CREATE"
-                        mat-mini-fab
-                    >
-                        <mat-icon>add</mat-icon>
-                    </button>
                     <button (click)="drawer.close()" mat-icon-button>
                         <mat-icon>close</mat-icon>
                     </button>
@@ -85,7 +79,7 @@
                     <a
                         [closeDrawer]="drawer"
                         [href]="EXTERNAL_LINKS.GITHUB_REPOSITORY"
-                        class="util-link-external util-link-image"
+                        class="util-link-image"
                         target="_blank"
                     >
                         <img
@@ -166,7 +160,6 @@
                 <button
                     [closeDrawer]="drawer"
                     [routerLink]="APP_ROUTES.SURVEY.CREATE"
-                    color="primary"
                     mat-flat-button
                 >
                     <mat-icon>add</mat-icon>
@@ -176,9 +169,6 @@
 
             <!-- Mobile Toggle -->
             <div class="navbar__toggle util-show-mobile">
-                <button [routerLink]="APP_ROUTES.SURVEY.CREATE" mat-mini-fab>
-                    <mat-icon>add</mat-icon>
-                </button>
                 <button (click)="drawer.toggle()" mat-icon-button>
                     <mat-icon>menu</mat-icon>
                 </button>

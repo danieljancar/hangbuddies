@@ -1,134 +1,37 @@
-/* These tokens are generated using https://themes.angular-material.dev/ */
-/* Preview: https://themes.angular-material.dev/?seed-error=%23FF0000&seed-neutral=%23F4F1DE&seed-neutral-variant=%23F4F1DE&seed-primary=%23A41623&seed-secondary=%23E9C46A&seed-tertiary=%232F5463 */
-/* Seed Colors: primary: #A41623, secondary: #E9C46A, tertiary: #2F5463, error: #FF0000, neutral: #F4F1DE, neutral-variant: #F4F1DE */
-
+@use 'theme-colors' as tc;
 @use '@angular/material' as mat;
 
-/* Light Theme */
-:root,
-:host {
-    @include mat.theme-overrides(
-        (
-            primary: #b5242d,
-            on-primary: #ffffff,
-            primary-container: #ffdad7,
-            on-primary-container: #410005,
-            inverse-primary: #ffb3af,
-            primary-fixed: #ffdad7,
-            primary-fixed-dim: #ffb3af,
-            on-primary-fixed: #410005,
-            on-primary-fixed-variant: #920219,
-            secondary: #e9c46a,
-            on-secondary: #ffffff,
-            secondary-container: #ffdf96,
-            on-secondary-container: #251a00,
-            secondary-fixed: #ffdf96,
-            secondary-fixed-dim: #e7c268,
-            on-secondary-fixed: #251a00,
-            on-secondary-fixed-variant: #5a4400,
-            tertiary: #3f6373,
-            on-tertiary: #ffffff,
-            tertiary-container: #c2e8fb,
-            on-tertiary-container: #001f29,
-            tertiary-fixed: #c2e8fb,
-            tertiary-fixed-dim: #a6ccde,
-            on-tertiary-fixed: #001f29,
-            on-tertiary-fixed-variant: #264b5a,
-            background: #fdf9f6,
-            on-background: #3b2c35,
-            surface: #fdf9f6,
-            surface-dim: #ddd9d7,
-            surface-bright: #fdf9f6,
-            surface-container-lowest: #ffffff,
-            surface-container-low: #f7f3f0,
-            surface-container: #f1edea,
-            surface-container-high: #ebe7e5,
-            surface-container-highest: #e5e2df,
-            on-surface: #3b2c35,
-            shadow: #000000,
-            scrim: #000000,
-            surface-tint: #605f50,
-            inverse-surface: #31302f,
-            inverse-on-surface: #f4f0ed,
-            outline: #79776e,
-            outline-variant: #c9c6bc,
-            neutral: #797775,
-            neutral10: #3b2c35,
-            error: #ba1a1a,
-            error-container: #ffdad6,
-            on-error: #ffffff,
-            on-error-container: #410002,
-            surface-variant: #e6e2d7,
-            on-surface-variant: #48473f,
-            neutral-variant: #79776e,
-            neutral-variant20: #313129,
-            inverse-secondary: #e7c268,
-            inverse-tertiary: #a6ccde,
-            text: #3b2c35,
-        )
-    );
+$theme: mat.define-theme(
+    (
+        color: (
+            theme-type: light,
+            primary: tc.$primary-palette,
+            tertiary: tc.$tertiary-palette,
+        ),
+    )
+);
+
+html {
+    color-scheme: light;
+    @include mat.core();
+    @include mat.theme($theme);
+    @include mat.all-component-themes($theme);
+    @include mat.system-level-colors($theme);
+    @include mat.system-level-typography($theme);
 }
 
-/* Dark Theme */
-.dark {
-    @include mat.theme-overrides(
-        (
-            primary: #ffb3af,
-            on-primary: #68000e,
-            primary-container: #920219,
-            on-primary-container: #ffdad7,
-            inverse-primary: #b5242d,
-            primary-fixed: #ffdad7,
-            primary-fixed-dim: #ffb3af,
-            on-primary-fixed: #410005,
-            on-primary-fixed-variant: #920219,
-            secondary: #e7c268,
-            on-secondary: #3e2e00,
-            secondary-container: #5a4400,
-            on-secondary-container: #ffdf96,
-            secondary-fixed: #ffdf96,
-            secondary-fixed-dim: #e7c268,
-            on-secondary-fixed: #251a00,
-            on-secondary-fixed-variant: #5a4400,
-            tertiary: #a6ccde,
-            on-tertiary: #0a3543,
-            tertiary-container: #264b5a,
-            on-tertiary-container: #c2e8fb,
-            tertiary-fixed: #c2e8fb,
-            tertiary-fixed-dim: #a6ccde,
-            on-tertiary-fixed: #001f29,
-            on-tertiary-fixed-variant: #264b5a,
-            background: #141312,
-            on-background: #e5e2df,
-            surface: #141312,
-            surface-dim: #141312,
-            surface-bright: #3a3937,
-            surface-container-lowest: #0f0e0d,
-            surface-container-low: #1c1b1a,
-            surface-container: #201f1e,
-            surface-container-high: #2b2a28,
-            surface-container-highest: #363533,
-            on-surface: #e5e2df,
-            shadow: #000000,
-            scrim: #000000,
-            surface-tint: #c9c7b5,
-            inverse-surface: #e5e2df,
-            inverse-on-surface: #31302f,
-            outline: #939187,
-            outline-variant: #48473f,
-            neutral: #797775,
-            neutral10: #1c1b1a,
-            error: #ffb4ab,
-            error-container: #93000a,
-            on-error: #690005,
-            on-error-container: #ffdad6,
-            surface-variant: #48473f,
-            on-surface-variant: #c9c6bc,
-            neutral-variant: #79776e,
-            neutral-variant20: #313129,
-            inverse-secondary: #765a05,
-            inverse-tertiary: #3f6373,
-            text: #3b2c35,
-        )
-    );
+.bkg_special {
+    background-color: #3b2c35;
+}
+
+.btn_primary {
+    @include mat.button-color($theme, $color-variant: primary);
+}
+
+.btn_secondary {
+    @include mat.button-color($theme, $color-variant: secondary);
+}
+
+.btn_tertiary {
+    @include mat.button-color($theme, $color-variant: tertiary);
 }

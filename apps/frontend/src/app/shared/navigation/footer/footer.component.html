@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer bkg_special">
     <mat-toolbar class="footer__toolbar">
         <div class="footer__toolbar-brand">
             <a [routerLink]="APP_ROUTES.HOME.LANDING" class="util-link-image">
@@ -11,9 +11,13 @@
                     width="120"
                 />
             </a>
-            <a [routerLink]="APP_ROUTES.HOME.LANDING" mat-flat-button>
+            <button
+                [routerLink]="APP_ROUTES.HOME.LANDING"
+                class="btn_secondary"
+                mat-stroked-button
+            >
                 Preferences
-            </a>
+            </button>
         </div>
     </mat-toolbar>
     <div class="footer__content">
@@ -25,7 +29,12 @@
         </div>
         <div class="footer__content-links">
             <div class="footer__content-link-section">
-                <a [routerLink]="APP_ROUTES.HOME.LANDING"> Privacy Policy </a>
+                <a
+                    [routerLink]="APP_ROUTES.HOME.LANDING"
+                    class="util-link-external"
+                >
+                    Privacy Policy
+                </a>
             </div>
         </div>
     </div>
