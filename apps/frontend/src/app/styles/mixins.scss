@@ -1,0 +1,37 @@
+@use 'breakpoints' as *;
+
+/// Utility: max-width media query
+/// @example @include util-respond-max(md) { ... }
+@mixin util-respond-max($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+    @media (max-width: #{$value}) {
+        @content;
+    }
+}
+
+/// Utility: min-width media query
+/// @example @include util-respond-min(md) { ... }
+@mixin util-respond-min($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+    @media (min-width: #{$value}) {
+        @content;
+    }
+}
+
+/// Utility class: hides on screens up to `md`
+.util-hide-mobile {
+    display: block;
+
+    @include util-respond-max(md) {
+        display: none !important;
+    }
+}
+
+/// Utility class: shows only on screens up to `md`
+.util-show-mobile {
+    display: none;
+
+    @include util-respond-max(md) {
+        display: block !important;
+    }
+}

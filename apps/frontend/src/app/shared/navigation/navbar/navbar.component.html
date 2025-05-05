@@ -1,0 +1,182 @@
+<mat-sidenav-container class="navbar">
+    <!-- Mobile Drawer -->
+    <mat-sidenav
+        #drawer
+        (closed)="onDrawerClosed()"
+        (opened)="onDrawerOpened()"
+        class="navbar__drawer util-show-mobile"
+        fixedInViewport="true"
+        mode="over"
+        position="end"
+    >
+        <nav class="navbar__drawer-inner">
+            <!-- Header -->
+            <div class="navbar__drawer-header">
+                <a
+                    [routerLink]="APP_ROUTES.HOME.LANDING"
+                    class="util-link-image"
+                >
+                    <img
+                        alt="Logo"
+                        class="navbar__drawer-logo"
+                        height="200"
+                        ngSrc="/primary_logo.png"
+                        priority
+                        width="500"
+                    />
+                </a>
+                <div class="navbar__drawer-actions">
+                    <button (click)="drawer.close()" mat-icon-button>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="navbar__drawer-nav">
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLink]="APP_ROUTES.HOME.LANDING"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    <mat-icon>home</mat-icon>
+                    Home
+                </a>
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.DASHBOARD.OVERVIEW"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    <mat-icon>groups</mat-icon>
+                    My Activity
+                </a>
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.BLOG.OVERVIEW"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    <mat-icon>description</mat-icon>
+                    Blog
+                </a>
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.ABOUT.LANDING"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    <mat-icon>group</mat-icon>
+                    About
+                </a>
+            </nav>
+
+            <!-- Footer -->
+            <div class="navbar__drawer-footer">
+                <div class="navbar__drawer-footer-social">
+                    <a
+                        [closeDrawer]="drawer"
+                        [href]="EXTERNAL_LINKS.GITHUB_REPOSITORY"
+                        class="util-link-image"
+                        target="_blank"
+                    >
+                        <img
+                            alt="GitHub Logo"
+                            height="35"
+                            ngSrc="/icons/icon-github.svg"
+                            priority
+                            width="35"
+                        />
+                    </a>
+                </div>
+                <div class="navbar__drawer-footer-text">
+                    <p>
+                        2025 &copy; <strong>HangBuddies&trade;</strong>. All
+                        rights reserved.
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </mat-sidenav>
+
+    <!-- Main Toolbar and Content -->
+    <mat-sidenav-content>
+        <mat-toolbar class="navbar__toolbar" color="primary">
+            <div class="navbar__logo-container">
+                <a
+                    [routerLink]="APP_ROUTES.HOME.LANDING"
+                    class="util-link-image"
+                >
+                    <img
+                        alt="Logo"
+                        class="navbar__drawer-logo"
+                        height="200"
+                        ngSrc="/primary_logo.png"
+                        priority
+                        width="500"
+                    />
+                </a>
+            </div>
+
+            <span class="navbar__spacer"></span>
+
+            <!-- Desktop Menu -->
+            <nav class="navbar__menu util-hide-mobile">
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLink]="APP_ROUTES.HOME.LANDING"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    Home
+                </a>
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.DASHBOARD.OVERVIEW"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    My Activity
+                </a>
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.BLOG.OVERVIEW"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    Blog
+                </a>
+                <a
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.ABOUT.LANDING"
+                    mat-button
+                    routerLinkActive="navbar__nav-button--active"
+                >
+                    About
+                </a>
+                <button
+                    [closeDrawer]="drawer"
+                    [routerLink]="APP_ROUTES.SURVEY.CREATE"
+                    mat-flat-button
+                >
+                    <mat-icon>add</mat-icon>
+                    Create
+                </button>
+            </nav>
+
+            <!-- Mobile Toggle -->
+            <div class="navbar__toggle util-show-mobile">
+                <button (click)="drawer.toggle()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar>
+
+        <router-outlet />
+
+        <app-footer />
+    </mat-sidenav-content>
+</mat-sidenav-container>

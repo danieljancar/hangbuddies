@@ -46,7 +46,7 @@
 # Contributing
 
 > [!Important]
-> This project is still in initial development and we are working on setting up configuration for contributors.
+> This project is still in initial development, and we are working on setting up configuration for contributors.
 
 Contributions are welcome! Please read the [contribution guidelines](CONTRIBUTING.md) and other
 relevant [documents](docs/) for developers before getting started.
@@ -55,8 +55,8 @@ relevant [documents](docs/) for developers before getting started.
 
 We use multiple tools to build HangBuddies. The following are the minimum requirements to get started:
 
-- **Node.js**: Version 20 or higher
-    - **npm**: Version 10 or higher
+- **Node.js**: Version `^20` or higher
+    - **npm**: Version `^10` or higher
     - **pnpm**
     - **yarn**
 - **Docker**: Needed for running the backend locally (with Docker Compose)
@@ -71,8 +71,12 @@ Collaborators can clone this original repository, as a contributor you should ma
 ```shell
 git clone https://github.com/danieljancar/hangbuddies.git
 cd hangbuddies
+# Node > 20
 npm install
 ```
+
+> [!Important]
+> Make sure you run `npm install` before doing any work, so all tools and hooks are working.
 
 ## Configuration
 

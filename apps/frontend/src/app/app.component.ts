@@ -1,34 +1,30 @@
 import { Component, inject, OnInit } from '@angular/core'
-import {
-    ActivatedRoute,
-    NavigationEnd,
-    Router,
-    RouterOutlet,
-} from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { SeoService } from './utils/seo.service'
 import { filter, map, mergeMap } from 'rxjs'
+import { NavbarComponent } from './shared/navigation/navbar/navbar.component'
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet],
+    imports: [NavbarComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     standalone: true,
 })
 export class AppComponent implements OnInit {
-    private router = inject(Router)
-    private activatedRoute = inject(ActivatedRoute)
-    private seoService = inject(SeoService)
+    #router = inject(Router)
+    #activatedRoute = inject(ActivatedRoute)
+    #seoService = inject(SeoService)
 
     public ngOnInit() {
         this.updateMetaOnNavigation()
     }
 
     private updateMetaOnNavigation() {
-        this.router.events
+        this.#router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),
-                map(() => this.activatedRoute),
+                map(() => this.#activatedRoute),
                 map((route) => {
                     while (route.firstChild) {
                         route = route.firstChild
@@ -39,11 +35,11 @@ export class AppComponent implements OnInit {
             )
             .subscribe((data) => {
                 if (data['metaTitle']) {
-                    this.seoService.updateTitle(data['metaTitle'])
+                    this.#seoService.updateTitle(data['metaTitle'])
                 }
 
                 if (data['metaTags']) {
-                    this.seoService.updateMetaTags(data['metaTags'])
+                    this.#seoService.updateMetaTags(data['metaTags'])
                 }
             })
     }

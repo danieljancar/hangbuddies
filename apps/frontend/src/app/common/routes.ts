@@ -33,6 +33,7 @@ export const APP_ROUTES = {
     },
     DASHBOARD: {
         OVERVIEW: BASE_ROUTES.DASHBOARD,
+        PREFERENCES: `${BASE_ROUTES.DASHBOARD}/preferences`,
     },
     BLOG: {
         OVERVIEW: BASE_ROUTES.BLOG,

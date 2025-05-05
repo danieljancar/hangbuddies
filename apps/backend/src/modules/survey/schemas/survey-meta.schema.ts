@@ -9,8 +9,8 @@ export class SurveyMeta {
     @Prop({ default: false })
     isHidden: boolean
 
-    @Prop({ enum: StatusType, default: StatusType.PUBLISHED })
-    status: number
+    @Prop({ enum: StatusType, default: StatusType.PUBLISHED, type: Number })
+    status: StatusType
 
     @Prop({ default: 0 })
     voteCount: number

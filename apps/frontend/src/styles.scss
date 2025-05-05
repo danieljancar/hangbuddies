@@ -1,28 +1,9 @@
-// Custom Theming for Angular Material
-@use '@angular/material' as mat;
-
-// Use custom theme
 @use 'app/styles/theme';
-
-html {
-    color-scheme: light;
-    @include mat.theme(
-        (
-            typography: Inter,
-            density: 0,
-        )
-    );
-}
-
-/* You can add global styles to this file, and also import other style files */
+@use 'app/styles/theme-colors';
 
 html,
 body {
     height: 100%;
-    background-color: var(--mat-sys-surface);
-}
-
-body {
     margin: 0;
     font-family: Inter, Poppins, serif;
 }

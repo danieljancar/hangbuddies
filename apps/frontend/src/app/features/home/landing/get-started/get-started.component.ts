@@ -20,6 +20,7 @@ import { MatIcon } from '@angular/material/icon'
     ],
     templateUrl: './get-started.component.html',
     styleUrl: './get-started.component.scss',
+    standalone: true,
 })
 export class GetStartedComponent {
     protected readonly features = [

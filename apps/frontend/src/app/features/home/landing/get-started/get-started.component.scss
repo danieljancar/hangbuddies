@@ -1,12 +1,15 @@
-#cont__getStarted {
+@use 'breakpoints' as bp;
+@use 'mixins' as *;
+
+.get-started {
     padding: 4rem 2rem;
 
-    .cont__header {
+    &__header {
         max-width: 800px;
         margin: 0 auto 5rem 0;
     }
 
-    .cont__features {
+    &__features {
         display: flex;
         flex-wrap: wrap;
         gap: 2rem;
@@ -29,22 +32,18 @@
     }
 }
 
-@media (max-width: 992px) {
-    #cont__getStarted {
-        .cont__features {
-            mat-card {
-                flex: 1 1 calc(50% - 2rem);
-            }
+@include util-respond-max(md) {
+    .get-started__features {
+        mat-card {
+            flex: 1 1 calc(50% - 2rem);
         }
     }
 }
 
-@media (max-width: 576px) {
-    #cont__getStarted {
-        .cont__features {
-            mat-card {
-                flex: 1 1 100%;
-            }
+@include util-respond-max(sm) {
+    .get-started__features {
+        mat-card {
+            flex: 1 1 100%;
         }
     }
 }
