@@ -1,41 +1,75 @@
-<footer class="footer bkg_special">
-    <mat-toolbar class="footer__toolbar">
+<footer class="footer">
+    <div class="footer__toolbar">
         <div class="footer__toolbar-brand">
             <a [routerLink]="APP_ROUTES.HOME.LANDING" class="util-link-image">
                 <img
-                    alt="Logo"
+                    alt="HangBuddies logo"
                     class="footer__toolbar-logo"
-                    height="120"
+                    height="60"
                     ngSrc="/icon.png"
-                    priority
-                    width="120"
+                    width="60"
                 />
             </a>
             <button
-                [routerLink]="APP_ROUTES.HOME.LANDING"
-                class="btn_secondary"
-                mat-stroked-button
+                [routerLink]="APP_ROUTES.DASHBOARD.PREFERENCES"
+                class="btn_secondary footer__preferences"
+                mat-flat-button
             >
                 Preferences
             </button>
         </div>
-    </mat-toolbar>
-    <div class="footer__content">
-        <div class="footer__content-text">
+    </div>
+
+    <div class="footer__middle">
+        <div class="footer__description">
             <p>
                 A fast, shareable, and registration-free survey tool for
                 effortless event scheduling with friends, teams, and more.
             </p>
         </div>
-        <div class="footer__content-links">
-            <div class="footer__content-link-section">
-                <a
-                    [routerLink]="APP_ROUTES.HOME.LANDING"
-                    class="util-link-external"
-                >
-                    Privacy Policy
-                </a>
-            </div>
+
+        <div class="footer__links">
+            @for (section of sections; track section) {
+                <div class="footer__section">
+                    <h3 class="footer__section-title">{{ section.title }}</h3>
+                    <ul class="footer__list">
+                        @for (link of section.links; track link) {
+                            <li class="footer__item">
+                                <a [routerLink]="link.path">{{ link.label }}</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
         </div>
+    </div>
+
+    <div class="footer__social">
+        <a
+            [href]="EXTERNAL_LINKS.GITHUB_REPOSITORY"
+            class="util-link-external util-link-image"
+            target="_blank"
+        >
+            <img
+                alt="GitHub"
+                height="35"
+                src="/icons/icon-github.svg"
+                width="35"
+            />
+        </a>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="footer__bottom">
+        <span
+            >© 2025 <strong>HangBuddies™</strong>. All rights reserved.</span
+        >
+        <span class="footer__opensource">
+            Open source project made with ❤️ on
+            <a [href]="EXTERNAL_LINKS.GITHUB_REPOSITORY" target="_blank">
+                GitHub
+            </a>
+        </span>
     </div>
 </footer>
