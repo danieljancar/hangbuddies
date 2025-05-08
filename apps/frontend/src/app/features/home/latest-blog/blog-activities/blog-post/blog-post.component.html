@@ -1,0 +1,20 @@
+<div class="post">
+    <h1 class="post__title">
+        {{ post.title }}
+    </h1>
+
+    <p class="post__description">
+        {{ post.description }}
+    </p>
+
+    <div class="post__information">
+        <p class="post__date">
+            {{ post.date | date: 'MMMM d, y' }}
+        </p>
+        @for (tag of post.tags; track tag) {
+            <p class="post__tag">
+                {{ tag }}
+            </p>
+        }
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.post {
+    margin: 0;
+    padding: 0;
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    &__description {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+        color: gray;
+    }
+
+    &__information {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__date {
+        color: var(--mat-sys-primary);
+    }
+
+    &__tag {
+        border-radius: 1rem;
+        padding: 0.3rem 0.6rem;
+        background-color: var(--mat-sys-secondary-container);
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+}

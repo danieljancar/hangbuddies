@@ -1,0 +1,18 @@
+.latest-blog {
+    padding: 4rem 2rem;
+
+    h3 {
+        color: var(--mat-sys-primary);
+    }
+
+    &__content {
+        padding: 3rem 5rem;
+        display: flex;
+        gap: 6rem;
+
+        &__image {
+            max-width: 516px;
+            height: auto;
+        }
+    }
+}
