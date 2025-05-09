@@ -16,9 +16,14 @@ updates:
           - 'danieljancar'
       labels:
           - 'dependencies'
-      milestone: 2
       ignore:
           - dependency-name: '*'
             update-types:
                 - 'version-update:semver-major'
                 - 'version-update:semver-minor'
+      groups:
+          patch-updates:
+              patterns:
+                  - '*'
+              update-types:
+                  - 'patch'
