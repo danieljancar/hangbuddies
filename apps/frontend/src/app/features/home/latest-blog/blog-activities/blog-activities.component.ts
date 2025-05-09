@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { BlogPostComponent } from './blog-post/blog-post.component'
 import { RouterLink } from '@angular/router'
-import { BlogPostType } from '../../../../types/blog-post .type'
+import { BlogPostType } from '../../../../types/blog-post.type'
 import { MatIcon } from '@angular/material/icon'
 import { APP_ROUTES } from '../../../../common/routes'
 import { MatDivider } from '@angular/material/divider'

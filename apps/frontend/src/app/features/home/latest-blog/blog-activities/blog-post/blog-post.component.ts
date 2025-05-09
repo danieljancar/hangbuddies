@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { BlogPostType } from '../../../../../types/blog-post .type'
+import { BlogPostType } from '../../../../../types/blog-post.type'
 import { DatePipe } from '@angular/common'
 import { RouterLink } from '@angular/router'
 import { APP_ROUTES } from '../../../../../common/routes'
