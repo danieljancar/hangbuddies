@@ -50,8 +50,7 @@ jobs:
           ssh server << EOF
             cd ${{ secrets.DEV_DEPLOYMENT_DIR }}
             git pull
-
-            # Create .env file on the server from the secret
+            rm ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
             echo "${{ secrets.DEPLOYMENT_ENV }}" > ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
             echo "Created .env file on server from repository secret"
 
