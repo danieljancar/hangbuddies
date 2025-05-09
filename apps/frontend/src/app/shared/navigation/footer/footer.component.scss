@@ -46,6 +46,7 @@
     &__description {
         flex: 1;
         max-width: 400px;
+        margin-top: 1em;
 
         p {
             margin: 0;
@@ -75,6 +76,11 @@
             > .footer__section {
                 flex: 1 1 100%;
             }
+        }
+
+        .footer__list {
+            list-style-type: none;
+            padding-inline-start: 0.5rem;
         }
 
         .footer__item {
