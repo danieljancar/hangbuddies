@@ -9,11 +9,10 @@ mat-card.no-border {
 }
 
 .post {
-    cursor: pointer;
-    border: none !important;
-
     &__information {
         display: flex;
+        justify-content: start;
+        align-items: center;
         gap: 1rem;
     }
 
@@ -22,10 +21,8 @@ mat-card.no-border {
     }
 
     &__tag {
-        border-radius: 1rem;
-        padding: 0.3rem 0.6rem;
-        background-color: var(--mat-sys-secondary-container);
-        font-size: 0.8rem;
-        font-weight: 400;
+        font-size: 0.6rem !important;
+        padding: 0.1rem 0.3rem !important;
+        max-height: 1.5rem !important;
     }
 }

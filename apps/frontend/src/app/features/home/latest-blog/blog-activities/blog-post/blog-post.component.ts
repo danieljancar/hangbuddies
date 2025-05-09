@@ -5,12 +5,11 @@ import { RouterLink } from '@angular/router'
 import { APP_ROUTES } from '../../../../../common/routes'
 import {
     MatCard,
-    MatCardAvatar,
     MatCardContent,
     MatCardHeader,
     MatCardTitle,
 } from '@angular/material/card'
-import { MatIcon } from '@angular/material/icon'
+import { MatButton } from '@angular/material/button'
 
 @Component({
     selector: 'app-blog-post',
@@ -18,11 +17,10 @@ import { MatIcon } from '@angular/material/icon'
         DatePipe,
         RouterLink,
         MatCard,
-        MatCardAvatar,
         MatCardContent,
         MatCardHeader,
         MatCardTitle,
-        MatIcon,
+        MatButton,
     ],
     templateUrl: './blog-post.component.html',
     standalone: true,
