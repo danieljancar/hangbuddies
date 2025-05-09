@@ -1,9 +1,15 @@
 <div class="post">
-    <h1 class="post__title">
+    <h1
+        [routerLink]="APP_ROUTES.BLOG.DETAIL + '/' + post.id"
+        class="post__title"
+    >
         {{ post.title }}
     </h1>
 
-    <p class="post__description">
+    <p
+        [routerLink]="APP_ROUTES.BLOG.DETAIL + '/' + post.id"
+        class="post__description"
+    >
         {{ post.description }}
     </p>
 

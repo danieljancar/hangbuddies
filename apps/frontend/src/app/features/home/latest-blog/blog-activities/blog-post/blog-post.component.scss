@@ -3,16 +3,18 @@
     padding: 0;
 
     &__title {
-        font-size: 2rem;
-        font-weight: 600;
+        font-size: 1.5rem;
+        font-weight: 400;
+        cursor: pointer;
     }
 
     &__description {
-        font-size: 1.2rem;
-        font-weight: 400;
+        font-size: 1rem;
+        font-weight: 300;
         margin-top: -1rem;
         margin-bottom: 1rem;
         color: gray;
+        cursor: pointer;
     }
 
     &__information {
