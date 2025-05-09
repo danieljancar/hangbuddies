@@ -1,15 +1,18 @@
-name: Deploy development Backend
+name: Common Development Deploy Steps
 
 on:
-    push:
-        branches: [develop]
-        paths:
-            - 'apps/backend/**'
-    workflow_dispatch:
-jobs:
-    deploy:
-        runs-on: ubuntu-latest
+    workflow_call:
+        inputs:
+            app_path:
+                required: true
+                type: string
+            docker_image_name:
+                required: true
+                type: string
 
+jobs:
+    common_deploy:
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v3
@@ -47,7 +50,11 @@ jobs:
                   ssh server << EOF
                     cd ${{ secrets.DEV_DEPLOYMENT_DIR }}
                     git pull
-                    docker build -t hangbuddies/backend:dev apps/backend/ --no-cache
+                    rm ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
+                    echo "${{ secrets.DEPLOYMENT_ENV }}" > ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
+                    echo "Created .env file on server from repository secret"
+
+                    docker build -t ${{ inputs.docker_image_name }} ${{ inputs.app_path }} --no-cache
                     cd devops
                     docker-compose down
                     docker-compose up -d
