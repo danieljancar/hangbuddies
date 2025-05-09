@@ -1,21 +1,16 @@
+mat-card.no-border {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.post__description {
+    color: gray;
+}
+
 .post {
-    margin: 0;
-    padding: 0;
-
-    &__title {
-        font-size: 1.5rem;
-        font-weight: 400;
-        cursor: pointer;
-    }
-
-    &__description {
-        font-size: 1rem;
-        font-weight: 300;
-        margin-top: -1rem;
-        margin-bottom: 1rem;
-        color: gray;
-        cursor: pointer;
-    }
+    cursor: pointer;
+    border: none !important;
 
     &__information {
         display: flex;

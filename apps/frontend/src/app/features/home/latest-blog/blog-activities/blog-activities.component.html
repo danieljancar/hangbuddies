@@ -1,7 +1,7 @@
 <div class="articles">
     @for (article of articles; track article.id) {
         <app-blog-post [post]="article" />
-        <div class="articles__divider"></div>
+        <mat-divider />
     }
     <a [routerLink]="APP_ROUTES.BLOG.OVERVIEW" class="articles__view-all">
         View all posts
