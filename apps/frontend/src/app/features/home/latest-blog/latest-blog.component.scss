@@ -1,0 +1,44 @@
+@use '@angular/material' as mat;
+@use 'breakpoints' as bp;
+
+.latest-blog {
+    padding: 1rem 2rem;
+
+    h3 {
+        color: var(--mat-sys-primary);
+    }
+
+    &__content {
+        padding: 3rem 5rem;
+        display: flex;
+        gap: 6rem;
+    }
+
+    &__image {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+
+        img {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+@media (max-width: map-get(bp.$breakpoints, md)) {
+    .latest-blog {
+        padding: 2rem 1rem;
+
+        &__content {
+            flex-direction: column;
+            gap: 2rem;
+            padding: 0;
+        }
+
+        &__image {
+            margin-top: 1rem;
+        }
+    }
+}

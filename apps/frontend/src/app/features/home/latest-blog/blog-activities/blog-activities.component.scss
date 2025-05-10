@@ -1,0 +1,19 @@
+.articles {
+    padding-top: -2rem;
+
+    &__divider {
+        width: 100%;
+        height: 0.5px;
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    &__view-all {
+        display: flex;
+        margin-top: 2rem;
+        text-align: center;
+        text-decoration: none;
+        color: var(--mat-sys-primary);
+        cursor: pointer;
+    }
+}

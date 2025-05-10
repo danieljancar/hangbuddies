@@ -1,0 +1,22 @@
+<mat-card class="post no-border">
+    <mat-card-header>
+        <mat-card-title
+            [routerLink]="[APP_ROUTES.BLOG.DETAIL(post.id)]"
+            class="link-underline-hover"
+            >{{ post.title }}</mat-card-title
+        >
+    </mat-card-header>
+    <mat-card-content>
+        <p class="post__description">{{ post.description }}</p>
+        <div class="post__information">
+            <p class="post__date">
+                {{ post.createdAt | date: 'MMMM d, y' }}
+            </p>
+            @for (tag of post.tags; track tag) {
+                <button mat-stroked-button class="post__tag">
+                    {{ tag }}
+                </button>
+            }
+        </div>
+    </mat-card-content>
+</mat-card>
