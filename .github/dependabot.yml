@@ -16,6 +16,7 @@ updates:
           - 'danieljancar'
       labels:
           - 'dependencies'
+      milestone: 2
       ignore:
           - dependency-name: '*'
             update-types:
