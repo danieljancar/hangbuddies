@@ -70,8 +70,8 @@ jobs:
                   ssh server << EOF
                     cd ${{ secrets.DEV_DEPLOYMENT_DIR }}
                     git pull
-                    rm ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
-                    echo "${{ secrets.DEPLOYMENT_ENV }}" > ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
+                    rm devops/.env
+                    echo "${{ secrets.DEPLOYMENT_ENV }}" > devops/.env
                     echo "Created .env file on server from repository secret"
                     docker build -t hangbuddies/backend:dev apps/backend/ --no-cache
                     cd devops
@@ -86,8 +86,8 @@ jobs:
                   ssh server << EOF
                     cd ${{ secrets.DEV_DEPLOYMENT_DIR }}
                     git pull
-                    rm ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
-                    echo "${{ secrets.DEPLOYMENT_ENV }}" > ${{ secrets.DEV_DEPLOYMENT_DIR }}/devops/.env
+                    rm devops/.env
+                    echo "${{ secrets.DEPLOYMENT_ENV }}" > devops/.env
                     echo "Created .env file on server from repository secret"
                     docker build -t hangbuddies/frontend:dev apps/frontend/ --no-cache
                     cd devops
