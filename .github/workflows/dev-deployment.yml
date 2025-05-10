@@ -47,8 +47,6 @@ jobs:
             docker_image_name: 'hangbuddies/backend:dev'
 
     deploy_frontend:
-        needs: determine_changes
-        if: needs.determine_changes.outputs.frontend_changed == 'true'
         uses: ./.github/workflows/dev-deployment-common.yml
         with:
             app_path: 'apps/frontend/'
