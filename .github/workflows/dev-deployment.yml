@@ -45,6 +45,7 @@ jobs:
         with:
             app_path: 'apps/backend/'
             docker_image_name: 'hangbuddies/backend:dev'
+            ssh_private_key: ${{ secrets.ssh_private_key }}
 
     deploy_frontend:
         needs: determine_changes
@@ -53,3 +54,4 @@ jobs:
         with:
             app_path: 'apps/frontend/'
             docker_image_name: 'hangbuddies/frontend:dev'
+            ssh_private_key: ${{ secrets.ssh_private_key }}
