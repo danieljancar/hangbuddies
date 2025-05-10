@@ -17,10 +17,14 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v3
 
+            - name: Echo Secret
+              run: echo "${{ secrets.SSH_PRIVATE_KEY }}"
+
             - name: Set up SSH Agent and Key
               uses: webfactory/ssh-agent@v0.8.0
               with:
-                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  ssh-private-key: |
+                      ${{ secrets.SSH_PRIVATE_KEY }}
 
             - name: Set up WireGuard
               uses: egor-tensin/setup-wireguard@v1
