@@ -34,4 +34,19 @@ export class BlogPostController {
             sortOption: resolvedSortOption,
         }
     }
+
+    @Get(':id')
+    async getBlogPostById(@Query('id') id: string) {
+        return this.blogPostService.getBlogPostById(id)
+    }
+
+    @Get('latest')
+    async getLatestBlogPosts(
+        @Query('limit') limit: number = 5,
+        @Query('l') l: number
+    ) {
+        const resolvedLimit = l || limit
+        console.log(resolvedLimit)
+        return this.blogPostService.getLatestBlogPosts(resolvedLimit)
+    }
 }

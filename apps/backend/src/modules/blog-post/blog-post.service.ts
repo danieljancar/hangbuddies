@@ -25,6 +25,25 @@ export class BlogPostService {
         return this.getBlogPostWithPagination(page, limit, query, sortOption)
     }
 
+    async getBlogPostById(id: string): Promise<BlogPost | null> {
+        return this.blogPostModel.findById(id).exec()
+    }
+
+    async getLatestBlogPosts(limit: number): Promise<BlogPost[]> {
+        console.log(
+            await this.blogPostModel
+                .find()
+                .sort({ createdAt: -1 })
+                .limit(limit)
+                .exec()
+        )
+        return this.blogPostModel
+            .find()
+            .sort({ createdAt: -1 })
+            .limit(limit)
+            .exec()
+    }
+
     async getBlogPostWithPagination(
         page: number,
         limit: number,
