@@ -1,4 +1,4 @@
-<ul class="articles">
+<div class="articles">
     @for (article of articles; track article.id) {
         <app-blog-post [post]="article" />
         <mat-divider />
@@ -11,4 +11,4 @@
         View all posts
         <mat-icon>arrow_forward</mat-icon>
     </a>
-</ul>
+</div>
