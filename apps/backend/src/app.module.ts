@@ -4,7 +4,7 @@ import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { SurveyModule } from './modules/survey/survey.module'
-import { BlogPostModule } from './modules/blog/blog-post.module'
+import { BlogPostModule } from './modules/blog-post/blog-post.module'
 
 @Module({
     imports: [
@@ -22,7 +22,6 @@ import { BlogPostModule } from './modules/blog/blog-post.module'
         }),
 
         SurveyModule,
-
         BlogPostModule,
     ],
     controllers: [AppController],
