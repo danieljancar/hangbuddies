@@ -31,28 +31,49 @@ export class BlogPostService {
         query: string = '',
         sortOption: 'asc' | 'desc' = 'asc'
     ): Promise<BlogPost[]> {
-        // Check if query is a date
-        const isDate = (dateString: string) => {
-            const date = new Date(dateString)
+        const isValidDate = (value: string): boolean => {
+            const date = new Date(value)
             return !isNaN(date.getTime())
         }
 
-        const searchQuery = query
-            ? isDate(query)
-                ? { createdAt: new Date(query) }
-                : {
-                      $or: [
-                          { title: { $regex: query, $options: 'i' } },
-                          { description: { $regex: query, $options: 'i' } },
-                          { content: { $regex: query, $options: 'i' } },
-                          { tags: { $regex: query, $options: 'i' } },
-                      ],
-                  }
-            : {}
+        const buildSearchQuery = (searchTerm: string) => {
+            if (!searchTerm) return {}
+
+            if (isValidDate(searchTerm)) {
+                return { createdAt: new Date(searchTerm) }
+            }
+
+            const regex = { $regex: searchTerm, $options: 'i' }
+            return {
+                title: regex,
+                description: regex,
+                content: regex,
+                tags: regex,
+            }
+        }
+
+        const isDateQuery = isValidDate(query)
+        const searchQuery = buildSearchQuery(query)
+        const sortDirection: 1 | -1 = sortOption === 'asc' ? 1 : -1
+        const skipCount = (page - 1) * limit
+
+        let sortFields: Record<string, 1 | -1>
+
+        if (isDateQuery) {
+            sortFields = { createdAt: sortDirection }
+        } else {
+            sortFields = {
+                title: sortDirection,
+                description: sortDirection,
+                content: sortDirection,
+                author: sortDirection,
+            }
+        }
 
         return this.blogPostModel
             .find(searchQuery)
-            .skip((page - 1) * limit)
+            .sort(sortFields)
+            .skip(skipCount)
             .limit(limit)
             .exec()
     }
