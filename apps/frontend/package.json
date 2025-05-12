@@ -6,7 +6,10 @@
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "start": "ng serve",
+        "start:staging": "ng serve --configuration=staging",
         "build": "ng build",
+        "build:staging": "ng build --configuration=staging",
+        "build:prod": "ng build --configuration=production",
         "watch": "ng build --watch --configuration development",
         "test": "ng test"
     },
