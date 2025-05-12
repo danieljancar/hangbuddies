@@ -10,7 +10,10 @@ import { SurveyModule } from './modules/survey/survey.module'
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
-            envFilePath: `.env.${process.env.NODE_ENV || ''}`,
+            envFilePath: [
+                `.env.${process.env.NODE_ENV || 'development'}`,
+                '.env',
+            ],
         }),
 
         ThrottlerModule.forRoot({
