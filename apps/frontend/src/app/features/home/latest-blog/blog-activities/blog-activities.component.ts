@@ -1,20 +1,21 @@
 import { Component } from '@angular/core'
 import { BlogPostComponent } from './blog-post/blog-post.component'
 import { RouterLink } from '@angular/router'
-import { BlogPostType } from '../../../../types/blog-post.type'
+import { BlogPostTypes } from '../../../../types/blog-post.types'
 import { MatIcon } from '@angular/material/icon'
 import { APP_ROUTES } from '../../../../common/routes'
 import { MatDivider } from '@angular/material/divider'
+import { MatAnchor } from '@angular/material/button'
 
 @Component({
     selector: 'app-blog-activities',
-    imports: [BlogPostComponent, RouterLink, MatIcon, MatDivider],
+    imports: [BlogPostComponent, RouterLink, MatIcon, MatDivider, MatAnchor],
     templateUrl: './blog-activities.component.html',
     standalone: true,
     styleUrl: './blog-activities.component.scss',
 })
 export class BlogActivitiesComponent {
-    articles: BlogPostType[] = [
+    articles: BlogPostTypes[] = [
         {
             id: '1',
             title: 'Maximizing Your Event Polls: Best Practices',

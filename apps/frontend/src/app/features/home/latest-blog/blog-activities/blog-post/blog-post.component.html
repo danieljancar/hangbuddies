@@ -1,10 +1,13 @@
 <mat-card class="post no-border">
     <mat-card-header>
-        <mat-card-title
-            [routerLink]="[APP_ROUTES.BLOG.DETAIL(post.id)]"
-            class="link-underline-hover"
-            >{{ post.title }}</mat-card-title
+        <a
+            [routerLink]="APP_ROUTES.BLOG.DETAIL(post.id)"
+            class="link__opacity-hover"
         >
+            <mat-card-title>
+                {{ post.title }}
+            </mat-card-title>
+        </a>
     </mat-card-header>
     <mat-card-content>
         <p class="post__description">{{ post.description }}</p>

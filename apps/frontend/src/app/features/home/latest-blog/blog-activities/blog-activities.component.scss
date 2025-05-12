@@ -9,11 +9,7 @@
     }
 
     &__view-all {
-        display: flex;
         margin-top: 2rem;
-        text-align: center;
-        text-decoration: none;
-        color: var(--mat-sys-primary);
         cursor: pointer;
     }
 }
