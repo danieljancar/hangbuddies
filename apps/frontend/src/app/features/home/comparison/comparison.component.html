@@ -1,0 +1,96 @@
+<section class="comparison">
+    <h1 class="comparison__title">Why Choose HangBuddies?</h1>
+    <p class="comparison__subtitle">
+        Tired of complicated scheduling tools or endless group chats?
+        <br />
+        See how HangBuddies compares to other event planning solutions and why
+        it’s the easiest way to organize meetups.
+    </p>
+
+    <div class="comparison__table">
+        <div class="comparison__header">
+            <div>Feature</div>
+            <div>
+                <span class="platform-label platform-label--desktop"
+                    >HangBuddies</span
+                >
+                <span class="platform-label platform-label--mobile"
+                    >Hang-Buddies</span
+                >
+            </div>
+
+            <div>Google Forms</div>
+            <div>Doodle</div>
+        </div>
+
+        <div class="comparison__row" *ngFor="let feature of features">
+            <div class="comparison__label">{{ feature.label }}</div>
+
+            <div
+                class="comparison__icon"
+                *ngFor="
+                    let platform of ['HangBuddies', 'Google Forms', 'Doodle']
+                "
+            >
+                <mat-icon
+                    [ngClass]="
+                        getIconClass(
+                            getPlatformValue(feature.options, platform)
+                        )
+                    "
+                >
+                    {{
+                        getPlatformValue(feature.options, platform)
+                            ? 'check'
+                            : 'close'
+                    }}
+                </mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <mat-card class="comparison__card">
+        <div class="comparison__card-content">
+            <div class="comparison__card-text">
+                <h1 class="comparison__title">
+                    Ditch the Overcomplicated Tools
+                </h1>
+                <p class="comparison__subtitle">
+                    Unlike traditional scheduling platforms, HangBuddies doesn’t
+                    require logins, subscriptions, or endless notifications.
+                    Just share a link and get responses instantly.
+                </p>
+
+                <div class="comparison__card-buttons">
+                    <button
+                        mat-stroked-button
+                        class="comparison__create-button"
+                    >
+                        <mat-icon>add</mat-icon>
+                        Create
+                    </button>
+                    <button mat-flat-button class="comparison__learn-button">
+                        Learn more
+                        <mat-icon>arrow_forward</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="comparison__card-image">
+                <div class="comparison__gif-box">
+                    <div class="comparison__gif-placeholder">
+                        <img
+                            alt="placeholder gif"
+                            src="/illustrations/cinema.gif"
+                            style="
+                                width: 100%;
+                                height: fit-content;
+                                object-fit: contain;
+                            "
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</section>

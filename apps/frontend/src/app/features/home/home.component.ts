@@ -3,11 +3,17 @@ import { LandingComponent } from './landing/landing.component'
 import { LocalStorageService } from '../../utils/local-storage.service'
 import { LOCAL_STORAGE_KEYS } from '../../common/storage.constants'
 import { MatCheckbox } from '@angular/material/checkbox'
+import { ComparisonComponent } from './comparison/comparison.component'
 import { LatestBlogComponent } from './latest-blog/latest-blog.component'
 
 @Component({
     selector: 'app-home',
-    imports: [LandingComponent, MatCheckbox, LatestBlogComponent],
+    imports: [
+        LandingComponent,
+        MatCheckbox,
+        LatestBlogComponent,
+        ComparisonComponent,
+    ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
     standalone: true,
