@@ -11,7 +11,7 @@ export class BlogPostService {
         private blogPostModel: Model<BlogPostDocument>
     ) {}
 
-    async createBlogPost(dto: CreateBlogPostDto): Promise<BlogPost> {
+    async createBlogPost(dto: CreateBlogPostDto): Promise<BlogPostDocument> {
         const blogPost = new this.blogPostModel(dto)
         return blogPost.save()
     }
@@ -21,22 +21,15 @@ export class BlogPostService {
         limit: number,
         query: string,
         sortOption: 'asc' | 'desc'
-    ): Promise<BlogPost[]> {
+    ): Promise<BlogPostDocument[]> {
         return this.getBlogPostWithPagination(page, limit, query, sortOption)
     }
 
-    async getBlogPostById(id: string): Promise<BlogPost | null> {
+    async getBlogPostById(id: string): Promise<BlogPostDocument | null> {
         return this.blogPostModel.findById(id).exec()
     }
 
-    async getLatestBlogPosts(limit: number): Promise<BlogPost[]> {
-        console.log(
-            await this.blogPostModel
-                .find()
-                .sort({ createdAt: -1 })
-                .limit(limit)
-                .exec()
-        )
+    async getLatestBlogPosts(limit: number): Promise<BlogPostDocument[]> {
         return this.blogPostModel
             .find()
             .sort({ createdAt: -1 })
@@ -49,7 +42,7 @@ export class BlogPostService {
         limit: number,
         query: string = '',
         sortOption: 'asc' | 'desc' = 'asc'
-    ): Promise<BlogPost[]> {
+    ): Promise<BlogPostDocument[]> {
         const isValidDate = (value: string): boolean => {
             const date = new Date(value)
             return !isNaN(date.getTime())
