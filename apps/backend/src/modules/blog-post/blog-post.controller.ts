@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common'
 import { BlogPostService } from './blog-post.service'
 import { PaginationResponse } from './types/pagination-response.type'
-import { BlogPost, BlogPostDocument } from './schemas/blog-post.schema'
+import { BlogPostDocument } from './schemas/blog-post.schema'
 import { NotFoundError } from 'rxjs'
 
 @Controller('blog-posts')
