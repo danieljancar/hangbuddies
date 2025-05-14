@@ -1,53 +1,15 @@
 <section class="comparison">
-    <h1 class="comparison__title">Why Choose HangBuddies?</h1>
+    <h1 class="comparison__title">Why HangBuddies?</h1>
     <p class="comparison__subtitle">
-        Tired of complicated scheduling tools or endless group chats?
-        <br />
-        See how HangBuddies compares to other event planning solutions and why
-        it’s the easiest way to organize meetups.
+        See how HangBuddies stacks up against other platforms.
     </p>
 
-    <div class="comparison__table">
-        <div class="comparison__header">
-            <div>Feature</div>
-            <div>
-                <span class="platform-label platform-label--desktop"
-                    >HangBuddies</span
-                >
-                <span class="platform-label platform-label--mobile"
-                    >Hang-Buddies</span
-                >
-            </div>
+    <app-comparison-table
+        [features]="features"
+        [platforms]="platforms"
+    ></app-comparison-table>
 
-            <div>Google Forms</div>
-            <div>Doodle</div>
-        </div>
-
-        <div *ngFor="let feature of features" class="comparison__row">
-            <div class="comparison__label">{{ feature.label }}</div>
-
-            <div
-                *ngFor="
-                    let platform of ['HangBuddies', 'Google Forms', 'Doodle']
-                "
-                class="comparison__icon"
-            >
-                <mat-icon
-                    [ngClass]="
-                        getIconClass(
-                            getPlatformValue(feature.options, platform)
-                        )
-                    "
-                >
-                    {{
-                        getPlatformValue(feature.options, platform)
-                            ? 'check'
-                            : 'close'
-                    }}
-                </mat-icon>
-            </div>
-        </div>
-    </div>
+    <mat-divider />
 
     <mat-card class="comparison__card">
         <div class="comparison__card-content">
