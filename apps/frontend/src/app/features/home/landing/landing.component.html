@@ -1,4 +1,4 @@
-<div class="hero">
+<section class="hero">
     <div class="hero__image">
         <img
             alt="An illustrative image of a woman placing red sticky notes on a large calendar board."
@@ -18,15 +18,15 @@
         </div>
 
         <div class="hero__buttons">
-            <a mat-stroked-button scrollTo targetId="get-started" role="button">
+            <button mat-stroked-button scrollTo targetId="get-started">
                 Learn More
-            </a>
+            </button>
             <a [routerLink]="APP_ROUTES.SURVEY.CREATE" mat-flat-button>
                 <mat-icon>add</mat-icon>
                 Create
             </a>
         </div>
     </div>
-</div>
+</section>
 
 <app-get-started />

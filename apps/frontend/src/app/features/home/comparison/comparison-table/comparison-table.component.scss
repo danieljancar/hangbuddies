@@ -4,11 +4,11 @@
 
 .comparison-table {
     display: grid;
-    max-width: 100%;
+    max-width: 80rem;
     border: 2px solid var(--mat-sys-secondary-container);
     border-radius: 6px;
     overflow: hidden;
-    margin: 0 auto 2rem;
+    text-align: center;
 }
 
 .comparison-table__header,
@@ -75,6 +75,10 @@
 }
 
 @media screen and (max-width: 600px) {
+    .comparison-table {
+        max-width: 100%;
+    }
+
     .comparison-table__platform-label--mobile {
         display: inline;
     }

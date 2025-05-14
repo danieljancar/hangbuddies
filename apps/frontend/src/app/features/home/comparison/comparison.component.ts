@@ -1,9 +1,6 @@
 import { Component } from '@angular/core'
-import { MatCard } from '@angular/material/card'
-import { MatButton } from '@angular/material/button'
 import { ComparisonTableComponent } from './comparison-table/comparison-table.component'
-import { MatIcon } from '@angular/material/icon'
-import { MatDivider } from '@angular/material/divider'
+import { ComparisonCtaComponent } from './comparison-cta/comparison-cta.component'
 
 export const PLATFORMS = ['HangBuddies', 'Google Forms', 'Doodle'] as const
 export type Platform = (typeof PLATFORMS)[number]
@@ -11,13 +8,7 @@ export type Platform = (typeof PLATFORMS)[number]
 @Component({
     selector: 'app-comparison',
     standalone: true,
-    imports: [
-        MatCard,
-        MatButton,
-        ComparisonTableComponent,
-        MatIcon,
-        MatDivider,
-    ],
+    imports: [ComparisonTableComponent, ComparisonCtaComponent],
     templateUrl: './comparison.component.html',
     styleUrls: ['./comparison.component.scss'],
 })

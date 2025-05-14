@@ -1,1 +1,23 @@
-<p>comparison-cta works!</p>
+<section class="comparison-cta__container">
+    <div class="comparison-cta__content">
+        <h2>Ditch the Overcomplicated Tools!</h2>
+        <p>
+            Unlike traditional scheduling platforms, HangBuddies doesn’t require
+            logins, subscriptions, or endless notifications. Just share a link
+            and get responses instantly.
+        </p>
+        <div class="comparison-cta__actions">
+            <button color="secondary" mat-button scrollTo targetId="">
+                Learn More
+            </button>
+            <a
+                [routerLink]="APP_ROUTES.SURVEY.CREATE"
+                class="comparison-cta_actions-primary"
+                mat-flat-button
+            >
+                <mat-icon>add</mat-icon>
+                Create
+            </a>
+        </div>
+    </div>
+</section>

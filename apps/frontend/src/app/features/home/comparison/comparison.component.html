@@ -1,58 +1,13 @@
 <section class="comparison">
-    <h1 class="comparison__title">Why HangBuddies?</h1>
-    <p class="comparison__subtitle">
-        See how HangBuddies stacks up against other platforms.
-    </p>
+    <div class="comparison__header">
+        <h1>Why HangBuddies?</h1>
+        <p>See how HangBuddies stacks up against other platforms.</p>
+    </div>
 
     <app-comparison-table
         [features]="features"
         [platforms]="platforms"
     ></app-comparison-table>
 
-    <mat-divider />
-
-    <mat-card class="comparison__card">
-        <div class="comparison__card-content">
-            <div class="comparison__card-text">
-                <h1 class="comparison__title">
-                    Ditch the Overcomplicated Tools
-                </h1>
-                <p class="comparison__subtitle">
-                    Unlike traditional scheduling platforms, HangBuddies doesn’t
-                    require logins, subscriptions, or endless notifications.
-                    Just share a link and get responses instantly.
-                </p>
-
-                <div class="comparison__card-buttons">
-                    <button
-                        class="comparison__create-button"
-                        mat-stroked-button
-                    >
-                        <mat-icon>add</mat-icon>
-                        Create
-                    </button>
-                    <button class="comparison__learn-button" mat-flat-button>
-                        Learn more
-                        <mat-icon>arrow_forward</mat-icon>
-                    </button>
-                </div>
-            </div>
-
-            <div class="comparison__card-image">
-                <div class="comparison__gif-box">
-                    <div class="comparison__gif-placeholder">
-                        <img
-                            alt="placeholder gif"
-                            src="https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg"
-                            style="
-                                width: 100%;
-                                height: fit-content;
-                                object-fit: contain;
-                            "
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </mat-card>
+    <app-comparison-cta />
 </section>
