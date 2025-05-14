@@ -23,14 +23,14 @@
             <div>Doodle</div>
         </div>
 
-        <div class="comparison__row" *ngFor="let feature of features">
+        <div *ngFor="let feature of features" class="comparison__row">
             <div class="comparison__label">{{ feature.label }}</div>
 
             <div
-                class="comparison__icon"
                 *ngFor="
                     let platform of ['HangBuddies', 'Google Forms', 'Doodle']
                 "
+                class="comparison__icon"
             >
                 <mat-icon
                     [ngClass]="
@@ -63,13 +63,13 @@
 
                 <div class="comparison__card-buttons">
                     <button
-                        mat-stroked-button
                         class="comparison__create-button"
+                        mat-stroked-button
                     >
                         <mat-icon>add</mat-icon>
                         Create
                     </button>
-                    <button mat-flat-button class="comparison__learn-button">
+                    <button class="comparison__learn-button" mat-flat-button>
                         Learn more
                         <mat-icon>arrow_forward</mat-icon>
                     </button>
@@ -81,7 +81,7 @@
                     <div class="comparison__gif-placeholder">
                         <img
                             alt="placeholder gif"
-                            src="/illustrations/cinema.gif"
+                            src="https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg"
                             style="
                                 width: 100%;
                                 height: fit-content;
