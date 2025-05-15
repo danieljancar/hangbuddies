@@ -11,7 +11,10 @@
         "lint:frontend": "npm run --prefix apps/frontend lint",
         "lint:backend": "npm run --prefix apps/backend lint",
         "start:frontend": "npm run --prefix apps/frontend start",
-        "start:backend": "npm run --prefix apps/backend start"
+        "start:backend": "npm run --prefix apps/backend start",
+        "install:frontend": "npm --prefix apps/frontend i",
+        "install:backend": "npm --prefix apps/backend i",
+        "install:all": "npm run install:frontend && npm run install:backend && npm i"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"

@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core'
+import { inject, Injectable } from '@angular/core'
 import { Meta, Title } from '@angular/platform-browser'
 
 @Injectable({
     providedIn: 'root',
 })
 export class SeoService {
-    constructor(
-        private titleService: Title,
-        private metaService: Meta
-    ) {}
+    #titleService = inject(Title)
+    #metaService = inject(Meta)
 
     updateTitle(title: string): void {
-        this.titleService.setTitle(title)
+        this.#titleService.setTitle(title)
     }
 
     updateMetaTag(tag: {
@@ -19,7 +17,7 @@ export class SeoService {
         content: string
         property?: string
     }): void {
-        this.metaService.updateTag(tag)
+        this.#metaService.updateTag(tag)
     }
 
     updateMetaTags(
@@ -29,6 +27,6 @@ export class SeoService {
     }
 
     removeMetaTag(name: string): void {
-        this.metaService.removeTag(`name='${name}'`)
+        this.#metaService.removeTag(`name='${name}'`)
     }
 }
