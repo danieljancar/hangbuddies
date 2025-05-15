@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router'
     imports: [MatButton, ScrollToDirective, MatAnchor, MatIcon, RouterLink],
     templateUrl: './comparison-cta.component.html',
     styleUrl: './comparison-cta.component.scss',
+    standalone: true,
 })
 export class ComparisonCtaComponent {
     protected readonly APP_ROUTES = APP_ROUTES
