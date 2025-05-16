@@ -80,7 +80,7 @@ Collaborators can clone this original repository, as a contributor you should ma
 git clone https://github.com/danieljancar/hangbuddies.git
 cd hangbuddies
 # Node > 20
-npm install:all # Install all dependencies in the project (submodules)
+npm run install:all # Install all dependencies in the project (submodules)
 ```
 
 > [!Important]
