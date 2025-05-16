@@ -1,56 +1,46 @@
 import { Injectable } from '@nestjs/common'
-import { BlogPost, BlogPostDocument } from './schemas/blog.schema'
+import { Blog, BlogDocument } from './schemas/blog.schema'
 import { Model, FilterQuery } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
-import { CreateBlogPostDto } from './dto/create-blog.dto'
+import { CreateBlogDto } from './dto/create-blog.dto'
 
 @Injectable()
-export class BlogPostService {
+export class BlogService {
     constructor(
-        @InjectModel(BlogPost.name)
-        private blogPostModel: Model<BlogPostDocument>
+        @InjectModel(Blog.name)
+        private blogModel: Model<BlogDocument>
     ) {}
 
-    async create(blogPost: CreateBlogPostDto): Promise<BlogPostDocument> {
-        const newBlogPost = new this.blogPostModel(blogPost)
-        return newBlogPost.save()
+    async create(blog: CreateBlogDto): Promise<BlogDocument> {
+        const newBlog = new this.blogModel(blog)
+        return newBlog.save()
     }
 
-    async getBlogPosts(
+    async getBlogs(
         page: number,
         limit: number,
         query: string,
         sortOption: 'asc' | 'desc',
         tags: string[]
-    ): Promise<BlogPostDocument[]> {
-        return this.getBlogPostWithPagination(
-            page,
-            limit,
-            query,
-            sortOption,
-            tags
-        )
+    ): Promise<BlogDocument[]> {
+        return this.getBlogsWithPagination(page, limit, query, sortOption, tags)
     }
 
-    async getBlogPostById(id: string): Promise<BlogPostDocument | null> {
-        return this.blogPostModel.findById(id).exec()
+    async getBlogById(id: string): Promise<BlogDocument | null> {
+        return this.blogModel.findById(id).exec()
     }
 
-    async getLatestBlogPosts(limit: number): Promise<BlogPostDocument[]> {
-        return this.blogPostModel
-            .find()
-            .sort({ createdAt: -1 })
-            .limit(limit)
-            .exec()
+    async getLatestBlogs(limit: number): Promise<BlogDocument[]> {
+        return this.blogModel.find().sort({ createdAt: -1 }).limit(limit).exec()
     }
 
-    async getBlogPostWithPagination(
+    async getBlogsWithPagination(
         page: number = 1,
         limit: number = 5,
         query: string = '',
         sortOption: 'asc' | 'desc' = 'asc',
         tags: string[] = []
-    ): Promise<BlogPostDocument[]> {
+    ): Promise<BlogDocument[]> {
         const isValidDate = (value: string): boolean => {
             const date = new Date(value)
             return !isNaN(date.getTime())
@@ -58,8 +48,8 @@ export class BlogPostService {
 
         const buildSearchQuery = (
             searchTerm: string
-        ): FilterQuery<BlogPostDocument> => {
-            const query: FilterQuery<BlogPostDocument> = {}
+        ): FilterQuery<BlogDocument> => {
+            const query: FilterQuery<BlogDocument> = {}
 
             if (isValidDate(searchTerm)) {
                 query.createdAt = new Date(searchTerm)
@@ -98,9 +88,7 @@ export class BlogPostService {
             sortFields.author = sortDirection
         }
 
-        console.log(JSON.stringify(searchQuery))
-
-        return this.blogPostModel
+        return this.blogModel
             .find(searchQuery)
             .sort(sortFields)
             .skip(skipCount)

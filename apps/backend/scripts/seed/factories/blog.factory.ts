@@ -1,14 +1,14 @@
 import { faker } from '@faker-js/faker'
-import { BlogPostService } from '../../../src/modules/blog/blog.service'
-import { BlogPostDocument } from '../../../src/modules/blog/schemas/blog.schema'
+import { BlogService } from '../../../src/modules/blog/blog.service'
+import { BlogDocument } from '../../../src/modules/blog/schemas/blog.schema'
 
-export async function createBlogPosts(
-    blogPostService: BlogPostService,
+export async function createBlog(
+    blogService: BlogService,
     amount: number = 20
-): Promise<BlogPostDocument[]> {
+): Promise<BlogDocument[]> {
     return Promise.all(
         Array.from({ length: amount }).map(() =>
-            blogPostService.create({
+            blogService.create({
                 title: faker.lorem.sentence(),
                 description: faker.lorem.paragraph(),
                 content: faker.lorem.paragraphs(3),

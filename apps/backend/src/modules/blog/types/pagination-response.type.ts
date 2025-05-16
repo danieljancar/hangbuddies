@@ -1,7 +1,7 @@
-import { BlogPostDocument } from '../schemas/blog.schema'
+import { BlogDocument } from '../schemas/blog.schema'
 
 export type PaginationResponse = {
-    data: BlogPostDocument[]
+    data: BlogDocument[]
     page: number
     limit: number
     query: {

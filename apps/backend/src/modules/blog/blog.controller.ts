@@ -5,16 +5,16 @@ import {
     Query,
     NotFoundException,
 } from '@nestjs/common'
-import { BlogPostService } from './blog.service'
+import { BlogService } from './blog.service'
 import { PaginationResponse } from './types/pagination-response.type'
-import { BlogPostDocument } from './schemas/blog.schema'
+import { BlogDocument } from './schemas/blog.schema'
 
 @Controller('blog')
-export class BlogPostController {
-    constructor(private readonly blogPostService: BlogPostService) {}
+export class BlogController {
+    constructor(private readonly blogService: BlogService) {}
 
     @Get()
-    async getBlogPosts(
+    async getBlogs(
         @Query('p') p: number,
         @Query('l') l: number,
         @Query('q') q: string,
@@ -28,7 +28,7 @@ export class BlogPostController {
         const resolvedTags: string[] = t.split(',')
 
         return {
-            data: await this.blogPostService.getBlogPosts(
+            data: await this.blogService.getBlogs(
                 resolvedPage,
                 resolvedLimit,
                 resolvedQuery,
@@ -46,22 +46,19 @@ export class BlogPostController {
     }
 
     @Get('latest')
-    async getLatestBlogPosts(
-        @Query('l') l: number
-    ): Promise<BlogPostDocument[]> {
+    async getLatestBlogs(@Query('l') l: number): Promise<BlogDocument[]> {
         const resolvedLimit = l || 3
-        return this.blogPostService.getLatestBlogPosts(resolvedLimit)
+        return this.blogService.getLatestBlogs(resolvedLimit)
     }
 
     @Get(':id')
-    async getBlogPostById(@Param('id') id: string): Promise<BlogPostDocument> {
-        const blogpost: BlogPostDocument | null =
-            await this.blogPostService.getBlogPostById(id)
+    async getBlogById(@Param('id') id: string): Promise<BlogDocument> {
+        const blog: BlogDocument | null = await this.blogService.getBlogById(id)
 
-        if (blogpost) {
-            return blogpost
+        if (blog) {
+            return blog
         }
 
-        throw new NotFoundException(`Blog post with id ${id} not found`)
+        throw new NotFoundException(`Blog with id ${id} not found`)
     }
 }

@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { HydratedDocument } from 'mongoose'
 
-export type BlogPostDocument = HydratedDocument<BlogPost>
+export type BlogDocument = HydratedDocument<Blog>
 
 @Schema({ timestamps: true })
-export class BlogPost {
+export class Blog {
     @Prop({ required: true })
     title: string
 
@@ -24,13 +24,13 @@ export class BlogPost {
     updatedAt: Date
 }
 
-export const BlogPostSchema = SchemaFactory.createForClass(BlogPost)
+export const BlogSchema = SchemaFactory.createForClass(Blog)
 
-BlogPostSchema.virtual('id').get(function (this: BlogPostDocument) {
+BlogSchema.virtual('id').get(function (this: BlogDocument) {
     return this._id.toHexString()
 })
 
-BlogPostSchema.set('toJSON', {
+BlogSchema.set('toJSON', {
     virtuals: true,
     versionKey: false,
     transform: (_doc, ret: Record<string, unknown>) => {
