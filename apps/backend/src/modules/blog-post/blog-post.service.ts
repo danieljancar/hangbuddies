@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { BlogPost, BlogPostDocument } from './schemas/blog-post.schema'
-import { Model } from 'mongoose'
+import { Model, FilterQuery } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
 import { CreateBlogPostDto } from './dto/create-blog-post.dto'
 
@@ -56,21 +56,20 @@ export class BlogPostService {
             return !isNaN(date.getTime())
         }
 
-        const buildSearchQuery = (searchTerm: string) => {
-            const query: any = {}
+        const buildSearchQuery = (
+            searchTerm: string
+        ): FilterQuery<BlogPostDocument> => {
+            const query: FilterQuery<BlogPostDocument> = {}
 
-            // Wenn es ein valides Datum ist → direkt auf createdAt filtern
             if (isValidDate(searchTerm)) {
                 query.createdAt = new Date(searchTerm)
                 return query
             }
 
-            // Tags-Filter, falls vorhanden
             if (tags.length > 0) {
                 query.tags = { $in: tags }
             }
 
-            // Textsuche mit $or über mehrere Felder
             if (searchTerm) {
                 const regex = { $regex: searchTerm, $options: 'i' }
                 query.$or = [
@@ -88,17 +87,15 @@ export class BlogPostService {
         const sortDirection: 1 | -1 = sortOption === 'asc' ? 1 : -1
         const skipCount = (page - 1) * limit
 
-        let sortFields: Record<string, 1 | -1>
+        const sortFields: Record<string, 1 | -1> = {}
 
         if (isDateQuery) {
-            sortFields = { createdAt: sortDirection }
+            sortFields.createdAt = sortDirection
         } else {
-            sortFields = {
-                title: sortDirection,
-                description: sortDirection,
-                content: sortDirection,
-                author: sortDirection,
-            }
+            sortFields.title = sortDirection
+            sortFields.description = sortDirection
+            sortFields.content = sortDirection
+            sortFields.author = sortDirection
         }
 
         console.log(JSON.stringify(searchQuery))
