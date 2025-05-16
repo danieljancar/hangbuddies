@@ -6,9 +6,11 @@ import { Connection } from 'mongoose'
 import { AppModule } from '../../src/app.module'
 import { DeviceService } from '../../src/modules/device/device.service'
 import { SurveyService } from '../../src/modules/survey/survey.service'
+import { BlogPostService } from '../../src/modules/blog-post/blog-post.service'
 import { createDevices } from './factories/device.factory'
 import { createSurveys } from './factories/survey.factory'
 import { createResponses } from './factories/response.factory'
+import { createBlogPosts } from './factories/blog-post.factory'
 import { faker } from '@faker-js/faker'
 
 const DEVICE_COUNT = faker.number.int({ min: 30, max: 50 })
@@ -44,6 +46,10 @@ async function seed(): Promise<void> {
 
     const responses = await createResponses(surveyService, surveys, devices)
     Logger.debug(`${responses.length} responses created`, 'SeedScript')
+
+    const blogPostService = app.get(BlogPostService)
+    const blogPosts = await createBlogPosts(blogPostService)
+    Logger.debug(`${blogPosts.length} blog posts created`, 'SeedScript')
 
     await app.close()
     Logger.log('Seeding completed successfully', 'SeedScript')
