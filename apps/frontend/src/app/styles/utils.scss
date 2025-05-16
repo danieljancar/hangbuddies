@@ -1,0 +1,42 @@
+.link__opacity-hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--mat-sys-primary);
+    }
+}
+
+.link__underline-hover {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1.5px;
+        background-color: currentColor;
+        transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
+}

@@ -1,0 +1,35 @@
+<section class="comparison-cta__container">
+    <div class="comparison-cta__placeholder">
+        <img
+            alt="Placeholder"
+            class="comparison-cta__placeholder-img"
+            src="https://i0.wp.com/www.bishoprook.com/wp-content/uploads/2021/05/placeholder-image-gray-16x9-1.png?ssl=1"
+        />
+    </div>
+    <div class="comparison-cta__content">
+        <h2>Simplify Polls &amp; Date Picks</h2>
+        <p>
+            No logins, subscriptions, or endless notifications and distractions,
+            just create your poll or date picker, share the link, and gather
+            responses instantly.
+        </p>
+        <div class="comparison-cta__actions">
+            <a
+                class="comparison-cta__actions-secondary"
+                mat-button
+                scrollTo
+                targetId="tips-best-practices"
+            >
+                Learn More
+            </a>
+            <a
+                [routerLink]="APP_ROUTES.SURVEY.CREATE"
+                class="comparison-cta__actions-primary"
+                mat-flat-button
+            >
+                <mat-icon>add</mat-icon>
+                Create
+            </a>
+        </div>
+    </div>
+</section>

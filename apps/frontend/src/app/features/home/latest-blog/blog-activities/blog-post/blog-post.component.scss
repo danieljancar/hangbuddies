@@ -1,0 +1,28 @@
+mat-card.no-border {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.post__description {
+    color: gray;
+}
+
+.post {
+    &__information {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__date {
+        color: var(--mat-sys-primary);
+    }
+
+    &__tag {
+        font-size: 0.6rem !important;
+        padding: 0.1rem 0.3rem !important;
+        max-height: 1.5rem !important;
+    }
+}
