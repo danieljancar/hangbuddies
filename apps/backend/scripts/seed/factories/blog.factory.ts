@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
-import { BlogPostService } from '../../../src/modules/blog-post/blog-post.service'
-import { BlogPostDocument } from '../../../src/modules/blog-post/schemas/blog-post.schema'
+import { BlogPostService } from '../../../src/modules/blog/blog.service'
+import { BlogPostDocument } from '../../../src/modules/blog/schemas/blog.schema'
 
 export async function createBlogPosts(
     blogPostService: BlogPostService,
