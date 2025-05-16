@@ -31,9 +31,9 @@
         &-primary {
             @include mat.button-overrides(
                 (
-                    filled-container-color: white,
-                    filled-label-text-color: red,
-                    filled-state-layer-color: red,
+                    filled-container-color: var(--mat-sys-on-error),
+                    filled-label-text-color: var(--mat-sys-error),
+                    filled-state-layer-color: var(--mat-sys-error),
                 )
             );
         }
@@ -41,8 +41,8 @@
         &-secondary {
             @include mat.button-overrides(
                 (
-                    text-label-text-color: white,
-                    text-state-layer-color: red,
+                    text-label-text-color: var(--mat-sys-on-error),
+                    text-state-layer-color: var(--mat-sys-on-error),
                 )
             );
         }
