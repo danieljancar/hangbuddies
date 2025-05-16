@@ -1,0 +1,68 @@
+.markdown-content {
+    display: block;
+    margin: 0 auto;
+    max-width: 80ch;
+    padding: 0 2rem;
+    text-align: left;
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    ul,
+    ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    a {
+        color: var(--mat-sys-primary);
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .markdown-content {
+        padding: 0 1.5rem;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+        }
+
+        p,
+        li {
+            font-size: 0.95rem;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .markdown-content {
+        padding: 0 1rem;
+    }
+}
