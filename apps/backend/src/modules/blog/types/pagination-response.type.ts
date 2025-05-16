@@ -1,4 +1,4 @@
-import { BlogPostDocument } from '../schemas/blog-post.schema'
+import { BlogPostDocument } from '../schemas/blog.schema'
 
 export type PaginationResponse = {
     data: BlogPostDocument[]

@@ -5,9 +5,9 @@ import {
     Query,
     NotFoundException,
 } from '@nestjs/common'
-import { BlogPostService } from './blog-post.service'
+import { BlogPostService } from './blog.service'
 import { PaginationResponse } from './types/pagination-response.type'
-import { BlogPostDocument } from './schemas/blog-post.schema'
+import { BlogPostDocument } from './schemas/blog.schema'
 
 @Controller('blog')
 export class BlogPostController {

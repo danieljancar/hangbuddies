@@ -10,7 +10,7 @@ import { BlogPostService } from '../../src/modules/blog-post/blog-post.service'
 import { createDevices } from './factories/device.factory'
 import { createSurveys } from './factories/survey.factory'
 import { createResponses } from './factories/response.factory'
-import { createBlogPosts } from './factories/blog-post.factory'
+import { createBlogPosts } from './factories/blog.factory'
 import { faker } from '@faker-js/faker'
 
 const DEVICE_COUNT = faker.number.int({ min: 30, max: 50 })

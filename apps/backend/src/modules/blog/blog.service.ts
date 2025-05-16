@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { BlogPost, BlogPostDocument } from './schemas/blog-post.schema'
+import { BlogPost, BlogPostDocument } from './schemas/blog.schema'
 import { Model, FilterQuery } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
-import { CreateBlogPostDto } from './dto/create-blog-post.dto'
+import { CreateBlogPostDto } from './dto/create-blog.dto'
 
 @Injectable()
 export class BlogPostService {
