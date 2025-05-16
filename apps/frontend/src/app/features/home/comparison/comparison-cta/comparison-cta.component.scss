@@ -12,6 +12,10 @@
         border-radius: 8px;
         padding: 1rem;
         justify-content: center;
+
+        @media (max-width: 768px) {
+            gap: 0.5rem;
+        }
     }
 
     &__content {
