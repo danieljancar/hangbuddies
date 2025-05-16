@@ -1,0 +1,26 @@
+.comparison {
+    padding: 2rem 1rem;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+}
+
+.platform-label--mobile {
+    display: none;
+}
+
+.platform-label--desktop {
+    display: inline;
+}
+
+@media screen and (max-width: 600px) {
+    .platform-label--mobile {
+        display: inline;
+    }
+
+    .platform-label--desktop {
+        display: none;
+    }
+}

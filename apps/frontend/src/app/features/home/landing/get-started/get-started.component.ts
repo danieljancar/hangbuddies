@@ -28,19 +28,19 @@ export class GetStartedComponent {
             icon: 'add',
             title: 'Create Instantly',
             description:
-                'Start by setting up a poll with event details, date options, and a short description. Customize it to fit your needs and share it right away.',
+                'Set up your question with date or topic choices and optional fields (e.g. notes, transport or dietary preferences), then generate a shareable link.',
         },
         {
             icon: 'share',
             title: 'Share Effortlessly',
             description:
-                'Send the poll link to friends, colleagues, or participants. No sign-up required—anyone can cast their vote immediately.',
+                'Distribute the link to participants — no sign-up required — for immediate feedback and selections.',
         },
         {
             icon: 'check_circle',
-            title: 'Finalize Easily',
+            title: 'Decide Seamlessly',
             description:
-                'Pick the best time based on the majority’s preference. Planning meetups, organizing events, or just picking a date has never been simpler.',
+                'Review responses in one view and choose the option that best fits the group’s needs.',
         },
     ]
 }

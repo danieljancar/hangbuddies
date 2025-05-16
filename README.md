@@ -1,7 +1,7 @@
 <div align="center">
     <img src="assets/icon.png" width="200" height="200" alt="HangBuddies icon">
     <h1>HangBuddies</h1>
-    <p>A fast, shareable, and registration-free survey tool for effortless event scheduling with friends, teams, and more.</p>
+    <p>A fast, shareable, registration-free tool for gathering preferences and picking dates with customizable options.</p>
 </div>
 
 <div align="center">
@@ -27,6 +27,8 @@
 - [Features](#features)
 - [Contributing](#contributing)
     - [Prerequisites](#prerequisites)
+        - [Dependencies](#dependencies)
+        - [Tools](#tools)
     - [Installation](#installation)
     - [Configuration](#configuration)
     - [Live Previews](#live-previews)
@@ -53,16 +55,22 @@ relevant [documents](docs/) for developers before getting started.
 
 ## Prerequisites
 
+### Dependencies
+
 We use multiple tools to build HangBuddies. The following are the minimum requirements to get started:
 
 - **Node.js**: Version `^20` or higher
     - **npm**: Version `^10` or higher
     - **pnpm**
     - **yarn**
-- **Docker**: Needed for running the backend locally (with Docker Compose)
-- **Bruno**: Free and open-source API client (find useful collections in `bruno/`)
 - **Angular CLI**: For building and running the frontend
 - **NestJS CLI**: For building and running the backend
+
+### Tools
+
+- **Bruno**: Free and open-source API client (find useful collections in `bruno/`)
+- **Docker**: For running the backend locally
+- **NVM**: For managing Node.js versions (https://github.com/nvm-sh/nvm)
 
 ## Installation
 
@@ -72,11 +80,11 @@ Collaborators can clone this original repository, as a contributor you should ma
 git clone https://github.com/danieljancar/hangbuddies.git
 cd hangbuddies
 # Node > 20
-npm install
+npm run install:all # Install all dependencies in the project (submodules)
 ```
 
 > [!Important]
-> Make sure you run `npm install` before doing any work, so all tools and hooks are working.
+> Make sure you run `npm install:all` (Node > 20) before doing any work, so all tools and hooks are working.
 
 ## Configuration
 
@@ -99,8 +107,8 @@ We have multiple live previews of different environments. You can find them in t
 
 > [!Note]
 > The environments above are hosting the latest `staging` and `develop` branches. The `staging` branch is the latest
-> stable version of the application, while the `develop` branch is the latest development version. They are seeded with
-> test data and are not meant for production use.
+> pre-stable version of the application, while the `develop` branch is the latest development version. They are seeded
+> with test data and are not meant for production use.
 
 # License
 
