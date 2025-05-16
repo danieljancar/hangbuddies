@@ -66,7 +66,7 @@ export class BlogPostService {
                 return query
             }
 
-            if (tags.length > 0) {
+            if (tags.length > 0 && tags[0] !== '') {
                 query.tags = { $in: tags }
             }
 

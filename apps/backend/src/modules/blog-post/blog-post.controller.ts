@@ -9,7 +9,7 @@ import { BlogPostService } from './blog-post.service'
 import { PaginationResponse } from './types/pagination-response.type'
 import { BlogPostDocument } from './schemas/blog-post.schema'
 
-@Controller('blog-posts')
+@Controller('blog')
 export class BlogPostController {
     constructor(private readonly blogPostService: BlogPostService) {}
 
