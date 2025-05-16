@@ -1,8 +1,13 @@
-import { Controller, Get, Param, Query } from '@nestjs/common'
+import {
+    Controller,
+    Get,
+    Param,
+    Query,
+    NotFoundException,
+} from '@nestjs/common'
 import { BlogPostService } from './blog-post.service'
 import { PaginationResponse } from './types/pagination-response.type'
 import { BlogPostDocument } from './schemas/blog-post.schema'
-import { NotFoundError } from 'rxjs'
 
 @Controller('blog-posts')
 export class BlogPostController {
@@ -10,40 +15,41 @@ export class BlogPostController {
 
     @Get()
     async getBlogPosts(
-        @Query('page') page: number = 1,
         @Query('p') p: number,
-        @Query('limit') limit: number = 10,
         @Query('l') l: number,
-        @Query('query') query: string = '',
         @Query('q') q: string,
-        @Query('sortOption') sortOption: 'asc' | 'desc' = 'asc',
-        @Query('s') s: 'asc' | 'desc'
+        @Query('s') s: 'asc' | 'desc',
+        @Query('t') t: string = ''
     ): Promise<PaginationResponse> {
-        const resolvedPage = p || page
-        const resolvedLimit = l || limit
-        const resolvedQuery = q || query
-        const resolvedSortOption = s || sortOption
+        const resolvedPage: number = p || 1
+        const resolvedLimit: number = l || 5
+        const resolvedQuery: string = q || ''
+        const resolvedSortOption: 'asc' | 'desc' = s || 'asc'
+        const resolvedTags: string[] = t.split(',')
 
         return {
             data: await this.blogPostService.getBlogPosts(
                 resolvedPage,
                 resolvedLimit,
                 resolvedQuery,
-                resolvedSortOption
+                resolvedSortOption,
+                resolvedTags
             ),
             page: resolvedPage,
             limit: resolvedLimit,
-            query: resolvedQuery,
+            query: {
+                tags: resolvedTags,
+                search: resolvedQuery,
+            },
             sortOption: resolvedSortOption,
         }
     }
 
     @Get('latest')
     async getLatestBlogPosts(
-        @Query('limit') limit: number = 5,
         @Query('l') l: number
     ): Promise<BlogPostDocument[]> {
-        const resolvedLimit = l || limit
+        const resolvedLimit = l || 3
         return this.blogPostService.getLatestBlogPosts(resolvedLimit)
     }
 
@@ -56,6 +62,6 @@ export class BlogPostController {
             return blogpost
         }
 
-        throw new NotFoundError(`Blog post with id ${id} not found`)
+        throw new NotFoundException(`Blog post with id ${id} not found`)
     }
 }

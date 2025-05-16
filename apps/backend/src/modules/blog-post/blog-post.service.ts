@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { BlogPost, BlogPostDocument } from './schemas/blog-post.schema'
 import { Model } from 'mongoose'
-import { CreateBlogPostDto } from './dto/create-blog-post.dto'
 import { InjectModel } from '@nestjs/mongoose'
+import { CreateBlogPostDto } from './dto/create-blog-post.dto'
 
 @Injectable()
 export class BlogPostService {
@@ -11,18 +11,25 @@ export class BlogPostService {
         private blogPostModel: Model<BlogPostDocument>
     ) {}
 
-    async createBlogPost(dto: CreateBlogPostDto): Promise<BlogPostDocument> {
-        const blogPost = new this.blogPostModel(dto)
-        return blogPost.save()
+    async create(blogPost: CreateBlogPostDto): Promise<BlogPostDocument> {
+        const newBlogPost = new this.blogPostModel(blogPost)
+        return newBlogPost.save()
     }
 
     async getBlogPosts(
         page: number,
         limit: number,
         query: string,
-        sortOption: 'asc' | 'desc'
+        sortOption: 'asc' | 'desc',
+        tags: string[]
     ): Promise<BlogPostDocument[]> {
-        return this.getBlogPostWithPagination(page, limit, query, sortOption)
+        return this.getBlogPostWithPagination(
+            page,
+            limit,
+            query,
+            sortOption,
+            tags
+        )
     }
 
     async getBlogPostById(id: string): Promise<BlogPostDocument | null> {
@@ -38,10 +45,11 @@ export class BlogPostService {
     }
 
     async getBlogPostWithPagination(
-        page: number,
-        limit: number,
+        page: number = 1,
+        limit: number = 5,
         query: string = '',
-        sortOption: 'asc' | 'desc' = 'asc'
+        sortOption: 'asc' | 'desc' = 'asc',
+        tags: string[] = []
     ): Promise<BlogPostDocument[]> {
         const isValidDate = (value: string): boolean => {
             const date = new Date(value)
@@ -49,19 +57,30 @@ export class BlogPostService {
         }
 
         const buildSearchQuery = (searchTerm: string) => {
-            if (!searchTerm) return {}
+            const query: any = {}
 
+            // Wenn es ein valides Datum ist → direkt auf createdAt filtern
             if (isValidDate(searchTerm)) {
-                return { createdAt: new Date(searchTerm) }
+                query.createdAt = new Date(searchTerm)
+                return query
             }
 
-            const regex = { $regex: searchTerm, $options: 'i' }
-            return {
-                title: regex,
-                description: regex,
-                content: regex,
-                tags: regex,
+            // Tags-Filter, falls vorhanden
+            if (tags.length > 0) {
+                query.tags = { $in: tags }
             }
+
+            // Textsuche mit $or über mehrere Felder
+            if (searchTerm) {
+                const regex = { $regex: searchTerm, $options: 'i' }
+                query.$or = [
+                    { title: regex },
+                    { description: regex },
+                    { content: regex },
+                ]
+            }
+
+            return query
         }
 
         const isDateQuery = isValidDate(query)
@@ -81,6 +100,8 @@ export class BlogPostService {
                 author: sortDirection,
             }
         }
+
+        console.log(JSON.stringify(searchQuery))
 
         return this.blogPostModel
             .find(searchQuery)

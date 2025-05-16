@@ -4,6 +4,9 @@ export type PaginationResponse = {
     data: BlogPostDocument[]
     page: number
     limit: number
-    query: string
+    query: {
+        tags: string[]
+        search: string
+    }
     sortOption: 'asc' | 'desc'
 }
