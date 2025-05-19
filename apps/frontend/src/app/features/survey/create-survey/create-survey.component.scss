@@ -1,0 +1,30 @@
+.create-survey {
+    &__container {
+        margin: 3rem 6rem;
+
+        &-information {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        &-questions {
+        }
+    }
+
+    &__questions {
+        &-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+#add-question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 2rem 0;
+}

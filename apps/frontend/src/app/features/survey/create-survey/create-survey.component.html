@@ -1,0 +1,62 @@
+<div [formGroup]="form" class="create-survey__container">
+    <h1>Create Survey</h1>
+
+    <div class="create-survey__container-information">
+        <h2>Information</h2>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input
+                formControlName="title"
+                matInput
+                placeholder="Your title..."
+            />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+                formControlName="description"
+                matInput
+                placeholder="Your description..."
+            ></textarea>
+        </mat-form-field>
+    </div>
+    <div class="create-survey__container-questions">
+        <h2>Questions</h2>
+        <div (cdkDropListDropped)="drop($event)" cdkDropList>
+            @for (question of questions.controls; track $index) {
+                <div
+                    [formGroupName]="$index"
+                    class="create-survey__questions-item"
+                    cdkDrag
+                >
+                    <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+                    <mat-form-field>
+                        <mat-label>Question</mat-label>
+                        <input
+                            formControlName="question"
+                            matInput
+                            placeholder="Your question..."
+                        />
+                    </mat-form-field>
+                </div>
+            }
+        </div>
+        <div id="add-question">
+            <button (click)="addQuestion()" mat-button>
+                <mat-icon>add</mat-icon>
+                Add Question
+            </button>
+        </div>
+
+        <div class="create-survey__questions-actions">
+            <button mat-stroked-button>
+                <mat-icon>cancel</mat-icon>
+                Discard
+            </button>
+            <button mat-flat-button>
+                <mat-icon>check</mat-icon>
+                Review
+            </button>
+        </div>
+    </div>
+</div>

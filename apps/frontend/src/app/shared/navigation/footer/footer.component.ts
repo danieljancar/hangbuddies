@@ -47,10 +47,26 @@ export class FooterComponent {
         {
             title: 'Legal',
             links: [
-                { label: 'Privacy', path: APP_ROUTES.LEGAL.PRIVACY },
-                { label: 'Terms', path: APP_ROUTES.LEGAL.TERMS },
-                { label: 'Cookies', path: APP_ROUTES.LEGAL.COOKIES },
-                { label: 'Code of Conduct', path: APP_ROUTES.LEGAL.COC },
+                {
+                    label: 'Privacy',
+                    path: APP_ROUTES.LEGAL.DETAIL(
+                        APP_ROUTES.LEGAL.FILES.PRIVACY
+                    ),
+                },
+                {
+                    label: 'Terms',
+                    path: APP_ROUTES.LEGAL.DETAIL(APP_ROUTES.LEGAL.FILES.TERMS),
+                },
+                {
+                    label: 'Cookies',
+                    path: APP_ROUTES.LEGAL.DETAIL(
+                        APP_ROUTES.LEGAL.FILES.COOKIES
+                    ),
+                },
+                {
+                    label: 'Code of Conduct',
+                    path: APP_ROUTES.LEGAL.DETAIL(APP_ROUTES.LEGAL.FILES.COC),
+                },
             ],
         },
     ]

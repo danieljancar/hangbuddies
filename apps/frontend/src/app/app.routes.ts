@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router'
 import { APP_ROUTES } from './common/routes'
 import { HomeComponent } from './features/home/home.component'
-import { LANDING_META } from './common/meta.constants'
 import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail.component'
+import { LANDING_META, SURVEY_META } from './common/meta.constants'
 
 export const routes: Routes = [
     {
@@ -14,7 +14,18 @@ export const routes: Routes = [
         },
     },
     {
-        path: 'legal/:file',
+        path: APP_ROUTES.LEGAL.DETAIL(':file'),
         component: LegalDetailComponent,
+    },
+    {
+        path: APP_ROUTES.SURVEY.CREATE,
+        loadComponent: () =>
+            import(
+                './features/survey/create-survey/create-survey.component'
+            ).then((m) => m.CreateSurveyComponent),
+        data: {
+            metaTitle: SURVEY_META.CREATE_SURVEY.metaTitle,
+            metaTags: SURVEY_META.CREATE_SURVEY.metaTags,
+        },
     },
 ]
