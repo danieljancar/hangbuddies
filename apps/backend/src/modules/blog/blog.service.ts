@@ -3,6 +3,7 @@ import { Blog, BlogDocument } from './schemas/blog.schema'
 import { Model, FilterQuery } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
 import { CreateBlogDto } from './dto/create-blog.dto'
+import { BlogTag } from './types/blog-tag.type'
 
 @Injectable()
 export class BlogService {
@@ -32,6 +33,36 @@ export class BlogService {
 
     async getLatestBlogs(limit: number): Promise<BlogDocument[]> {
         return this.blogModel.find().sort({ createdAt: -1 }).limit(limit).exec()
+    }
+
+    async getAllTags(): Promise<BlogTag[]> {
+        const blogs = await this.blogModel.find().exec()
+        const allTags = blogs.map((blog) => blog.tags).flat()
+
+        const tagCounts = allTags.reduce(
+            (acc: Record<string, number>, tag: string) => {
+                acc[tag] = (acc[tag] || 0) + 1
+                return acc
+            },
+            {}
+        )
+
+        const mappedTags: BlogTag[] = Object.entries(tagCounts).map(
+            ([tag, count], index) => ({
+                id: index,
+                name: tag,
+                count: count,
+            })
+        )
+
+        mappedTags.sort((a, b) => b.count - a.count)
+
+        return mappedTags
+    }
+
+    async getTotalPages(limit: number = 5): Promise<number> {
+        const totalBlogs = await this.blogModel.countDocuments().exec()
+        return Math.ceil(totalBlogs / limit)
     }
 
     async getBlogsWithPagination(

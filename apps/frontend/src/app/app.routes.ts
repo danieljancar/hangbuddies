@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router'
 import { APP_ROUTES } from './common/routes'
 import { HomeComponent } from './features/home/home.component'
+import { BlogComponent } from './features/blog/blog.component'
+import { BlogOverviewComponent } from './features/blog/blog-overview/blog-overview.component'
 import { LANDING_META } from './common/meta.constants'
-import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail.component'
 
 export const routes: Routes = [
     {
@@ -14,7 +15,13 @@ export const routes: Routes = [
         },
     },
     {
-        path: 'legal/:file',
-        component: LegalDetailComponent,
+        path: APP_ROUTES.BLOG.OVERVIEW.replace('/', ''),
+        component: BlogComponent,
+        children: [
+            {
+                path: '',
+                component: BlogOverviewComponent,
+            },
+        ],
     },
 ]

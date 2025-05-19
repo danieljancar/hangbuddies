@@ -1,0 +1,10 @@
+<div
+    class="blog-tag"
+    (click)="onTagClick()"
+    [ngClass]="{
+        'blog-tag__active': tag.selected,
+        'blog-tag__disabled': !tag.selected,
+    }"
+>
+    {{ tag.name }} ({{ tag.count }})
+</div>

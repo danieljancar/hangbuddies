@@ -1,13 +1,14 @@
 import {
     Controller,
     Get,
+    NotFoundException,
     Param,
     Query,
-    NotFoundException,
 } from '@nestjs/common'
 import { BlogService } from './blog.service'
 import { PaginationResponse } from './types/pagination-response.type'
 import { BlogDocument } from './schemas/blog.schema'
+import { BlogTag } from './types/blog-tag.type'
 
 @Controller('blog')
 export class BlogController {
@@ -35,8 +36,22 @@ export class BlogController {
                 resolvedSortOption,
                 resolvedTags
             ),
-            page: resolvedPage,
-            limit: resolvedLimit,
+            pagination: {
+                pages: {
+                    current: resolvedPage,
+                    total: await this.blogService.getTotalPages(resolvedLimit),
+                },
+                limit: resolvedLimit,
+                total: (
+                    await this.blogService.getBlogs(
+                        resolvedPage,
+                        resolvedLimit,
+                        resolvedQuery,
+                        resolvedSortOption,
+                        resolvedTags
+                    )
+                ).length,
+            },
             query: {
                 tags: resolvedTags,
                 search: resolvedQuery,
@@ -49,6 +64,11 @@ export class BlogController {
     async getLatestBlogs(@Query('l') l: number): Promise<BlogDocument[]> {
         const resolvedLimit = l || 3
         return this.blogService.getLatestBlogs(resolvedLimit)
+    }
+
+    @Get('tags')
+    async getTags(): Promise<BlogTag[]> {
+        return await this.blogService.getAllTags()
     }
 
     @Get(':id')

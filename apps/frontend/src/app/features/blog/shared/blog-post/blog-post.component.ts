@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
-import { BlogPostTypes } from '../../../../../types/blog-post.types'
+import { BlogType } from '../../../../types/blog.type'
 import { DatePipe } from '@angular/common'
 import { RouterLink } from '@angular/router'
-import { APP_ROUTES } from '../../../../../common/routes'
+import { APP_ROUTES } from '../../../../common/routes'
 import {
     MatCard,
     MatCardContent,
@@ -27,6 +27,6 @@ import { MatButton } from '@angular/material/button'
     styleUrl: './blog-post.component.scss',
 })
 export class BlogPostComponent {
-    @Input() post: BlogPostTypes = {} as BlogPostTypes
+    @Input() post: BlogType = {} as BlogType
     protected readonly APP_ROUTES = APP_ROUTES
 }
