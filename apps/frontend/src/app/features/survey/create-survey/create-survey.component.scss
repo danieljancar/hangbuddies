@@ -1,30 +1,59 @@
-.create-survey {
-    &__container {
-        margin: 3rem 6rem;
+.create-survey__wrapper {
+    &-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+}
 
-        &-information {
+.create-survey {
+    margin: 3rem 6rem;
+
+    &__details {
+        &-list {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-
-        &-questions {
-        }
     }
 
     &__questions {
-        &-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        display: flex;
+        flex-direction: column;
     }
-}
 
-#add-question {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 2rem 0;
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    &__drag-handle,
+    &__remove {
+        flex: 0 0 auto;
+        align-self: center;
+    }
+
+    &__field {
+        flex: 1 1 auto;
+        margin: 0;
+    }
+
+    &__add {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

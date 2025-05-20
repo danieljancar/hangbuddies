@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core'
+import { ChangeDetectorRef, Component, inject } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import {
     FormArray,
     FormBuilder,
@@ -24,9 +25,11 @@ import { Router } from '@angular/router'
 import {
     QuestionType,
     BackendSurvey,
-    BackendQuestion,
+    QuestionTypeEnum,
 } from '../../../types/survey.types'
+import { TextQuestionComponent } from './question-forms/text-question/text-question.component'
 import { QuestionTypeSheetComponent } from './question-type-sheet/question-type-sheet.component'
+import { MatDivider } from '@angular/material/divider'
 
 type QuestionFormGroup = FormGroup<{
     type: FormControl<QuestionType>
@@ -36,16 +39,11 @@ type QuestionFormGroup = FormGroup<{
     order: FormControl<number>
 }>
 
-type SurveyFormGroup = FormGroup<{
-    title: FormControl<string>
-    description: FormControl<string>
-    questions: FormArray<QuestionFormGroup>
-}>
-
 @Component({
     selector: 'app-create-survey',
     standalone: true,
     imports: [
+        CommonModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
@@ -53,22 +51,44 @@ type SurveyFormGroup = FormGroup<{
         MatIconModule,
         MatBottomSheetModule,
         DragDropModule,
+        TextQuestionComponent,
+        MatDivider,
     ],
     templateUrl: './create-survey.component.html',
     styleUrls: ['./create-survey.component.scss'],
 })
 export class CreateSurveyComponent {
     private fb = inject(FormBuilder)
-    form: SurveyFormGroup = this.fb.group({
+    form = this.fb.group({
         title: this.fb.control('', {
             nonNullable: true,
             validators: [Validators.required],
         }),
         description: this.fb.control('', { nonNullable: true }),
-        questions: this.fb.array<QuestionFormGroup>([]),
-    }) as SurveyFormGroup
+        questions: this.fb.array<QuestionFormGroup>([], {
+            validators: [Validators.minLength(1)],
+        }),
+    }) as FormGroup & { controls: { questions: FormArray<QuestionFormGroup> } }
+    private cdr = inject(ChangeDetectorRef)
     private sheet = inject(MatBottomSheet)
     private router = inject(Router)
+
+    constructor() {
+        this.questions.push(
+            this.fb.group({
+                type: this.fb.control('text', { nonNullable: true }),
+                label: this.fb.control('', {
+                    nonNullable: true,
+                    validators: [Validators.required],
+                }),
+                options: this.fb.array([]),
+                isRequired: this.fb.control(false, {
+                    nonNullable: true,
+                }),
+                order: this.fb.control(0, { nonNullable: true }),
+            }) as QuestionFormGroup
+        )
+    }
 
     get questions(): FormArray<QuestionFormGroup> {
         return this.form.controls.questions
@@ -80,17 +100,30 @@ export class CreateSurveyComponent {
             .afterDismissed()
             .subscribe((type: QuestionType | undefined) => {
                 if (!type) return
-                this.questions.push(this.createQuestionGroup(type))
+                const idx = this.questions.length
+                this.questions.push(
+                    this.fb.group({
+                        type: this.fb.control(type, { nonNullable: true }),
+                        label: this.fb.control('', {
+                            nonNullable: true,
+                            validators: [Validators.required],
+                        }),
+                        options: this.fb.array([]),
+                        isRequired: this.fb.control(false, {
+                            nonNullable: true,
+                        }),
+                        order: this.fb.control(idx, { nonNullable: true }),
+                    }) as QuestionFormGroup
+                )
+                this.cdr.detectChanges()
             })
     }
 
-    removeQuestion(index: number): void {
-        this.questions.removeAt(index)
+    removeQuestion(i: number): void {
+        this.questions.removeAt(i)
     }
 
     drop(event: CdkDragDrop<QuestionFormGroup[]>): void {
-        console.log(event)
-        console.log(event.previousIndex, event.currentIndex)
         moveItemInArray(
             this.questions.controls,
             event.previousIndex,
@@ -100,67 +133,35 @@ export class CreateSurveyComponent {
     }
 
     review(): void {
-        if (this.form.invalid) return
+        if (this.form.invalid) {
+            return
+        }
 
-        const title = this.form.controls.title.value
-        const description = this.form.controls.description.value
-        const rawQs = this.questions.getRawValue()
-
+        const raw = this.questions.getRawValue()
         const payload: BackendSurvey = {
-            title,
-            description: description || undefined,
-            questions: rawQs.map((q) => this.toBackendQuestion(q)),
+            title: this.form.controls['title'].value,
+            description: this.form.controls['description'].value || undefined,
+            questions: raw.map((q) => ({
+                text: q.label,
+                type: this.mapType(q.type),
+                options: q.options.length > 0 ? q.options : undefined,
+                isRequired: q.isRequired,
+            })),
         }
 
         this.router.navigate(['/survey-review'], { state: { survey: payload } })
     }
 
-    private createQuestionGroup(type: QuestionType): QuestionFormGroup {
-        const idx = this.questions.length
-        const options =
-            type === 'text'
-                ? []
-                : ['', ''].map(() =>
-                      this.fb.control('', {
-                          nonNullable: true,
-                          validators: [Validators.required],
-                      })
-                  )
-
-        return this.fb.group({
-            type: this.fb.control(type, { nonNullable: true }),
-            label: this.fb.control('', {
-                nonNullable: true,
-                validators: [Validators.required],
-            }),
-            options: this.fb.array(options),
-            isRequired: this.fb.control(false, { nonNullable: true }),
-            order: this.fb.control(idx, { nonNullable: true }),
-        }) as QuestionFormGroup
-    }
-
-    private toBackendQuestion(q: {
-        label: string
-        type: QuestionType
-        options: string[]
-        isRequired: boolean
-    }): BackendQuestion {
-        return {
-            text: q.label,
-            type: this.mapType(q.type),
-            options: q.type === 'text' ? undefined : q.options,
-            isRequired: q.isRequired,
-        }
-    }
-
-    private mapType(type: QuestionType): 1 | 2 | 3 {
+    private mapType(type: QuestionType): QuestionTypeEnum {
         switch (type) {
             case 'text':
-                return 1
+                return QuestionTypeEnum.Text
             case 'single-choice':
-                return 2
+                return QuestionTypeEnum.SingleChoice
             case 'multiple-choice':
-                return 3
+                return QuestionTypeEnum.MultipleChoice
+            default:
+                throw new Error(`Unsupported question type: ${type}`)
         }
     }
 }
