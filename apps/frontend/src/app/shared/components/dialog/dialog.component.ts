@@ -11,8 +11,8 @@ import { MatButton } from '@angular/material/button'
 export interface DialogData {
     title: string
     message: string
-    cancelText: string
-    confirmText: string
+    cancelText?: string
+    confirmText?: string
 }
 
 @Component({

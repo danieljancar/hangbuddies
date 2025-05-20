@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 
 @Component({
     selector: 'app-text-question',
     standalone: true,
-    imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <div [formGroup]="group">
             <mat-form-field appearance="outline" class="question__field">
-                <mat-label>Text</mat-label>
+                <mat-label>Question</mat-label>
                 <input
                     matInput
                     formControlName="label"
@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
                     group.get('label')?.hasError('required') &&
                     group.get('label')?.touched
                 ) {
-                    <mat-error> Question text is required</mat-error>
+                    <mat-error>Question text is required</mat-error>
                 }
             </mat-form-field>
         </div>
