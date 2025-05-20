@@ -1,7 +1,6 @@
 @import '../../../../styles.scss';
 
 .survey-results {
-    // Zentrierte Card mit max-width für große Bildschirme
     max-width: 600px;
     margin: 3rem auto;
     background: #fff8ee;
@@ -146,7 +145,6 @@
     }
 }
 
-// Optional: dezenter Hintergrund für den Body auf großen Bildschirmen
 @media (min-width: 900px) {
     body {
         background: linear-gradient(135deg, #fff8ee 60%, #fffbe6 100%);
