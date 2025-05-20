@@ -3,6 +3,7 @@ import { APP_ROUTES } from './common/routes'
 import { HomeComponent } from './features/home/home.component'
 import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail.component'
 import { LANDING_META, SURVEY_META } from './common/meta.constants'
+import { CreateSurveyUnsavedChangesGuard } from './shared/guards/create-survey-unsaved-changes.guard'
 
 export const routes: Routes = [
     {
@@ -27,5 +28,6 @@ export const routes: Routes = [
             metaTitle: SURVEY_META.CREATE_SURVEY.metaTitle,
             metaTags: SURVEY_META.CREATE_SURVEY.metaTags,
         },
+        canDeactivate: [CreateSurveyUnsavedChangesGuard],
     },
 ]

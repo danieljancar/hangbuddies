@@ -83,9 +83,9 @@
         </section>
     </form>
     <div class="create-survey__wrapper-actions">
-        <button class="btn_secondary" mat-stroked-button>
+        <button (click)="discard()" class="btn_secondary" mat-stroked-button>
             <mat-icon>cancel</mat-icon>
-            Cancel
+            Discard
         </button>
         <button [disabled]="form.invalid" mat-flat-button>
             <mat-icon>check</mat-icon>
