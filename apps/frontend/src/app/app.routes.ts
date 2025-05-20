@@ -3,6 +3,7 @@ import { APP_ROUTES } from './common/routes'
 import { HomeComponent } from './features/home/home.component'
 import { LANDING_META } from './common/meta.constants'
 import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail.component'
+import { ViewSurveyPageComponent } from './features/home/view-survey/view-survey-page.component'
 
 export const routes: Routes = [
     {
@@ -16,5 +17,9 @@ export const routes: Routes = [
     {
         path: 'legal/:file',
         component: LegalDetailComponent,
+    },
+    {
+        path: 'survey/:id',
+        component: ViewSurveyPageComponent,
     },
 ]

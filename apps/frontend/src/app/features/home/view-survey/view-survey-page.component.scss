@@ -1,0 +1,117 @@
+@import '../../../../styles.scss';
+
+.survey-results {
+    max-width: 420px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: #ffefd1;
+
+    h1 {
+        margin-bottom: 1rem;
+        font-size: 2.2rem;
+        font-weight: 600;
+    }
+
+    p {
+        color: #444;
+        margin-bottom: 2rem;
+    }
+
+    .question-block {
+        margin-bottom: 2.5rem;
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .answers-list {
+            margin-top: 1.5rem;
+
+            label {
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+
+            .accordion-header,
+            .answer-name {
+                width: 100%;
+                text-align: left;
+                background: #ffdf96;
+                border: none;
+                outline: none;
+                padding: 1.2rem 1rem;
+                font-size: 1.1rem;
+                font-weight: 500;
+                color: #222;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                transition:
+                    background 0.2s,
+                    color 0.2s;
+
+                .you-label {
+                    font-size: 0.95rem;
+                    color: #888;
+                    margin-left: 0.5rem;
+                    font-weight: 400;
+                }
+
+                .accordion-icon {
+                    font-size: 1.3rem;
+                    margin-left: auto;
+                    color: #111;
+                    font-weight: 600;
+                }
+
+                &:hover,
+                &.active {
+                    background: #e7c268;
+                    color: #111;
+                    text-decoration: none;
+                }
+            }
+
+            .answer-content,
+            .accordion-content {
+                background: #ffefd1;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                color: #333;
+                border-left: 3px solid #caa750;
+            }
+        }
+
+        .pie-chart {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            svg {
+                margin-bottom: 1rem;
+            }
+
+            .pie-legend {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+
+                .color {
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 3px;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+    }
+}
