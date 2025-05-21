@@ -65,6 +65,11 @@ export class BlogService {
         return Math.ceil(totalBlogs / limit)
     }
 
+    async countBlogs(query: string = '', tags: string[] = []): Promise<number> {
+        const searchQuery = this.buildSearchQuery(query, tags)
+        return this.blogModel.countDocuments(searchQuery).exec()
+    }
+
     async getBlogsWithPagination(
         page: number = 1,
         limit: number = 5,
@@ -72,39 +77,8 @@ export class BlogService {
         sortOption: 'asc' | 'desc' = 'asc',
         tags: string[] = []
     ): Promise<BlogDocument[]> {
-        const isValidDate = (value: string): boolean => {
-            const date = new Date(value)
-            return !isNaN(date.getTime())
-        }
-
-        const buildSearchQuery = (
-            searchTerm: string
-        ): FilterQuery<BlogDocument> => {
-            const query: FilterQuery<BlogDocument> = {}
-
-            if (isValidDate(searchTerm)) {
-                query.createdAt = new Date(searchTerm)
-                return query
-            }
-
-            if (tags.length > 0 && tags[0] !== '') {
-                query.tags = { $in: tags }
-            }
-
-            if (searchTerm) {
-                const regex = { $regex: searchTerm, $options: 'i' }
-                query.$or = [
-                    { title: regex },
-                    { description: regex },
-                    { content: regex },
-                ]
-            }
-
-            return query
-        }
-
-        const isDateQuery = isValidDate(query)
-        const searchQuery = buildSearchQuery(query)
+        const isDateQuery = this.isValidDate(query)
+        const searchQuery = this.buildSearchQuery(query, tags)
         const sortDirection: 1 | -1 = sortOption === 'asc' ? 1 : -1
         const skipCount = (page - 1) * limit
 
@@ -125,5 +99,37 @@ export class BlogService {
             .skip(skipCount)
             .limit(limit)
             .exec()
+    }
+
+    private isValidDate(value: string): boolean {
+        const date = new Date(value)
+        return !isNaN(date.getTime())
+    }
+
+    private buildSearchQuery(
+        query: string,
+        tags: string[]
+    ): FilterQuery<BlogDocument> {
+        const searchQuery: FilterQuery<BlogDocument> = {}
+
+        if (this.isValidDate(query)) {
+            searchQuery.createdAt = new Date(query)
+            return searchQuery
+        }
+
+        if (tags.length > 0) {
+            searchQuery.tags = { $in: tags }
+        }
+
+        if (query) {
+            const regex = { $regex: query, $options: 'i' }
+            searchQuery.$or = [
+                { title: regex },
+                { description: regex },
+                { content: regex },
+            ]
+        }
+
+        return searchQuery
     }
 }

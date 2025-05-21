@@ -1,10 +1,20 @@
-<div
-    class="blog-tag"
-    (click)="onTagClick()"
-    [ngClass]="{
-        'blog-tag__active': tag.selected,
-        'blog-tag__disabled': !tag.selected,
-    }"
->
-    {{ tag.name }} ({{ tag.count }})
-</div>
+@if (typeof tag === 'string') {
+    <a
+        mat-stroked-button
+        class="blog-tag-button"
+        [href]="APP_ROUTES.BLOG.TAG(getKeyValue(tag, 'name'))"
+    >
+        {{ getKeyValue(tag, 'name') }}
+    </a>
+} @else {
+    <div
+        class="blog-tag"
+        (click)="onTagClick()"
+        [ngClass]="{
+            'blog-tag__active': getKeyValue(tag, 'selected'),
+            'blog-tag__disabled': !getKeyValue(tag, 'selected'),
+        }"
+    >
+        {{ getKeyValue(tag, 'name') }} ({{ getKeyValue(tag, 'count') }})
+    </div>
+}

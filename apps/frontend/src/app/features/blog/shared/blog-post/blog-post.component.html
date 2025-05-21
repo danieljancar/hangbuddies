@@ -15,11 +15,11 @@
             <p class="post__date">
                 {{ post.createdAt | date: 'MMMM d, y' }}
             </p>
-            @for (tag of post.tags; track tag) {
-                <button mat-stroked-button class="post__tag">
-                    {{ tag }}
-                </button>
-            }
+            <div class="post__tags">
+                @for (tag of post.tags; track tag) {
+                    <app-blog-tag [tag]="tag"></app-blog-tag>
+                }
+            </div>
         </div>
     </mat-card-content>
 </mat-card>

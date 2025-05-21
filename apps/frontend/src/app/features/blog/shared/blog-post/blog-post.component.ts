@@ -9,7 +9,7 @@ import {
     MatCardHeader,
     MatCardTitle,
 } from '@angular/material/card'
-import { MatButton } from '@angular/material/button'
+import { BlogTagComponent } from './blog-tag/blog-tag.component'
 
 @Component({
     selector: 'app-blog-post',
@@ -20,7 +20,7 @@ import { MatButton } from '@angular/material/button'
         MatCardContent,
         MatCardHeader,
         MatCardTitle,
-        MatButton,
+        BlogTagComponent,
     ],
     templateUrl: './blog-post.component.html',
     standalone: true,

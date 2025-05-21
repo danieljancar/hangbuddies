@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, signal } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { BlogType } from '../../../types/blog.type'
 import { BlogService } from '../../../core/services/blog.service'
@@ -8,6 +8,7 @@ import { MatDivider } from '@angular/material/divider'
 import { BlogTagType } from '../../../types/blog-tag.type'
 import { BlogTagComponent } from '../shared/blog-post/blog-tag/blog-tag.component'
 import { MatPaginator, PageEvent } from '@angular/material/paginator'
+import { LoadingBlogPostComponent } from '../shared/loading-blog-post/loading-blog-post.component'
 
 @Component({
     selector: 'app-blog-overview',
@@ -17,42 +18,49 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator'
         MatDivider,
         BlogTagComponent,
         MatPaginator,
+        LoadingBlogPostComponent,
     ],
     templateUrl: './blog-overview.component.html',
     standalone: true,
     styleUrl: './blog-overview.component.scss',
+    providers: [],
 })
 export class BlogOverviewComponent implements OnInit {
     searchTerm: string = ''
     blogs: BlogType[] = []
     tags: BlogTagType[] = []
     selectedTags: string[] = []
-    pagination = {
+    pagination = signal({
         current: 1,
         total: 1,
         limit: 5,
         itemCount: 0,
-    }
+    })
+    isLoading: boolean = false
 
     constructor(private readonly blogService: BlogService) {}
 
     ngOnInit(): void {
+        this.updateBlogs()
+
         this.blogService.getAllTags().subscribe((tags: BlogTagType[]) => {
-            this.tags = tags.map((tag) => ({
+            const correctedTags = tags.map((tag) => ({
                 ...tag,
                 selected: false,
             }))
-        })
 
-        this.blogService
-            .getAllBlogs()
-            .subscribe((blogs: BlogPaginationResponseType) => {
-                this.blogs = blogs.data
-                this.pagination.current = blogs.pagination.pages.current
-                this.pagination.total = blogs.pagination.pages.total
-                this.pagination.limit = blogs.pagination.limit
-                this.pagination.itemCount = blogs.pagination.total
-            })
+            this.tags = correctedTags
+
+            const urlParams = new URLSearchParams(window.location.search)
+            const urlTagParam = urlParams.get('t')
+            if (urlTagParam) {
+                correctedTags.forEach((tag) => {
+                    if (urlTagParam.split(',').includes(tag.name)) {
+                        this.onTagClicked(tag)
+                    }
+                })
+            }
+        })
     }
 
     onSearch(event: Event): void {
@@ -63,7 +71,7 @@ export class BlogOverviewComponent implements OnInit {
         }
     }
 
-    onTagClicked($event: BlogTagType) {
+    onTagClicked($event: BlogTagType): void {
         const index = this.tags.findIndex((tag) => tag.id === $event.id)
         if (index !== -1) {
             this.tags[index].selected = !this.tags[index].selected
@@ -76,25 +84,38 @@ export class BlogOverviewComponent implements OnInit {
     }
 
     onPageChange(event: PageEvent): void {
-        this.pagination.current = event.pageIndex + 1
-        this.pagination.limit = event.pageSize
+        this.pagination.set({
+            current: event.pageIndex + 1,
+            limit: event.pageSize,
+            total: this.pagination().total,
+            itemCount: this.pagination().itemCount,
+        })
         this.updateBlogs()
     }
 
     updateBlogs(): void {
+        const timeout = setTimeout(() => {
+            this.isLoading = true
+        }, 2000)
+
         this.blogService
             .getAllBlogs(
-                this.pagination.current,
-                this.pagination.limit,
+                this.pagination().current,
+                this.pagination().limit,
                 this.searchTerm,
                 '',
                 this.selectedTags.join(',')
             )
             .subscribe((blogs: BlogPaginationResponseType) => {
                 this.blogs = blogs.data
-                this.pagination.total = blogs.pagination.pages.total
+                this.pagination.set({
+                    total: blogs.pagination.pages.total,
+                    current: blogs.pagination.pages.current,
+                    limit: blogs.pagination.limit,
+                    itemCount: blogs.pagination.total,
+                })
+                this.isLoading = false
+                clearTimeout(timeout)
             })
     }
-
-    protected readonly event = event
 }

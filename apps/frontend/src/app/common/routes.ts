@@ -38,6 +38,7 @@ export const APP_ROUTES = {
     BLOG: {
         OVERVIEW: BASE_ROUTES.BLOG,
         DETAIL: (slug: string) => `${BASE_ROUTES.BLOG}/${slug}`,
+        TAG: (tag: string) => `${BASE_ROUTES.BLOG}?t=${tag}`,
     },
     ABOUT: {
         LANDING: BASE_ROUTES.ABOUT,
