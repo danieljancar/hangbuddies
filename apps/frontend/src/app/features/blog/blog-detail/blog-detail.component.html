@@ -1,0 +1,40 @@
+<div class="blog-detail">
+    <div class="blog-detail__header">
+        <a
+            class="blog-detail__back link__opacity-hover"
+            [routerLink]="APP_ROUTES.BLOG.OVERVIEW"
+        >
+            <mat-icon>arrow_back</mat-icon>
+            <span>Back to blog</span>
+        </a>
+    </div>
+
+    <div class="blog-detail__container">
+        @if (!isLoading) {
+            <h1 class="blog-detail__title">{{ blog.title }}</h1>
+
+            <img
+                alt="Blog Header Image"
+                class="blog-detail__header-image"
+                src="https://i0.wp.com/www.bishoprook.com/wp-content/uploads/2021/05/placeholder-image-gray-16x9-1.png?ssl=1"
+            />
+
+            <h3 class="blog-detail__description">"{{ blog.description }}"</h3>
+
+            <div class="blog-detail__meta">
+                <span class="author">By {{ blog.author }}</span>
+                <span class="date">{{
+                    blog.createdAt | date: 'MMMM d, y'
+                }}</span>
+            </div>
+
+            <mat-divider />
+
+            <div class="blog-detail__content">
+                <div [innerHTML]="blog.content"></div>
+            </div>
+        } @else {
+            <mat-spinner></mat-spinner>
+        }
+    </div>
+</div>

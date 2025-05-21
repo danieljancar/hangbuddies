@@ -4,6 +4,7 @@ import { HomeComponent } from './features/home/home.component'
 import { BlogComponent } from './features/blog/blog.component'
 import { BlogOverviewComponent } from './features/blog/blog-overview/blog-overview.component'
 import { LANDING_META } from './common/meta.constants'
+import { BlogDetailComponent } from './features/blog/blog-detail/blog-detail.component'
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
             {
                 path: '',
                 component: BlogOverviewComponent,
+            },
+            {
+                path: ':id',
+                component: BlogDetailComponent,
             },
         ],
     },

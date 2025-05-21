@@ -22,7 +22,7 @@ export class BlogActivitiesComponent implements OnInit {
     constructor(private readonly blogService: BlogService) {}
 
     ngOnInit() {
-        this.blogService.getLatestBlogs().subscribe((posts: any) => {
+        this.blogService.getLatestBlogs().subscribe((posts: BlogType[]) => {
             this.articles = posts
         })
     }
