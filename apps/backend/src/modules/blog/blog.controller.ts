@@ -1,13 +1,14 @@
 import {
     Controller,
     Get,
+    NotFoundException,
     Param,
     Query,
-    NotFoundException,
 } from '@nestjs/common'
 import { BlogService } from './blog.service'
 import { PaginationResponse } from './types/pagination-response.type'
 import { BlogDocument } from './schemas/blog.schema'
+import { BlogTag } from './types/blog-tag.type'
 
 @Controller('blog')
 export class BlogController {
@@ -15,33 +16,46 @@ export class BlogController {
 
     @Get()
     async getBlogs(
-        @Query('p') p: number,
-        @Query('l') l: number,
-        @Query('q') q: string,
-        @Query('s') s: 'asc' | 'desc',
-        @Query('t') t: string = ''
+        @Query('p') p = 1,
+        @Query('l') l = 5,
+        @Query('q') q = '',
+        @Query('s') s: 'asc' | 'desc' = 'asc',
+        @Query('t') t = ''
     ): Promise<PaginationResponse> {
-        const resolvedPage: number = p || 1
-        const resolvedLimit: number = l || 5
-        const resolvedQuery: string = q || ''
-        const resolvedSortOption: 'asc' | 'desc' = s || 'asc'
-        const resolvedTags: string[] = t.split(',')
+        const page = Number(p) || 1
+        const limit = Number(l) || 5
+        const query = q || ''
+        const sortOption: 'asc' | 'desc' = s || 'asc'
+        const tags = t ? t.split(',').filter(Boolean) : []
+
+        const blogs: BlogDocument[] = await this.blogService.getBlogs(
+            page,
+            limit,
+            query,
+            sortOption,
+            tags
+        )
+        const totalCount: number = await this.blogService.countBlogs(
+            query,
+            tags
+        )
+        const totalPages: number = Math.ceil(totalCount / limit)
 
         return {
-            data: await this.blogService.getBlogs(
-                resolvedPage,
-                resolvedLimit,
-                resolvedQuery,
-                resolvedSortOption,
-                resolvedTags
-            ),
-            page: resolvedPage,
-            limit: resolvedLimit,
-            query: {
-                tags: resolvedTags,
-                search: resolvedQuery,
+            data: blogs,
+            pagination: {
+                pages: {
+                    current: page,
+                    total: totalPages,
+                },
+                limit,
+                total: totalCount,
             },
-            sortOption: resolvedSortOption,
+            query: {
+                tags,
+                search: query,
+            },
+            sortOption,
         }
     }
 
@@ -49,6 +63,11 @@ export class BlogController {
     async getLatestBlogs(@Query('l') l: number): Promise<BlogDocument[]> {
         const resolvedLimit = l || 3
         return this.blogService.getLatestBlogs(resolvedLimit)
+    }
+
+    @Get('tags')
+    async getTags(): Promise<BlogTag[]> {
+        return await this.blogService.getAllTags()
     }
 
     @Get(':id')

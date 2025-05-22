@@ -1,0 +1,52 @@
+.blog-overview {
+    &__search-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+
+        .blog-overview__searchbar-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--mat-sys-primary-container);
+            border-radius: 9999px;
+            padding: 10px 20px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .blog-overview__item-count-lable {
+            font-size: 16px;
+            color: var(--mat-sys-primary);
+            margin-top: 1rem;
+        }
+    }
+
+    &__searchbar {
+        border: none;
+        outline: none;
+        background: transparent;
+        flex: 1;
+        font-size: 16px;
+        color: var(--mat-sys-primary);
+
+        &::placeholder {
+            color: var(--mat-sys-primary);
+        }
+    }
+
+    &__tag-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    &__blog-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+}
