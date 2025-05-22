@@ -5,12 +5,21 @@
         event-planning tips.
     </p>
     <div class="blog-overview__search-container">
-        <input
-            type="text"
-            placeholder="Search articles"
-            class="blog-overview__searchbar"
-            (input)="onSearch($event)"
-        />
+        <div class="blog-overview__searchbar-container">
+            <input
+                type="text"
+                placeholder="Search articles"
+                class="blog-overview__searchbar"
+                (input)="onSearch($event)"
+            />
+        </div>
+        <div class="blog-overview__item-count-lable">
+            {{
+                pagination().itemCount > 0
+                    ? pagination().itemCount + ' articles'
+                    : 'No articles found'
+            }}
+        </div>
     </div>
     @if (!isLoading) {
         <div class="blog-overview__tag-container">

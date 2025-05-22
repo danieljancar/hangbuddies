@@ -28,5 +28,6 @@ import { BlogTagComponent } from './blog-tag/blog-tag.component'
 })
 export class BlogPostComponent {
     @Input() post: BlogType = {} as BlogType
+
     protected readonly APP_ROUTES = APP_ROUTES
 }

@@ -14,7 +14,6 @@ export async function createBlog(
                 content: generateMarkdownContent(),
                 tags: [
                     faker.lorem.word(),
-                    faker.lorem.word(),
                     faker.helpers.arrayElement(['tag1', 'tag2', 'tag3']),
                 ],
                 author: faker.person.fullName(),

@@ -10,7 +10,9 @@
         </a>
     </mat-card-header>
     <mat-card-content>
-        <p class="post__description">{{ post.description }}</p>
+        <p class="post__description">
+            {{ post.description.split(' ').slice(0, 15).join(' ') + '...' }}
+        </p>
         <div class="post__information">
             <p class="post__date">
                 {{ post.createdAt | date: 'MMMM d, y' }}

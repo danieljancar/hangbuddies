@@ -48,7 +48,7 @@ async function seed(): Promise<void> {
     Logger.debug(`${responses.length} responses created`, 'SeedScript')
 
     const blogService = app.get(BlogService)
-    const blogs = await createBlog(blogService)
+    const blogs = await createBlog(blogService, 100)
     Logger.debug(`${blogs.length} blog posts created`, 'SeedScript')
 
     await app.close()

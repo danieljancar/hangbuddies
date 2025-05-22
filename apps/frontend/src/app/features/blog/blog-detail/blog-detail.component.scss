@@ -59,38 +59,12 @@
         font-size: 1rem;
         line-height: 1.6;
         margin-top: 1rem;
+    }
 
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        p {
-            margin: 0;
-        }
-
-        ul {
-            padding-left: 1.25rem;
-
-            li {
-                margin-bottom: 0.5rem;
-            }
-        }
-
-        .example {
-            background: #f9f9f9;
-            border-left: 4px solid #ccc;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-
-            .wrong {
-                color: #c00;
-            }
-
-            .right {
-                color: #0a0;
-            }
-        }
+    &__loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
     }
 }

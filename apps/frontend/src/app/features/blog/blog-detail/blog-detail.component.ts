@@ -6,12 +6,19 @@ import { APP_ROUTES } from '../../../common/routes'
 import { MatIcon } from '@angular/material/icon'
 import { DatePipe } from '@angular/common'
 import { MatDivider } from '@angular/material/divider'
-import { marked } from 'marked'
 import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { MarkdownComponent } from 'ngx-markdown'
 
 @Component({
     selector: 'app-blog-detail',
-    imports: [RouterLink, MatIcon, DatePipe, MatDivider, MatProgressSpinner],
+    imports: [
+        RouterLink,
+        MatIcon,
+        DatePipe,
+        MatDivider,
+        MatProgressSpinner,
+        MarkdownComponent,
+    ],
     templateUrl: './blog-detail.component.html',
     standalone: true,
     styleUrl: './blog-detail.component.scss',
@@ -32,7 +39,6 @@ export class BlogDetailComponent implements OnInit {
             const blogId = params.get('id')
             if (blogId) {
                 this.blogService.getBlogById(blogId).subscribe((blog) => {
-                    blog.content = <string>marked(blog.content)
                     this.blog = blog
                     this.isLoading = false
                 })

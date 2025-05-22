@@ -2,12 +2,25 @@
     &__search-container {
         display: flex;
         align-items: center;
-        background-color: var(--mat-sys-primary-container);
-        border-radius: 9999px;
-        padding: 10px 20px;
-        width: 100%;
-        max-width: 400px;
+        gap: 20px;
         margin-top: 20px;
+
+        .blog-overview__searchbar-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--mat-sys-primary-container);
+            border-radius: 9999px;
+            padding: 10px 20px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .blog-overview__item-count-lable {
+            font-size: 16px;
+            color: var(--mat-sys-primary);
+            margin-top: 1rem;
+        }
     }
 
     &__searchbar {
