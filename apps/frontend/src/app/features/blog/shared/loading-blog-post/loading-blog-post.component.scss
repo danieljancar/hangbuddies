@@ -1,38 +1,39 @@
-:host {
-    display: block;
-    padding: 1rem;
-}
+@use 'breakpoints' as bp;
 
-.post__title-content {
-    @extend .skeleton;
-    height: 1.5rem;
-    width: 60%;
-    margin-bottom: 1rem;
-}
+.post {
+    width: 60rem;
 
-.post__description-content {
-    @extend .skeleton;
-    height: 1rem;
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
+    &__title-content {
+        @extend .skeleton;
+        height: 1.5rem;
+        width: 60%;
+        margin-bottom: 1rem;
+    }
 
-.post__description-content:last-child {
-    width: 80%;
-}
+    &__description-content {
+        @extend .skeleton;
+        height: 1rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
 
-.post__date-content {
-    @extend .skeleton;
-    height: 1rem;
-    width: 40%;
-    margin-bottom: 0.5rem;
-}
+    &__description-content:last-child {
+        width: 80%;
+    }
 
-.post__tag-content {
-    @extend .skeleton;
-    height: 1rem;
-    width: 30%;
-    margin-bottom: 0.5rem;
+    &__date-content {
+        @extend .skeleton;
+        height: 1rem;
+        width: 40%;
+        margin-bottom: 0.5rem;
+    }
+
+    &__tag-content {
+        @extend .skeleton;
+        height: 1rem;
+        width: 30%;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .skeleton {
@@ -71,4 +72,10 @@
 mat-card.no-border {
     border: none;
     box-shadow: none;
+}
+
+@media (max-width: map-get(bp.$breakpoints, md)) {
+    .post {
+        width: 20rem !important;
+    }
 }

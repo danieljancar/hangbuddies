@@ -1,3 +1,5 @@
+@use 'breakpoints' as bp;
+
 .blog-overview {
     &__search-container {
         display: flex;
@@ -48,5 +50,16 @@
         flex-direction: column;
         gap: 20px;
         margin-top: 20px;
+    }
+}
+
+@media (max-width: map-get(bp.$breakpoints, md)) {
+    .blog-overview__search-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+    .blog-overview__searchbar-container {
+        max-width: 15rem !important;
     }
 }
