@@ -2,6 +2,11 @@
 @use 'mixins' as *;
 @use '@angular/material' as mat;
 
+.content-wrapper {
+    min-height: 80vh;
+    flex: 1 0 auto;
+}
+
 .navbar {
     height: 100%;
     overflow-x: hidden;
