@@ -5,6 +5,7 @@ import { LOCAL_STORAGE_KEYS } from '../../common/storage.constants'
 import { MatCheckbox } from '@angular/material/checkbox'
 import { ComparisonComponent } from './comparison/comparison.component'
 import { LatestBlogComponent } from './latest-blog/latest-blog.component'
+import { FaqShortComponent } from './faq-short/faq-short.component'
 
 @Component({
     selector: 'app-home',
@@ -13,6 +14,7 @@ import { LatestBlogComponent } from './latest-blog/latest-blog.component'
         MatCheckbox,
         LatestBlogComponent,
         ComparisonComponent,
+        FaqShortComponent,
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
