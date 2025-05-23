@@ -8,6 +8,10 @@ on:
             - 'apps/frontend/**'
     workflow_dispatch:
 
+concurrency:
+    group: deployment
+    cancel-in-progress: true
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
