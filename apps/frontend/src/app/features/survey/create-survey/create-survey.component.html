@@ -58,25 +58,17 @@
                     <div class="create-survey__field">
                         @switch (question.get('type')?.value) {
                             @case ('text') {
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Question</mat-label>
-                                    <input
-                                        matInput
-                                        formControlName="label"
-                                        placeholder="Your question…"
-                                    />
-                                    @if (
-                                        question
-                                            .get('label')
-                                            ?.hasError('required') &&
-                                        question.get('label')?.touched
-                                    ) {
-                                        <mat-error
-                                            >Question text is
-                                            required</mat-error
-                                        >
-                                    }
-                                </mat-form-field>
+                                <app-text-question [group]="form" />
+                                @if (
+                                    question
+                                        .get('label')
+                                        ?.hasError('required') &&
+                                    question.get('label')?.touched
+                                ) {
+                                    <mat-error
+                                        >Question text is required
+                                    </mat-error>
+                                }
                             }
                             @default {
                                 <!-- other types here -->

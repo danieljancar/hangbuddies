@@ -1,17 +1,17 @@
 import {
     Component,
-    OnInit,
     HostListener,
     inject,
+    OnInit,
     signal,
     WritableSignal,
 } from '@angular/core'
 import {
+    FormArray,
     FormBuilder,
     FormGroup,
-    FormArray,
-    Validators,
     ReactiveFormsModule,
+    Validators,
 } from '@angular/forms'
 import {
     MatBottomSheet,
@@ -19,8 +19,8 @@ import {
 } from '@angular/material/bottom-sheet'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'
 import {
-    DragDropModule,
     CdkDragDrop,
+    DragDropModule,
     moveItemInArray,
 } from '@angular/cdk/drag-drop'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -31,15 +31,12 @@ import { MatDividerModule } from '@angular/material/divider'
 import { Router } from '@angular/router'
 
 import {
+    BackendSurvey,
     QuestionType,
     QuestionTypeEnum,
-    BackendSurvey,
 } from '../../../types/survey.types'
 import { QuestionTypeSheetComponent } from './question-type-sheet/question-type-sheet.component'
-import {
-    DialogComponent,
-    DialogData,
-} from '../../../shared/components/dialog/dialog.component'
+import { TextQuestionComponent } from './question-forms/text-question/text-question.component'
 
 @Component({
     selector: 'app-create-survey',
@@ -54,25 +51,23 @@ import {
         MatBottomSheetModule,
         MatDialogModule,
         DragDropModule,
-        QuestionTypeSheetComponent,
+        TextQuestionComponent,
     ],
     templateUrl: './create-survey.component.html',
     styleUrls: ['./create-survey.component.scss'],
 })
 export class CreateSurveyComponent implements OnInit {
-    private fb = inject(FormBuilder)
-    private bottomSheet = inject(MatBottomSheet)
-    private dialog = inject(MatDialog)
-    private router = inject(Router)
-
     readonly hasQuestions: WritableSignal<boolean> = signal(false)
     readonly hasUnsavedChanges: WritableSignal<boolean> = signal(false)
-
+    private fb = inject(FormBuilder)
     readonly form = this.fb.group({
         title: this.fb.control('', Validators.required),
         description: this.fb.control(''),
         questions: this.fb.array<FormGroup>([], Validators.minLength(1)),
     })
+    private bottomSheet = inject(MatBottomSheet)
+    private dialog = inject(MatDialog)
+    private router = inject(Router)
 
     get questions(): FormArray {
         return this.form.get('questions') as FormArray
@@ -131,19 +126,7 @@ export class CreateSurveyComponent implements OnInit {
     }
 
     discard(): void {
-        const data: DialogData = {
-            title: 'Discard changes?',
-            message: 'You have unsaved changes. Discard and leave?',
-            confirmText: 'Discard',
-        }
-        this.dialog
-            .open(DialogComponent, { data })
-            .afterClosed()
-            .subscribe((confirmed) => {
-                if (confirmed) {
-                    this.router.navigate(['/'])
-                }
-            })
+        this.router.navigate(['/'])
     }
 
     review(): void {
