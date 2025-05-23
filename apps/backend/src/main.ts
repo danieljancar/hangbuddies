@@ -14,9 +14,9 @@ import rateLimit from 'express-rate-limit'
 async function bootstrap() {
     const app = await NestFactory.create(AppModule)
     const configService = app.get(ConfigService)
-    const port: number = configService.get<number>('PORT') || 3000^
+    const port: number = configService.get<number>('PORT') || 3000
     const env: string = configService.get<string>('NODE_ENV') || 'development'
-  
+
     const logService = app.get(LogService)
     const deviceService = app.get(DeviceService)
 
@@ -37,11 +37,6 @@ async function bootstrap() {
             limit: 10,
         })
     )
-
-        origin: origins.split(','),
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        credentials: true,
-    })
 
     app.useGlobalFilters(new AllExceptionsFilter(logService))
     app.useGlobalPipes(
@@ -65,11 +60,10 @@ async function bootstrap() {
     )
 
     await app.listen(port)
-    Logger.log(
-        `Server running in (${env}) environment`, 'Bootstrap')
+    Logger.log(`Server running in (${env}) environment`, 'Bootstrap')
     Logger.log(`Server running on http://localhost:${port}`, 'Bootstrap')
     Logger.log(
-        `CORS enabled for origins: ${origins.split(',').join(' ')}`,
+        `CORS enabled for origins: ${configService.get<string>('CORS_ORIGIN')}`,
         'Bootstrap'
     )
 }
