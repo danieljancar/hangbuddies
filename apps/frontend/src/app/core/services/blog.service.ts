@@ -9,7 +9,7 @@ import { BlogTagType } from '../../types/blog-tag.type'
     providedIn: 'root',
 })
 export class BlogService {
-    private readonly API_BASE_URL = 'http://localhost:3000'
+    private readonly API_BASE_URL = 'https://api-dev.hangbuddies.com'
 
     constructor(private readonly http: HttpClient) {}
 

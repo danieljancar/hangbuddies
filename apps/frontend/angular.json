@@ -56,8 +56,6 @@
                         },
                         "staging": {
                             "optimization": true,
-                            "extractLicenses": true,
-                            "sourceMap": false,
                             "outputHashing": "all",
                             "sourceMap": false,
                             "extractCss": true,
