@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common'
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
@@ -10,6 +11,19 @@ import { BlogModule } from './modules/blog/blog.module'
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
+            envFilePath: [
+                `.env.${process.env.NODE_ENV || 'development'}`,
+                '.env',
+            ],
+        }),
+
+        ThrottlerModule.forRoot({
+            throttlers: [
+                {
+                    ttl: 10000,
+                    limit: 10,
+                },
+            ],
         }),
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
@@ -25,6 +39,12 @@ import { BlogModule } from './modules/blog/blog.module'
         BlogModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [
+        AppService,
+        {
+            provide: 'APP_GUARD',
+            useClass: ThrottlerGuard,
+        },
+    ],
 })
 export class AppModule {}

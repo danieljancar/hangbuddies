@@ -56,6 +56,8 @@
                         },
                         "staging": {
                             "optimization": true,
+                            "extractLicenses": true,
+                            "sourceMap": false,
                             "outputHashing": "all",
                             "sourceMap": false,
                             "extractCss": true,
@@ -95,7 +97,7 @@
                             ]
                         }
                     },
-                    "defaultConfiguration": "production"
+                    "defaultConfiguration": "development"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
