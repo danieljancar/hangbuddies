@@ -1,0 +1,41 @@
+.blog-tag {
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.76rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    &__active {
+        background-color: var(--mat-sys-primary-container);
+        color: var(--mat-sys-primary);
+        border: 1px solid var(--mat-sys-primary-container);
+
+        &:hover {
+            background-color: transparent;
+            border: 1px solid var(--mat-sys-primary);
+            color: var(--mat-sys-primary);
+            transition: background-color 0.3s ease-in-out;
+        }
+    }
+
+    &__disabled {
+        background-color: var(--mat-sys-secondary-container);
+        color: var(--mat-sys-secondary);
+        border: 1px solid var(--mat-sys-secondary-container);
+
+        &:hover {
+            background-color: transparent;
+            border: 1px solid var(--mat-sys-primary);
+            color: var(--mat-sys-primary);
+            transition: background-color 0.3s ease-in-out;
+        }
+    }
+}
+
+.blog-tag-button {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
+    max-height: 1.5rem !important;
+    cursor: pointer;
+}

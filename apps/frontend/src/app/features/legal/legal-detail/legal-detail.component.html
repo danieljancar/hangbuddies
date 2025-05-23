@@ -1,0 +1,7 @@
+<article class="markdown-wrapper">
+    @if (safeLegalDocument?.displayType === 'markdown') {
+        <app-legal-markdown-renderer
+            [legal]="safeLegalDocument!"
+        ></app-legal-markdown-renderer>
+    }
+</article>

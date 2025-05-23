@@ -1,24 +1,24 @@
-<div class="hero">
+<section class="hero">
     <div class="hero__image">
         <img
-            alt="An illustrative image of a woman placing red sticky notes on a large calendar board."
+            alt="Illustration of a woman organizing sticky notes on a calendar board."
             src="/illustrations/events.svg"
         />
     </div>
 
     <div class="hero__text">
         <div class="hero__text-content">
-            <h1>Effortless Scheduling, No Hassle.</h1>
+            <h1>Quick Polls & Date Picks, No Signup</h1>
             <p>
-                Organizing meetups effortless with a fast, shareable, and
-                registration-free survey tool. Create polls, share them
-                instantly, and let participants vote — no sign-ups, no friction,
-                just simple event planning for friends, teams, and more.
+                Gather preferences or choose dates with a fast, shareable,
+                registration-free tool. Create your poll, share the link
+                instantly, and let participants vote or add notes — no accounts,
+                no hassle, just clear feedback.
             </p>
         </div>
 
         <div class="hero__buttons">
-            <a mat-stroked-button scrollTo targetId="get-started" role="button">
+            <a mat-stroked-button scrollTo targetId="get-started">
                 Learn More
             </a>
             <a [routerLink]="APP_ROUTES.SURVEY.CREATE" mat-flat-button>
@@ -27,6 +27,6 @@
             </a>
         </div>
     </div>
-</div>
+</section>
 
 <app-get-started />

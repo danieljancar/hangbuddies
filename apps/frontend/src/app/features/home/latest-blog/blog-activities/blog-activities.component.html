@@ -1,10 +1,23 @@
 <div class="articles">
-    @for (article of articles; track article.id) {
-        <app-blog-post [post]="article" />
-        <mat-divider />
+    @if (!isLoading) {
+        @for (article of articles; track article.id) {
+            <app-blog-post [post]="article" />
+            <mat-divider />
+        }
+        <a
+            [routerLink]="APP_ROUTES.BLOG.OVERVIEW"
+            class="articles__view-all"
+            mat-button
+        >
+            View all posts
+            <mat-icon>arrow_forward</mat-icon>
+        </a>
+    } @else {
+        <div class="articles__loading">
+            @for (item of [1, 2, 3]; track $index) {
+                <app-loading-blog-post />
+                <mat-divider />
+            }
+        </div>
     }
-    <a [routerLink]="APP_ROUTES.BLOG.OVERVIEW" class="articles__view-all">
-        View all posts
-        <mat-icon>arrow_forward</mat-icon>
-    </a>
 </div>

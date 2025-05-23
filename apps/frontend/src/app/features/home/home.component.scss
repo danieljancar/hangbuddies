@@ -1,5 +1,12 @@
+@use 'breakpoints' as bp;
+
 .home__checkbox-hide {
     display: flex;
     justify-content: flex-end;
     margin-right: 1rem;
+}
+
+.home__blog-center {
+    display: flex;
+    justify-content: center;
 }

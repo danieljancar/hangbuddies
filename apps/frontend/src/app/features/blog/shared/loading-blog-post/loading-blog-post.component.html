@@ -1,0 +1,24 @@
+<mat-card class="post no-border">
+    <mat-card-header>
+        <div>
+            <mat-card-title>
+                <div class="post__title-content"></div>
+            </mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="post__description">
+            <div class="post__description-content"></div>
+        </div>
+        <div class="post__information">
+            <div class="post__date">
+                <div class="post__date-content"></div>
+            </div>
+            <div class="post__tags">
+                @for (item of [1, 2, 3]; track $index) {
+                    <div class="post__tag-content"></div>
+                }
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

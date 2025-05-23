@@ -5,6 +5,7 @@ import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { SurveyModule } from './modules/survey/survey.module'
+import { BlogModule } from './modules/blog/blog.module'
 
 @Module({
     imports: [
@@ -35,6 +36,7 @@ import { SurveyModule } from './modules/survey/survey.module'
         }),
 
         SurveyModule,
+        BlogModule,
     ],
     controllers: [AppController],
     providers: [

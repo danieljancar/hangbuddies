@@ -30,6 +30,7 @@
 @media (max-width: map-get(bp.$breakpoints, md)) {
     .latest-blog {
         padding: 2rem 1rem;
+        max-width: 20rem !important;
 
         &__content {
             flex-direction: column;

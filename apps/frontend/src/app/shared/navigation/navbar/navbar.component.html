@@ -157,14 +157,14 @@
                 >
                     About
                 </a>
-                <button
+                <a
                     [closeDrawer]="drawer"
                     [routerLink]="APP_ROUTES.SURVEY.CREATE"
                     mat-flat-button
                 >
                     <mat-icon>add</mat-icon>
                     Create
-                </button>
+                </a>
             </nav>
 
             <!-- Mobile Toggle -->
@@ -175,7 +175,9 @@
             </div>
         </mat-toolbar>
 
-        <router-outlet />
+        <div class="content-wrapper">
+            <router-outlet />
+        </div>
 
         <app-footer />
     </mat-sidenav-content>

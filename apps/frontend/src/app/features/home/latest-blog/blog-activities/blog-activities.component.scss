@@ -1,5 +1,8 @@
+@use 'breakpoints' as bp;
+
 .articles {
     padding-top: -2rem;
+    padding-bottom: 2rem;
 
     &__divider {
         width: 100%;
@@ -9,11 +12,11 @@
     }
 
     &__view-all {
-        display: flex;
         margin-top: 2rem;
-        text-align: center;
-        text-decoration: none;
-        color: var(--mat-sys-primary);
         cursor: pointer;
+    }
+
+    &__loading {
+        width: 60rem;
     }
 }

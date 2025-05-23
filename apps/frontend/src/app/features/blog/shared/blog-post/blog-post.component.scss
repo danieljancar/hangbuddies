@@ -1,0 +1,45 @@
+@use 'breakpoints' as bp;
+
+mat-card.no-border {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.post__description {
+    color: gray;
+    font-size: 0.9rem;
+}
+
+.post {
+    &__information {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__date {
+        color: var(--mat-sys-primary);
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: map-get(bp.$breakpoints, md)) {
+    .post {
+        font-size: 0.9rem;
+
+        &__information {
+            align-items: flex-start;
+        }
+
+        &__tags {
+            margin-top: 0.5rem;
+        }
+    }
+}
