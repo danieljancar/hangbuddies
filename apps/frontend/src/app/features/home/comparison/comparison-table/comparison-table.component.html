@@ -1,0 +1,31 @@
+<div class="comparison-table">
+    <div class="comparison-table__header">
+        <div>Feature</div>
+        @for (p of platforms; track $index) {
+            <div>
+                <span
+                    class="comparison-table__platform-label comparison-table__platform-label--desktop"
+                    >{{ p }}</span
+                >
+                <span
+                    class="comparison-table__platform-label comparison-table__platform-label--mobile"
+                >
+                    {{ p === 'HangBuddies' ? 'Hang Buddies' : p }}
+                </span>
+            </div>
+        }
+    </div>
+
+    @for (f of features; track $index) {
+        <div class="comparison-table__row">
+            <div class="comparison-table__label">{{ f.label }}</div>
+            @for (_ of platforms; track $index; let i = $index) {
+                <div class="comparison-table__icon">
+                    <mat-icon [ngClass]="getIconClass(f.values[i])">
+                        {{ f.values[i] ? 'check' : 'close' }}
+                    </mat-icon>
+                </div>
+            }
+        </div>
+    }
+</div>

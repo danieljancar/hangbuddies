@@ -1,0 +1,102 @@
+@use 'breakpoints' as bp;
+
+mat-accordion {
+    width: 100%;
+}
+
+.mat-expansion-panel {
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.mat-expansion-panel:last-of-type {
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.mat-expansion-panel-header {
+    padding: 0.75rem 1rem;
+    width: 60rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.mat-expansion-panel-body {
+    padding: 1rem;
+    font-size: 0.95rem;
+}
+
+.faq-short {
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 4rem;
+
+        @media (max-width: map-get(bp.$breakpoints, sm)) {
+            padding: 2rem;
+            flex-direction: column;
+        }
+    }
+
+    &__content {
+        flex: 1 1 400px;
+        max-width: 600px;
+
+        @media (max-width: map-get(bp.$breakpoints, sm)) {
+            flex: 1 1 auto;
+            max-width: 100%;
+        }
+    }
+
+    &__help-text {
+        color: var(--mat-sys-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    &__title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+
+        @media (max-width: map-get(bp.$breakpoints, sm)) {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__answer {
+        margin: 0;
+    }
+
+    &__more-info {
+        margin-top: 2rem;
+        font-size: 0.95rem;
+
+        a {
+            color: var(--mat-sys-primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: map-get(bp.$breakpoints, sm)) {
+            font-size: 0.85rem;
+        }
+    }
+
+    &__image {
+        flex: 1 1 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 70%;
+            height: auto;
+
+            @media (max-width: 768px) {
+                max-width: 100%;
+            }
+        }
+    }
+}

@@ -8,14 +8,40 @@ import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { DeviceInterceptor } from './common/interceptors/device.interceptor'
 import { DeviceService } from './modules/device/device.service'
 import { LogCategoryType } from './utils/logger/types/log.types'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule)
     const configService = app.get(ConfigService)
     const port: number = configService.get<number>('PORT') || 3000
+    const env: string = configService.get<string>('NODE_ENV') || 'development'
 
     const logService = app.get(LogService)
     const deviceService = app.get(DeviceService)
+
+    app.enableCors({
+        origin: configService.get<string>('CORS_ORIGIN') || [
+            'http://localhost:4200',
+            'https://dev.hangbuddies.com',
+            'https://stage.hangbuddies.com',
+            'https://hangbuddies.com',
+        ],
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+        preflightContinue: false,
+        allowHeaders:
+            'Content-Type, Accept, Authorization, X-XSRF-TOKEN, x-device-id',
+    })
+
+    app.use(helmet())
+
+    app.use(
+        rateLimit({
+            windowMs: 10_000 * 1000, // 10,000 seconds
+            limit: 10,
+        })
+    )
 
     app.useGlobalFilters(new AllExceptionsFilter(logService))
     app.useGlobalPipes(
@@ -30,7 +56,7 @@ async function bootstrap() {
     )
 
     await logService.debug(
-        `Server started on port ${port}`,
+        `Server started on port ${port} (${env})`,
         LogCategoryType.DB,
         {
             port: port,
@@ -39,7 +65,12 @@ async function bootstrap() {
     )
 
     await app.listen(port)
+    Logger.log(`Server running in (${env}) environment`, 'Bootstrap')
     Logger.log(`Server running on http://localhost:${port}`, 'Bootstrap')
+    Logger.log(
+        `CORS enabled for origins: ${configService.get<string>('CORS_ORIGIN')}`,
+        'Bootstrap'
+    )
 }
 
 bootstrap()

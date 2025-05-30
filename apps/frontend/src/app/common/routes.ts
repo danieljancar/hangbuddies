@@ -1,10 +1,10 @@
 const BASE_ROUTES = {
     HOME: '',
-    DASHBOARD: '/dashboard',
-    BLOG: '/blog',
-    ABOUT: '/about',
-    SURVEY: '/survey',
-    LEGAL: '/legal',
+    DASHBOARD: 'dashboard',
+    BLOG: 'blog',
+    ABOUT: 'about',
+    SURVEY: 'survey',
+    LEGAL: 'legal',
 }
 
 const SURVEY_ROUTES = {
@@ -20,13 +20,6 @@ const MORE_ROUTES = {
     CONTACT: '/contact',
 }
 
-const LEGAL_ROUTES = {
-    TERMS: `${BASE_ROUTES.LEGAL}/terms`,
-    PRIVACY: `${BASE_ROUTES.LEGAL}/privacy`,
-    COOKIES: `${BASE_ROUTES.LEGAL}/cookies`,
-    COC: `${BASE_ROUTES.LEGAL}/code-of-conduct`,
-}
-
 export const APP_ROUTES = {
     HOME: {
         LANDING: BASE_ROUTES.HOME,
@@ -37,12 +30,22 @@ export const APP_ROUTES = {
     },
     BLOG: {
         OVERVIEW: BASE_ROUTES.BLOG,
-        DETAIL: (slug: string) => `${BASE_ROUTES.BLOG}/${slug}`,
+        DETAIL: (slug: string) => `/${BASE_ROUTES.BLOG}/${slug}`,
+        TAG: (tag: string) => `/${BASE_ROUTES.BLOG}?t=${tag}`,
     },
     ABOUT: {
         LANDING: BASE_ROUTES.ABOUT,
     },
     SURVEY: SURVEY_ROUTES,
     MORE: MORE_ROUTES,
-    LEGAL: LEGAL_ROUTES,
+    LEGAL: {
+        OVERVIEW: BASE_ROUTES.LEGAL,
+        DETAIL: (file: string) => `${BASE_ROUTES.LEGAL}/${file}`,
+        FILES: {
+            PRIVACY: 'privacy',
+            TERMS: 'terms',
+            COOKIES: 'cookies',
+            COC: 'coc',
+        },
+    },
 }

@@ -1,0 +1,126 @@
+<form [formGroup]="form" class="create-survey">
+    <!-- Details -->
+    <section class="create-survey__details">
+        <h2 class="create-survey__heading">Details</h2>
+        <div class="create-survey__details-list">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input
+                    matInput
+                    formControlName="title"
+                    placeholder="Your title…"
+                    required
+                />
+                @if (
+                    form.get('title')?.hasError('required') &&
+                    form.get('title')?.touched
+                ) {
+                    <mat-error>Title is required</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea
+                    matInput
+                    formControlName="description"
+                    placeholder="Your description…"
+                ></textarea>
+            </mat-form-field>
+        </div>
+    </section>
+
+    <!-- Questions -->
+    <section class="create-survey__questions" formArrayName="questions">
+        <h2 class="create-survey__heading">Questions</h2>
+        <div
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+            class="create-survey__list"
+        >
+            @for (
+                question of questions.controls;
+                track question.get('order')?.value
+            ) {
+                <div
+                    cdkDrag
+                    [formGroupName]="$index"
+                    class="create-survey__item"
+                >
+                    <button
+                        mat-icon-button
+                        cdkDragHandle
+                        class="create-survey__drag-handle"
+                    >
+                        <mat-icon>drag_indicator</mat-icon>
+                    </button>
+
+                    <div class="create-survey__field">
+                        @switch (question.get('type')?.value) {
+                            @case ('text') {
+                                <app-text-question [group]="form" />
+                                @if (
+                                    question
+                                        .get('label')
+                                        ?.hasError('required') &&
+                                    question.get('label')?.touched
+                                ) {
+                                    <mat-error
+                                        >Question text is required
+                                    </mat-error>
+                                }
+                            }
+                            @default {
+                                <!-- other types here -->
+                            }
+                        }
+                    </div>
+
+                    <button
+                        mat-icon-button
+                        color="warn"
+                        class="create-survey__remove"
+                        (click)="removeQuestion($index)"
+                    >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <mat-divider />
+            }
+        </div>
+
+        <div class="create-survey__add">
+            <button
+                mat-stroked-button
+                type="button"
+                (click)="openAddQuestionSheet()"
+            >
+                <mat-icon>add</mat-icon>
+                Add Question
+            </button>
+        </div>
+    </section>
+
+    <!-- Actions -->
+    <div class="create-survey__wrapper-actions">
+        <button
+            mat-stroked-button
+            type="button"
+            (click)="discard()"
+            [disabled]="!hasUnsavedChanges()"
+        >
+            <mat-icon>cancel</mat-icon>
+            Discard
+        </button>
+        <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            (click)="review()"
+            [disabled]="form.invalid || !hasQuestions()"
+        >
+            <mat-icon>check</mat-icon>
+            Review
+        </button>
+    </div>
+</form>

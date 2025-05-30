@@ -11,6 +11,10 @@ on:
             - 'apps/frontend/**'
     workflow_dispatch:
 
+concurrency:
+    group: deployment
+    cancel-in-progress: true
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -76,7 +80,7 @@ jobs:
                     rm devops/.env
                     echo "${{ secrets.DEPLOYMENT_ENV }}" > devops/.env
                     echo "Created .env file on server from repository secret"
-                    docker build -t hangbuddies/backend:dev apps/backend/ --no-cache
+                    docker build -t hangbuddies/frontend:dev -f apps/frontend/dev-dockerfile --no-cache apps/frontend/
                     cd devops
                     docker-compose down
                     docker-compose up -d
