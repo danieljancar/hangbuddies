@@ -21,12 +21,7 @@ async function bootstrap() {
     const deviceService = app.get(DeviceService)
 
     app.enableCors({
-        origin: configService.get<string>('CORS_ORIGIN') || [
-            'http://localhost:4200',
-            'https://dev.hangbuddies.com',
-            'https://stage.hangbuddies.com',
-            'https://hangbuddies.com',
-        ],
+        origin: '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
         preflightContinue: false,
