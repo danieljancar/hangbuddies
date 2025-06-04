@@ -112,7 +112,7 @@ jobs:
                   EOF
 
             - name: Run seeder (if changed)
-              if: steps.check_frontend.outputs.seeder_changed == 'true'
+              if: steps.check_factory.outputs.seeder_changed == 'true'
               run: |
                   echo "Deploying Frontend..."
                   ssh server << EOF
