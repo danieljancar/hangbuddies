@@ -13,8 +13,12 @@ export async function createBlog(
                 description: faker.lorem.paragraph(),
                 content: generateMarkdownContent(),
                 tags: [
-                    faker.lorem.word(),
-                    faker.helpers.arrayElement(['tag1', 'tag2', 'tag3']),
+                    faker.helpers.arrayElement([
+                        'tag1',
+                        'tag2',
+                        'tag3',
+                        'tag4',
+                    ]),
                 ],
                 author: faker.person.fullName(),
             })
