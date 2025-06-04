@@ -18,6 +18,7 @@ export async function createBlog(
                         'tag2',
                         'tag3',
                         'tag4',
+                        'tag5',
                     ]),
                 ],
                 author: faker.person.fullName(),
