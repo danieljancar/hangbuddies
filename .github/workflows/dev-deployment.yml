@@ -116,6 +116,7 @@ jobs:
               run: |
                   echo "running seeder..."
                   ssh server << EOF
+                    cd ${{ secrets.DEV_DEPLOYMENT_DIR }}/apps/backend
                     git pull
                     npm i
                     npm run seed:dev
