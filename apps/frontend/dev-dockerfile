@@ -1,12 +1,13 @@
-# Stage 1: Build 
+# Stage 1: Build
 FROM node:latest as builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+RUN npm run seed:dev
 COPY . .
 RUN npm run build --configuration=dev
 
-# Stage 2: Serve 
+# Stage 2: Serve
 FROM nginx:alpine
 COPY --from=builder /app/dist/frontend/browser /usr/share/nginx/html
 EXPOSE 80
