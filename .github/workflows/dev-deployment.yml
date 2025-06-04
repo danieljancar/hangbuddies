@@ -116,12 +116,7 @@ jobs:
               run: |
                   echo "running seeder..."
                   ssh server << EOF
-                    cd ${{ secrets.DEV_DEPLOYMENT_DIR }}/apps/backend
-                      export NVM_DIR="$HOME/.nvm"
-                      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-                      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
                     git pull
-                    nvm use 22
                     npm i
                     npm run seed:dev
                     rm -r node_modules
