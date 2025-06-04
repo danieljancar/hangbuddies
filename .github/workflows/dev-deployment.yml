@@ -42,6 +42,15 @@ jobs:
                     echo "frontend_changed=false" >> $GITHUB_OUTPUT
                   fi
 
+            - name: Check if Seeder files changed
+              id: check_factory
+              run: |
+                  if git diff --name-only HEAD^ HEAD | grep '^apps/backend/scripts/seed/'; then
+                    echo "seeder_changed=true" >> $GITHUB_OUTPUT
+                  else
+                    echo "seeder_changed=false" >> $GITHUB_OUTPUT
+                  fi
+
             - name: Set up SSH Agent and Key
               uses: webfactory/ssh-agent@v0.8.0
               with:
@@ -100,4 +109,17 @@ jobs:
                     cd devops
                     docker-compose down
                     docker-compose up -d
+                  EOF
+
+            - name: Run seeder (if changed)
+              if: steps.check_frontend.outputs.seeder_changed == 'true'
+              run: |
+                  echo "Deploying Frontend..."
+                  ssh server << EOF
+                    cd ${{ secrets.DEV_DEPLOYMENT_DIR }}/apps/backend
+                    git pull
+                    nvm use 22
+                    npm i
+                    npm run seed:dev
+                    rm -r node_modules
                   EOF
