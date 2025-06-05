@@ -84,7 +84,7 @@ npm run install:all # Install all dependencies in the project (submodules)
 ```
 
 > [!Important]
-> Make sure you run `npm install:all` (Node > 20) before doing any work, so all tools and hooks are working.
+> Make sure you run `npm run install:all` (Node > 20) at root before doing any work, so all tools and hooks are working.
 
 ## Configuration
 
