@@ -102,8 +102,8 @@ We have multiple live previews of different environments. You can find them in t
 
 ### Development (Pre-Staging/active development)
 
-- **Frontend**: [https://dev.hangbuddies.com](https://dev.mrbeast.ch)
-- **Backend**: [https://api-dev.hangbuddies.com](https://api-dev.mrbeast.ch)
+- **Frontend**: [https://dev.hangbuddies.com](https://dev.hangbuddies.com)
+- **Backend**: [https://api-dev.hangbuddies.com](https://api-dev.hangbuddies.com)
 
 > [!Note]
 > The environments above are hosting the latest `staging` and `develop` branches. The `staging` branch is the latest
