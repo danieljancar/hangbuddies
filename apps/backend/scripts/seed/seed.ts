@@ -15,6 +15,7 @@ import { faker } from '@faker-js/faker'
 
 const DEVICE_COUNT = faker.number.int({ min: 30, max: 50 })
 const CREATORS_COUNT = faker.number.int({ min: 2, max: 5 })
+const BLOG_COUNT = faker.number.int({ min: 15, max: 20 })
 
 async function seed(): Promise<void> {
     const app = await NestFactory.createApplicationContext(AppModule)
@@ -29,6 +30,7 @@ async function seed(): Promise<void> {
 
     const deviceService = app.get(DeviceService)
     const surveyService = app.get(SurveyService)
+    const blogService = app.get(BlogService)
 
     const devices = await createDevices(deviceService, DEVICE_COUNT)
     Logger.debug(`${devices.length} devices created`, 'SeedScript')
@@ -47,8 +49,7 @@ async function seed(): Promise<void> {
     const responses = await createResponses(surveyService, surveys, devices)
     Logger.debug(`${responses.length} responses created`, 'SeedScript')
 
-    const blogService = app.get(BlogService)
-    const blogs = await createBlog(blogService, 100)
+    const blogs = await createBlog(blogService, BLOG_COUNT)
     Logger.debug(`${blogs.length} blog posts created`, 'SeedScript')
 
     await app.close()

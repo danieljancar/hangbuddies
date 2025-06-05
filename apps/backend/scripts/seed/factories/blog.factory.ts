@@ -39,13 +39,13 @@ ${faker.lorem.paragraph()}
 **${faker.lorem.words(2)}**: ${faker.lorem.sentence()}  
 *${faker.lorem.words(2)}* — ${faker.lorem.sentence()}
 \n\n
-### Liste
+### Unordered List
 
 - ${faker.lorem.sentence()}
 - ${faker.lorem.sentence()}
 - ${faker.lorem.sentence()}
 \n\n
-### Geordnete Liste
+### Ordered List
 
 1. ${faker.lorem.sentence()}
 2. ${faker.lorem.sentence()}
@@ -54,7 +54,7 @@ ${faker.lorem.paragraph()}
 > ${faker.lorem.sentence()}
 
 \`\`\`js
-// Beispielcode
+// Code
 function greet(name) {
   return 'Hello, ' + name + '!';
 }
