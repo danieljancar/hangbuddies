@@ -10,9 +10,10 @@ import { DeviceService } from './modules/device/device.service'
 import { LogCategoryType } from './utils/logger/types/log.types'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
+import { NestExpressApplication } from '@nestjs/platform-express'
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule)
+    const app = await NestFactory.create<NestExpressApplication>(AppModule)
     const configService = app.get(ConfigService)
     const port: number = configService.get<number>('PORT') || 3000
     const env: string = configService.get<string>('NODE_ENV') || 'development'
@@ -25,16 +26,15 @@ async function bootstrap() {
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
         preflightContinue: false,
-        allowHeaders:
-            'Content-Type, Accept, Authorization, X-XSRF-TOKEN, x-device-id',
     })
 
     app.use(helmet())
-
+    app.set('trust proxy', 1)
     app.use(
         rateLimit({
             windowMs: 60 * 1000, // 1 minute
             limit: 10000, // Limit each IP to 10,000 requests per windowMs
+            legacyHeaders: true,
         })
     )
 
