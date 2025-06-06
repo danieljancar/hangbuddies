@@ -16,12 +16,11 @@ import { BlogModule } from './modules/blog/blog.module'
                 '.env',
             ],
         }),
-
         ThrottlerModule.forRoot({
             throttlers: [
                 {
-                    ttl: 10000000, // 10'000 seconds
-                    limit: 1000, // 1000 requests per 10'000 seconds
+                    ttl: 10000, // 10 seconds
+                    limit: 50, // 10 requests per 10 seconds
                 },
             ],
         }),
