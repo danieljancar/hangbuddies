@@ -20,8 +20,8 @@ import { BlogModule } from './modules/blog/blog.module'
         ThrottlerModule.forRoot({
             throttlers: [
                 {
-                    ttl: 10000,
-                    limit: 10,
+                    ttl: 10000, // 10 seconds
+                    limit: 10000, // 1000 requests per 10 seconds
                 },
             ],
         }),
