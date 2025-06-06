@@ -4,6 +4,7 @@ import { HomeComponent } from './features/home/home.component'
 import { LANDING_META } from './common/meta.constants'
 import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail.component'
 import { ViewSurveyPageComponent } from './features/home/view-survey/view-survey-page.component'
+import { AboutPageComponent } from './features/about/about-page.component'
 
 export const routes: Routes = [
     {
@@ -21,5 +22,19 @@ export const routes: Routes = [
     {
         path: 'survey/:id',
         component: ViewSurveyPageComponent,
+    },
+    {
+        path: 'about',
+        component: AboutPageComponent,
+        data: {
+            metaTitle: 'Über HangBuddies',
+            metaTags: [
+                {
+                    name: 'description',
+                    content:
+                        'HangBuddies ist eine Open-Source-App für schnelle, unkomplizierte Umfragen und Terminabstimmungen – ohne Registrierung.',
+                },
+            ],
+        },
     },
 ]

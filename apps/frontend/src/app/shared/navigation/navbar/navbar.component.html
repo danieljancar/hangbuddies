@@ -64,7 +64,7 @@
                 </a>
                 <a
                     [closeDrawer]="drawer"
-                    [routerLink]="APP_ROUTES.ABOUT.LANDING"
+                    [routerLink]="APP_ROUTES.ABOUT.LANDING || '/about'"
                     mat-button
                     routerLinkActive="navbar__nav-button--active"
                 >
@@ -151,7 +151,7 @@
                 </a>
                 <a
                     [closeDrawer]="drawer"
-                    [routerLink]="APP_ROUTES.ABOUT.LANDING"
+                    [routerLink]="APP_ROUTES.ABOUT.LANDING || '/about'"
                     mat-button
                     routerLinkActive="navbar__nav-button--active"
                 >
