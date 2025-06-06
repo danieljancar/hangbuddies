@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core'
-import {
-    CombinedSurvey,
-    CombinedSurveyQuestion,
-} from '../../../../core/survey.service'
+import { CombinedSurveyQuestion } from '../../../../core/survey.service'
 import { MatProgressBar } from '@angular/material/progress-bar'
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card'
 import { DecimalPipe } from '@angular/common'
