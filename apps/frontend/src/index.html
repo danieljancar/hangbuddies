@@ -8,8 +8,12 @@
 
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self'; connect-src 'self' https://api-dev.hangbuddies.com https://api-stage.hangbuddies.com https://hangbuddies.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com;"
+            content="default-src 'self'; script-src 'self'; connect-src 'self' https://api-dev.hangbuddies.com https://api-stage.hangbuddies.com https://hangbuddies.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src * data:;"
         />
+
+        <link href="https://api-dev.hangbuddies.com" rel="preconnect" />
+        <link href="https://api-stage.hangbuddies.com" rel="preconnect" />
+        <link href="https://api.hangbuddies.com" rel="preconnect" />
 
         <link href="favicon.ico" rel="icon" type="image/x-icon" />
         <link
