@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { LegalDocument } from '../../types/legal.type'
-import { LegalMarkdownRendererComponent } from '../legal/legal-markdown-renderer/legal-markdown-renderer.component'
-
 @Component({
     selector: 'app-about-page',
     standalone: true,
