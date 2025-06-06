@@ -2,84 +2,82 @@
     <h1>{{ mockSurvey.title }}</h1>
     <p>{{ mockSurvey.description }}</p>
 
-    <div class="question-block" *ngIf="mockSurvey.questions[0] as q1">
-        <h2>{{ q1.text }}</h2>
-        <div class="answers-list">
-            <label>Answers:</label>
-            <div>
-                <button
-                    class="answer-name"
-                    (click)="
-                        toggleOtherAnswer(mockSurvey.answers[0].respondent)
-                    "
-                >
-                    {{ mockSurvey.answers[0].respondent.split(' ')[0] }} (You)
-                </button>
-                <div
-                    class="answer-content"
-                    *ngIf="
-                        expandedOtherAnswer === mockSurvey.answers[0].respondent
-                    "
-                >
-                    <span>{{ mockSurvey.answers[0].answers[0].value }}</span>
+    @for (question of mockSurvey.questions; track question.id) {
+        <div class="question-block">
+            <h2>{{ question.text }}</h2>
+            @if (question.type === 'text') {
+                <div class="answers-list">
+                    <label>Answers:</label>
+                    @for (
+                        answer of mockSurvey.answers;
+                        track answer.respondent
+                    ) {
+                        <div>
+                            <button
+                                class="answer-name"
+                                (click)="toggleOtherAnswer(answer.respondent)"
+                            >
+                                {{
+                                    answer.respondent ===
+                                    mockSurvey.answers[0].respondent
+                                        ? answer.respondent.split(' ')[0] +
+                                          ' (You)'
+                                        : answer.respondent.split(' ')[0]
+                                }}
+                            </button>
+                            @if (expandedOtherAnswer === answer.respondent) {
+                                <div class="answer-content">
+                                    <span>{{
+                                        getAnswer(
+                                            answer.answers,
+                                            question.id,
+                                            question.type
+                                        )
+                                    }}</span>
+                                </div>
+                            }
+                        </div>
+                    }
                 </div>
-            </div>
-            <div
-                *ngFor="
-                    let other of getOtherAnswers(
-                        q1.id,
-                        mockSurvey.answers[0].respondent
-                    )
-                "
-            >
-                <button
-                    class="answer-name"
-                    (click)="toggleOtherAnswer(other.respondent)"
-                >
-                    {{ other.firstName }}
-                </button>
-                <div
-                    class="answer-content"
-                    *ngIf="expandedOtherAnswer === other.respondent"
-                >
-                    <span>{{ other.answer }}</span>
+            }
+            @if (question.type === 'single') {
+                <div class="pie-chart">
+                    <svg width="200" height="200" viewBox="0 0 32 32">
+                        <circle r="16" cx="16" cy="16" fill="#eee" />
+                        @for (opt of question.options; track $index) {
+                            @if (getOptionStats(question.id, opt) > 0) {
+                                <path
+                                    [attr.d]="
+                                        describeArc(
+                                            16,
+                                            16,
+                                            16,
+                                            getPieStart(question, $index),
+                                            getPieEnd(question, $index)
+                                        )
+                                    "
+                                    [attr.fill]="getPieColor($index)"
+                                    stroke="#fff"
+                                    stroke-width="0.5"
+                                />
+                            }
+                        }
+                    </svg>
+                    <div class="pie-legend">
+                        @for (opt of question.options; track $index) {
+                            <div>
+                                <span
+                                    class="color"
+                                    [style.background]="getPieColor($index)"
+                                ></span>
+                                {{ opt }} ({{
+                                    getOptionStats(question.id, opt)
+                                }}%)
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
-    </div>
-
-    <div class="question-block" *ngIf="mockSurvey.questions[1] as q2">
-        <h2>{{ q2.text }}</h2>
-        <div class="pie-chart">
-            <svg width="200" height="200" viewBox="0 0 32 32">
-                <circle r="16" cx="16" cy="16" fill="#eee" />
-                <ng-container *ngFor="let opt of q2.options; let i = index">
-                    <path
-                        *ngIf="getOptionStats(q2.id, opt) > 0"
-                        [attr.d]="
-                            describeArc(
-                                16,
-                                16,
-                                16,
-                                getPieStart(q2, i),
-                                getPieEnd(q2, i)
-                            )
-                        "
-                        [attr.fill]="getPieColor(i)"
-                        stroke="#fff"
-                        stroke-width="0.5"
-                    />
-                </ng-container>
-            </svg>
-            <div class="pie-legend">
-                <div *ngFor="let opt of q2.options; let i = index">
-                    <span
-                        class="color"
-                        [style.background]="getPieColor(i)"
-                    ></span>
-                    {{ opt }} ({{ getOptionStats(q2.id, opt) }}%)
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
