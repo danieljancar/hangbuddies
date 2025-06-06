@@ -8,11 +8,11 @@ import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { DeviceInterceptor } from './common/interceptors/device.interceptor'
 import { DeviceService } from './modules/device/device.service'
 import { LogCategoryType } from './utils/logger/types/log.types'
-import { NestExpressApplication } from '@nestjs/platform-express'
 import helmet from 'helmet'
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule)
+    // <NestExpressApplication>
+    const app = await NestFactory.create(AppModule)
     const configService = app.get(ConfigService)
     const port: number = configService.get<number>('PORT') || 3000
     const env: string = configService.get<string>('NODE_ENV') || 'development'
@@ -28,7 +28,7 @@ async function bootstrap() {
     })
 
     app.use(helmet())
-    app.set('trust proxy', 'loopback')
+    // app.set('trust proxy', 'loopback')
 
     app.useGlobalFilters(new AllExceptionsFilter(logService))
     app.useGlobalPipes(

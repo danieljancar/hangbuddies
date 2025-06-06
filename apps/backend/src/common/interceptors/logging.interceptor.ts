@@ -38,6 +38,7 @@ export class LoggingInterceptor implements NestInterceptor {
                             url: request?.url,
                             query: request?.query,
                             params: request?.params,
+                            headers: request?.headers,
                         }
                     )
                     .catch(async (err) => {

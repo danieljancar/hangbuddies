@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
+import { ThrottlerGuard } from '@nestjs/throttler'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
@@ -16,14 +16,14 @@ import { BlogModule } from './modules/blog/blog.module'
                 '.env',
             ],
         }),
-        ThrottlerModule.forRoot({
-            throttlers: [
-                {
-                    ttl: 10000, // 10 seconds
-                    limit: 50, // 10 requests per 10 seconds
-                },
-            ],
-        }),
+        /*        ThrottlerModule.forRoot({
+                    throttlers: [
+                        {
+                            ttl: 10000, // 10 seconds
+                            limit: 50, // 50 requests per 10 seconds
+                        },
+                    ],
+                }),*/
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
