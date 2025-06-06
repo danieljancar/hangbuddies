@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common'
-import { ThrottlerGuard } from '@nestjs/throttler'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
@@ -40,10 +39,10 @@ import { BlogModule } from './modules/blog/blog.module'
     controllers: [AppController],
     providers: [
         AppService,
-        {
-            provide: 'APP_GUARD',
-            useClass: ThrottlerGuard,
-        },
+        /*        {
+                    provide: 'APP_GUARD',
+                    useClass: ThrottlerGuard,
+                },*/
     ],
 })
 export class AppModule {}
