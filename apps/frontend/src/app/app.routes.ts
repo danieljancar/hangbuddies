@@ -7,6 +7,7 @@ import { BlogDetailComponent } from './features/blog/blog-detail/blog-detail.com
 import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail.component'
 import { LANDING_META, SURVEY_META } from './common/meta.constants'
 import { CreateSurveyUnsavedChangesGuard } from './shared/guards/create-survey-unsaved-changes.guard'
+import { DetailSurveyComponent } from './features/survey/detail-survey/detail-survey.component'
 
 export const routes: Routes = [
     {
@@ -36,15 +37,28 @@ export const routes: Routes = [
         component: LegalDetailComponent,
     },
     {
-        path: APP_ROUTES.SURVEY.CREATE,
-        loadComponent: () =>
-            import(
-                './features/survey/create-survey/create-survey.component'
-            ).then((m) => m.CreateSurveyComponent),
-        data: {
-            metaTitle: SURVEY_META.CREATE_SURVEY.metaTitle,
-            metaTags: SURVEY_META.CREATE_SURVEY.metaTags,
-        },
-        canDeactivate: [CreateSurveyUnsavedChangesGuard],
+        path: APP_ROUTES.SURVEY.OVERVIEW,
+        children: [
+            {
+                path: APP_ROUTES.SURVEY.CREATE.split('/')[1],
+                loadComponent: () =>
+                    import(
+                        './features/survey/create-survey/create-survey.component'
+                    ).then((m) => m.CreateSurveyComponent),
+                data: {
+                    metaTitle: SURVEY_META.CREATE_SURVEY.metaTitle,
+                    metaTags: SURVEY_META.CREATE_SURVEY.metaTags,
+                },
+                canDeactivate: [CreateSurveyUnsavedChangesGuard],
+            },
+            {
+                path: APP_ROUTES.SURVEY.DETAIL(':id').split('/')[1],
+                component: DetailSurveyComponent,
+            },
+            {
+                path: '**',
+                redirectTo: APP_ROUTES.SURVEY.CREATE.split('/')[1],
+            },
+        ],
     },
 ]

@@ -1,0 +1,84 @@
+<mat-card class="question-card">
+    <mat-card-header class="question-header">
+        <div class="icon-title-wrapper">
+            <mat-icon class="question-icon">
+                {{
+                    question.type === 1
+                        ? 'chat'
+                        : question.type === 2
+                          ? 'radio_button_checked'
+                          : 'check_box'
+                }}
+            </mat-icon>
+            <div class="title-required">
+                <span class="question-title">{{ question.text }}</span>
+                @if (question.isRequired) {
+                    <span class="required">*</span>
+                }
+            </div>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content class="question-content">
+        <!-- Freitextantwort -->
+        @if (question.type === 1) {
+            <mat-form-field appearance="outline" class="full-width">
+                <textarea
+                    matInput
+                    placeholder="Antwort..."
+                    disabled
+                    class="answer-textarea"
+                    rows="10"
+                    [value]="getResponseText(question)"
+                >
+                </textarea>
+            </mat-form-field>
+        }
+
+        <!-- Single Choice -->
+        @if (question.type === 2) {
+            <div class="options-container">
+                @for (option of question.responses; track option) {
+                    <div class="option">
+                        <div class="option-header">
+                            <span class="option-text">{{ option.text }}</span>
+                            <span class="percentage"
+                                >{{
+                                    option.percentage | number: '1.0-0'
+                                }}%</span
+                            >
+                        </div>
+                        <mat-progress-bar
+                            [value]="option.percentage"
+                            mode="determinate"
+                            color="primary"
+                        ></mat-progress-bar>
+                    </div>
+                }
+            </div>
+        }
+
+        <!-- Multiple Choice -->
+        @if (question.type === 3) {
+            <div class="options-container">
+                @for (option of question.responses; track option) {
+                    <div class="option">
+                        <div class="option-header">
+                            <span class="option-text">{{ option.text }}</span>
+                            <span class="percentage"
+                                >{{
+                                    option.percentage | number: '1.0-0'
+                                }}%</span
+                            >
+                        </div>
+                        <mat-progress-bar
+                            [value]="option.percentage"
+                            mode="determinate"
+                            color="accent"
+                        ></mat-progress-bar>
+                    </div>
+                }
+            </div>
+        }
+    </mat-card-content>
+</mat-card>

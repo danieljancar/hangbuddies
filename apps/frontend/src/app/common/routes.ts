@@ -8,6 +8,7 @@ const BASE_ROUTES = {
 }
 
 const SURVEY_ROUTES = {
+    OVERVIEW: BASE_ROUTES.SURVEY,
     DETAIL: (id: string) => `${BASE_ROUTES.SURVEY}/${id}`,
     CREATE: `${BASE_ROUTES.SURVEY}/create`,
 }

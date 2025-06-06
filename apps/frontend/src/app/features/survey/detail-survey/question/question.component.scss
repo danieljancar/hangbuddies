@@ -1,0 +1,98 @@
+@use 'breakpoints' as bp;
+
+.question-card {
+    max-width: 720px;
+    margin: 32px auto;
+    padding: 16px;
+    background-color: #fffbe6;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+    padding-bottom: 0;
+}
+
+.icon-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.question-icon {
+    font-size: 24px;
+    background: gray;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.title-required {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+}
+
+.question-content {
+    margin-top: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.answer-textarea {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 10px;
+    font-style: italic;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option {
+    .option-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .percentage {
+        font-size: 0.85rem;
+        color: #666;
+    }
+}
+
+@media (max-width: map-get(bp.$breakpoints, md)) {
+    .question-card {
+        margin: 16px;
+        padding: 12px;
+    }
+
+    .icon-title-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .question-icon {
+        font-size: 24px;
+        padding: 6px;
+    }
+
+    .title-required {
+        font-size: 1rem;
+    }
+}
