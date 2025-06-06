@@ -39,6 +39,8 @@ services:
         container_name: mongo-${DEPLOYMENT}
         volumes:
             - ./mongodb_data:/data/db
+        ports:
+            - ${EXT_MONGO_PORT}:27017
         environment:
             MONGO_INITDB_DATABASE: hangbuddies
         networks:

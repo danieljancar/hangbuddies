@@ -49,6 +49,7 @@
                     [routerLink]="APP_ROUTES.DASHBOARD.OVERVIEW"
                     mat-button
                     routerLinkActive="navbar__nav-button--active"
+                    disabled
                 >
                     <mat-icon>groups</mat-icon>
                     My Activity
@@ -67,6 +68,7 @@
                     [routerLink]="APP_ROUTES.ABOUT.LANDING || '/about'"
                     mat-button
                     routerLinkActive="navbar__nav-button--active"
+                    disabled
                 >
                     <mat-icon>group</mat-icon>
                     About
@@ -138,6 +140,7 @@
                     [routerLink]="APP_ROUTES.DASHBOARD.OVERVIEW"
                     mat-button
                     routerLinkActive="navbar__nav-button--active"
+                    disabled
                 >
                     My Activity
                 </a>
@@ -154,6 +157,7 @@
                     [routerLink]="APP_ROUTES.ABOUT.LANDING || '/about'"
                     mat-button
                     routerLinkActive="navbar__nav-button--active"
+                    disabled
                 >
                     About
                 </a>
@@ -175,7 +179,9 @@
             </div>
         </mat-toolbar>
 
-        <router-outlet />
+        <div class="content-wrapper">
+            <router-outlet />
+        </div>
 
         <app-footer />
     </mat-sidenav-content>

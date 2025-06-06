@@ -1,0 +1,33 @@
+<div class="faq-short__container">
+    <div class="faq-short__content">
+        <h4 class="faq-short__help-text">Need Help?</h4>
+        <h1 class="faq-short__title">Frequently Asked Questions</h1>
+
+        @for (faq of faqs; track $index) {
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ faq.question }}</mat-panel-title>
+                        <mat-panel-description>{{
+                            faq.summary
+                        }}</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p class="faq-short__answer">{{ faq.answer }}</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+            @if ($index < faqs.length - 1) {
+                <mat-divider />
+            }
+        }
+
+        <p class="faq-short__more-info">
+            Looking for more answers? Visit our
+            <a routerLink="faq" class="link__underline-hover">FAQ page</a> for
+            in-depth explanations.
+        </p>
+    </div>
+
+    <div class="faq-short__image">
+        <img src="/illustrations/faq.svg" alt="FAQ Illustration" />
+    </div>
+</div>

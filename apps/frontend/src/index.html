@@ -2,12 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>HangBuddies</title>
+        <title>HangBuddies — Instant Polls & Date Picks</title>
         <base href="/" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-        <link href="favicon.ico" rel="icon" type="image/x-icon" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'; connect-src 'self' https://api-dev.hangbuddies.com https://api-stage.hangbuddies.com https://hangbuddies.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src * data:;"
+        />
 
+        <link href="https://api-dev.hangbuddies.com" rel="preconnect" />
+        <link href="https://api-stage.hangbuddies.com" rel="preconnect" />
+        <link href="https://api.hangbuddies.com" rel="preconnect" />
+
+        <link href="favicon.ico" rel="icon" type="image/x-icon" />
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
             rel="stylesheet"

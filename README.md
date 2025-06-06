@@ -84,7 +84,7 @@ npm run install:all # Install all dependencies in the project (submodules)
 ```
 
 > [!Important]
-> Make sure you run `npm install:all` (Node > 20) before doing any work, so all tools and hooks are working.
+> Make sure you run `npm run install:all` (Node > 20) at root before doing any work, so all tools and hooks are working.
 
 ## Configuration
 
@@ -102,8 +102,8 @@ We have multiple live previews of different environments. You can find them in t
 
 ### Development (Pre-Staging/active development)
 
-- **Frontend**: [https://dev.mrbeast.ch](https://dev.mrbeast.ch)
-- **Backend**: [https://api-dev.mrbeast.ch](https://api-dev.mrbeast.ch)
+- **Frontend**: [https://dev.hangbuddies.com](https://dev.hangbuddies.com)
+- **Backend**: [https://api-dev.hangbuddies.com](https://api-dev.hangbuddies.com)
 
 > [!Note]
 > The environments above are hosting the latest `staging` and `develop` branches. The `staging` branch is the latest

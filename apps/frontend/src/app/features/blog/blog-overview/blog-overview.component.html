@@ -1,0 +1,51 @@
+<div class="blog-overview">
+    <h1>Insights & Updates</h1>
+    <p>
+        Stay informed with articles on group scheduling, product news, and
+        event-planning tips.
+    </p>
+    <div class="blog-overview__search-container">
+        <div class="blog-overview__searchbar-container">
+            <input
+                type="text"
+                placeholder="Search articles"
+                class="blog-overview__searchbar"
+                (input)="onSearch($event)"
+            />
+        </div>
+        <div class="blog-overview__item-count-lable">
+            {{
+                pagination().itemCount > 0
+                    ? pagination().itemCount + ' articles'
+                    : 'No articles found'
+            }}
+        </div>
+    </div>
+    @if (!isLoading) {
+        <div class="blog-overview__tag-container">
+            @for (tag of this.tags; track tag.id) {
+                <app-blog-tag [tag]="tag" (tagClicked)="onTagClicked($event)" />
+            }
+        </div>
+        <div>
+            <div class="blog-overview__blog-container">
+                @for (blog of blogs; track blog.id) {
+                    <app-blog-post [post]="blog" />
+                    <mat-divider />
+                }
+            </div>
+            <mat-paginator
+                [length]="pagination().itemCount"
+                [pageSize]="pagination().limit"
+                [pageIndex]="pagination().current - 1"
+                [pageSizeOptions]="[5, 10, 20]"
+                (page)="onPageChange($event)"
+            >
+            </mat-paginator>
+        </div>
+    } @else {
+        @for (item of [1, 2, 3, 4]; track $index) {
+            <app-loading-blog-post></app-loading-blog-post>
+        }
+    }
+</div>

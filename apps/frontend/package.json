@@ -6,9 +6,15 @@
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "start": "ng serve",
+        "start:staging": "ng serve --configuration=staging",
         "build": "ng build",
+        "build:staging": "ng build --configuration=staging",
+        "build:prod": "ng build --configuration=production",
+        "build:dev": "ng build --configuration development",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "test:watch": "ng test --watch",
+        "test:ci": "ng test --watch=false --browsers=ChromeHeadless"
     },
     "private": true,
     "license": "MIT",

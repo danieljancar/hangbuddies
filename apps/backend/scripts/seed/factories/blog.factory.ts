@@ -11,14 +11,53 @@ export async function createBlog(
             blogService.create({
                 title: faker.lorem.sentence(),
                 description: faker.lorem.paragraph(),
-                content: faker.lorem.paragraphs(3),
+                content: generateMarkdownContent(),
                 tags: [
-                    faker.lorem.word(),
-                    faker.lorem.word(),
-                    faker.helpers.arrayElement(['tag1', 'tag2', 'tag3']),
+                    faker.helpers.arrayElement([
+                        'tag1',
+                        'tag2',
+                        'tag3',
+                        'tag4',
+                    ]),
                 ],
                 author: faker.person.fullName(),
             })
         )
     )
+}
+
+function generateMarkdownContent(): string {
+    return `
+# ${faker.lorem.sentence()}
+
+${faker.lorem.paragraph()}
+\n\n
+## ${faker.lorem.words(3)}
+
+${faker.lorem.paragraph()}
+
+**${faker.lorem.words(2)}**: ${faker.lorem.sentence()}  
+*${faker.lorem.words(2)}* — ${faker.lorem.sentence()}
+\n\n
+### Unordered List
+
+- ${faker.lorem.sentence()}
+- ${faker.lorem.sentence()}
+- ${faker.lorem.sentence()}
+\n\n
+### Ordered List
+
+1. ${faker.lorem.sentence()}
+2. ${faker.lorem.sentence()}
+3. ${faker.lorem.sentence()}
+
+> ${faker.lorem.sentence()}
+
+\`\`\`js
+// Code
+function greet(name) {
+  return 'Hello, ' + name + '!';
+}
+\`\`\`
+`.trim()
 }

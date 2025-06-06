@@ -5,11 +5,24 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { SurveyModule } from './modules/survey/survey.module'
 import { BlogModule } from './modules/blog/blog.module'
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 
 @Module({
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
+            envFilePath: [
+                `.env.${process.env.NODE_ENV || 'development'}`,
+                '.env',
+            ],
+        }),
+        ThrottlerModule.forRoot({
+            throttlers: [
+                {
+                    ttl: 10000, // 10 seconds
+                    limit: 100, // 1000 requests per 10 seconds
+                },
+            ],
         }),
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
@@ -25,6 +38,12 @@ import { BlogModule } from './modules/blog/blog.module'
         BlogModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [
+        AppService,
+        {
+            provide: 'APP_GUARD',
+            useClass: ThrottlerGuard,
+        },
+    ],
 })
 export class AppModule {}
