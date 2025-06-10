@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable, forkJoin, map, switchMap, catchError, of } from 'rxjs'
 import { LocalStorageService } from '../utils/local-storage.service'
-import {
-    LOCAL_STORAGE_KEYS,
-    LOCAL_STORAGE_PREFIX,
-} from '../common/storage.constants'
+import { LOCAL_STORAGE_KEYS } from '../common/storage.constants'
 import { DeviceIdService } from './device-id.service'
 import { environment } from '../../environments/environment'
 
@@ -66,6 +63,13 @@ export interface CastVoteAnswer {
     answer: string | string[]
 }
 
+export interface BackendDevice {
+    _id: string
+    deviceId: string
+    lastActive: string
+    totalSubmissions: number
+}
+
 @Injectable({ providedIn: 'root' })
 export class SurveyService {
     private readonly API_HOST = `${environment.apiUrl}/surveys`
@@ -96,7 +100,7 @@ export class SurveyService {
         }
 
         return this.deviceIdService.getDeviceFromBackend(deviceId).pipe(
-            switchMap((device: any) => {
+            switchMap((device: BackendDevice) => {
                 return this.getSurveyResponses(surveyId).pipe(
                     map((responses) => {
                         return responses.some(
