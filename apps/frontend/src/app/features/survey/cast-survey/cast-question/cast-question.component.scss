@@ -1,0 +1,80 @@
+@use 'breakpoints' as bp;
+
+.question-card {
+    max-width: 720px;
+    margin: 32px auto;
+    padding: 24px;
+    background-color: #fffbe6;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: map-get(bp.$breakpoints, md)) {
+        margin: 16px;
+        padding: 16px;
+    }
+
+    &__icon-title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        @media (max-width: map-get(bp.$breakpoints, md)) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+    }
+
+    &__icon {
+        font-size: 24px;
+        background-color: gray;
+        color: white;
+        padding: 8px;
+        border-radius: 50%;
+
+        @media (max-width: map-get(bp.$breakpoints, md)) {
+            padding: 6px;
+        }
+    }
+
+    &__title-required {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #333;
+
+        @media (max-width: map-get(bp.$breakpoints, md)) {
+            font-size: 1rem;
+        }
+    }
+
+    &__title {
+        // optional: individuelle Titelgestaltung
+    }
+
+    &__required {
+        color: red;
+        font-weight: bold;
+    }
+
+    &__text-field {
+        width: 100%;
+
+        textarea {
+            background-color: #f2f2f2;
+            border-radius: 8px;
+            padding: 10px;
+            font-style: italic;
+        }
+    }
+
+    &__radio-group,
+    &__checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 16px;
+    }
+}

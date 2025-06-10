@@ -1,0 +1,51 @@
+@if (!hasAlreadyVoted) {
+    <div class="cast-survey">
+        <div class="cast-survey__header">
+            <h1 class="cast-survey__title">{{ survey.title }}</h1>
+            <p class="cast-survey__description">{{ survey.description }}</p>
+
+            <div class="cast-survey__metadata">
+                <span class="cast-survey__metadata-item">
+                    <mat-icon>calendar_today</mat-icon>
+                    {{ survey.createdAt | date: 'short' }}
+                </span>
+                <span class="cast-survey__metadata-item">
+                    <mat-icon>person</mat-icon>
+                    {{ survey.deviceId }}
+                </span>
+            </div>
+
+            <mat-divider></mat-divider>
+        </div>
+        <div class="cast-survey__content">
+            @for (question of survey.questions; track question.id) {
+                <app-cast-question
+                    [question]="question"
+                    (answer)="castVote($event)"
+                ></app-cast-question>
+            }
+
+            <div class="cast-survey__actions">
+                <button
+                    mat-flat-button
+                    color="primary"
+                    (click)="submitVotes()"
+                    [disabled]="!isFinished"
+                >
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+} @else {
+    <div class="cast-survey__already-voted">
+        <h1>You have already voted in this survey.</h1>
+        <p>Thank you for your participation!</p>
+
+        <div class="cast-survey__already-voted-actions">
+            <button mat-flat-button color="primary" (click)="goBack()">
+                Go Back
+            </button>
+        </div>
+    </div>
+}

@@ -9,8 +9,11 @@ const BASE_ROUTES = {
 
 const SURVEY_ROUTES = {
     OVERVIEW: BASE_ROUTES.SURVEY,
-    DETAIL: (id: string) => `${BASE_ROUTES.SURVEY}/${id}`,
     CREATE: `${BASE_ROUTES.SURVEY}/create`,
+    VOTE: (id: string, isLink: boolean = false) =>
+        `${isLink ? BASE_ROUTES.SURVEY + '/' : ''}${id}/vote`,
+    DETAIL: (id: string, isLink: boolean = false) =>
+        `${isLink ? BASE_ROUTES.SURVEY + '/' : ''}${id}`,
 }
 
 const MORE_ROUTES = {

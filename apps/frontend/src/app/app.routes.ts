@@ -8,6 +8,7 @@ import { LegalDetailComponent } from './features/legal/legal-detail/legal-detail
 import { LANDING_META, SURVEY_META } from './common/meta.constants'
 import { CreateSurveyUnsavedChangesGuard } from './shared/guards/create-survey-unsaved-changes.guard'
 import { DetailSurveyComponent } from './features/survey/detail-survey/detail-survey.component'
+import { CastSurveyComponent } from './features/survey/cast-survey/cast-survey.component'
 
 export const routes: Routes = [
     {
@@ -52,7 +53,11 @@ export const routes: Routes = [
                 canDeactivate: [CreateSurveyUnsavedChangesGuard],
             },
             {
-                path: APP_ROUTES.SURVEY.DETAIL(':id').split('/')[1],
+                path: APP_ROUTES.SURVEY.VOTE(':id'),
+                component: CastSurveyComponent,
+            },
+            {
+                path: APP_ROUTES.SURVEY.DETAIL(':id'),
                 component: DetailSurveyComponent,
             },
             {
