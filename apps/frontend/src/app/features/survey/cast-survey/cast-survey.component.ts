@@ -152,6 +152,7 @@ export class CastSurveyComponent implements OnInit {
         try {
             this.router.navigate(['/survey', this.survey.id])
         } catch (error) {
+            console.error('Navigation error:', error)
             this.router.navigate(['/'])
         }
     }
