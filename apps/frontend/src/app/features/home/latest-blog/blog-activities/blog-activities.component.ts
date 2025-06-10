@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon'
 import { APP_ROUTES } from '../../../../common/routes'
 import { MatDivider } from '@angular/material/divider'
 import { MatAnchor } from '@angular/material/button'
-import { BlogService } from '../../../../core/services/blog.service'
+import { BlogService } from '../../../../core/blog.service'
 import { LoadingBlogPostComponent } from '../../../blog/shared/loading-blog-post/loading-blog-post.component'
 
 @Component({

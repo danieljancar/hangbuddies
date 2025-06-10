@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { BlogType } from '../../../types/blog.type'
-import { BlogService } from '../../../core/services/blog.service'
+import { BlogService } from '../../../core/blog.service'
 import { BlogPostComponent } from '../shared/blog-post/blog-post.component'
 import { BlogPaginationResponseType } from '../../../types/blog-pagination-response.type'
 import { MatDivider } from '@angular/material/divider'

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { BlogService } from '../../../core/services/blog.service'
+import { BlogService } from '../../../core/blog.service'
 import { ActivatedRoute, RouterLink } from '@angular/router'
 import { BlogType } from '../../../types/blog.type'
 import { APP_ROUTES } from '../../../common/routes'

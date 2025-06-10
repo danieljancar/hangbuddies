@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { BlogPaginationResponseType } from '../../types/blog-pagination-response.type'
-import { BlogType } from '../../types/blog.type'
-import { BlogTagType } from '../../types/blog-tag.type'
+import { BlogPaginationResponseType } from '../types/blog-pagination-response.type'
+import { BlogType } from '../types/blog.type'
+import { BlogTagType } from '../types/blog-tag.type'
 
 @Injectable({
     providedIn: 'root',
