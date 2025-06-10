@@ -127,6 +127,10 @@ export class CastSurveyComponent implements OnInit {
                         dialogRef.close()
                         this.router.navigate(['/survey', this.survey.id])
                     }
+                    dialogRef.componentInstance.onCancel = () => {
+                        dialogRef.close()
+                        window.location.reload()
+                    }
                 }
             },
             error: (error) => {

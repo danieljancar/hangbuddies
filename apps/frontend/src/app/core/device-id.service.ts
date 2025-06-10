@@ -3,6 +3,8 @@ import { LocalStorageService } from '../utils/local-storage.service'
 import { LOCAL_STORAGE_KEYS } from '../common/storage.constants'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../environments/environment'
+import { BackendDevice } from './survey.service'
+import { Observable } from 'rxjs'
 
 @Injectable({
     providedIn: 'root',
@@ -34,7 +36,7 @@ export class DeviceIdService {
             .substring(2, 9)}`
     }
 
-    getDeviceFromBackend(id: string) {
-        return this.http.get(`${this.API_URL}/${id}`)
+    getDeviceFromBackend(id: string): Observable<BackendDevice> {
+        return this.http.get<BackendDevice>(`${this.API_URL}/${id}`)
     }
 }
