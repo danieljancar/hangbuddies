@@ -149,6 +149,10 @@ export class CastSurveyComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/survey', this.survey.id])
+        try {
+            this.router.navigate(['/survey', this.survey.id])
+        } catch (error) {
+            this.router.navigate(['/'])
+        }
     }
 }
