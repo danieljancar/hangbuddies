@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { CastVoteAnswer } from '../../../../core/survey.service'
+import {
+    CastVoteAnswer,
+    CombinedSurveyQuestion,
+} from '../../../../core/survey.service'
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card'
 import { MatIcon } from '@angular/material/icon'
 import { MatFormField, MatInput } from '@angular/material/input'
@@ -26,7 +29,7 @@ import { FormsModule } from '@angular/forms'
     styleUrl: './cast-question.component.scss',
 })
 export class CastQuestionComponent {
-    @Input() question: any
+    @Input() question: CombinedSurveyQuestion = {} as CombinedSurveyQuestion
     @Output() answer = new EventEmitter<CastVoteAnswer>()
 
     answerValue: string | string[] = []
