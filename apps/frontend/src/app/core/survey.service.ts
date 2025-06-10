@@ -100,7 +100,7 @@ export class SurveyService {
                 return this.getSurveyResponses(surveyId).pipe(
                     map((responses) => {
                         return responses.some(
-                            (response) => response.deviceId === device.deviceId
+                            (response) => response.deviceId === device._id
                         )
                     })
                 )

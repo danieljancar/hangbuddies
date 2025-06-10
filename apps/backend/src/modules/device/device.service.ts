@@ -99,7 +99,7 @@ export class DeviceService {
     async getDevice(deviceId: string): Promise<DevicePartial> {
         const device = await this.deviceModel
             .findOne({ deviceId })
-            .select('deviceId totalSubmissions lastActive -_id')
+            .select('deviceId totalSubmissions lastActive _id')
             .lean<DevicePartial>()
             .exec()
 

@@ -65,6 +65,17 @@
     }
 }
 
+.cast-survey__loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.5rem;
+    color: var(--mat-sys-primary);
+    padding-top: 5rem;
+}
+
 .cast-survey__already-voted {
     display: flex;
     flex-direction: column;

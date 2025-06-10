@@ -1,4 +1,22 @@
-@if (!hasAlreadyVoted) {
+@if (isLoading) {
+    <div class="cast-survey__loading">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Loading survey...</p>
+    </div>
+} @else if (!survey) {
+    <div class="cast-survey__not-found">
+        <h1>Survey Not Found</h1>
+        <p>
+            The survey you are looking for does not exist or has been deleted.
+        </p>
+
+        <div class="cast-survey__not-found-actions">
+            <button mat-flat-button color="primary" (click)="goBack()">
+                Go Back
+            </button>
+        </div>
+    </div>
+} @else if (!hasAlreadyVoted) {
     <div class="cast-survey">
         <div class="cast-survey__header">
             <h1 class="cast-survey__title">{{ survey.title }}</h1>

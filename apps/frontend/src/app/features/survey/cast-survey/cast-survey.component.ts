@@ -15,10 +15,18 @@ import {
     DialogData,
 } from '../../../shared/components/dialog/dialog.component'
 import { MatButton } from '@angular/material/button'
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
 
 @Component({
     selector: 'app-cast-survey',
-    imports: [MatIcon, CastQuestionComponent, MatDivider, DatePipe, MatButton],
+    imports: [
+        MatIcon,
+        CastQuestionComponent,
+        MatDivider,
+        DatePipe,
+        MatButton,
+        MatProgressSpinner,
+    ],
     templateUrl: './cast-survey.component.html',
     standalone: true,
     styleUrl: './cast-survey.component.scss',
