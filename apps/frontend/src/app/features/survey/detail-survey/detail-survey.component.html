@@ -1,0 +1,24 @@
+<div class="detail-survey">
+    <div class="detail-survey__header">
+        <h1 class="detail-survey__title">{{ survey.title }}</h1>
+        <p class="detail-survey__description">{{ survey.description }}</p>
+
+        <div class="detail-survey__metadata">
+            <span class="detail-survey__metadata-item">
+                <mat-icon>calendar_today</mat-icon>
+                {{ survey.createdAt | date: 'short' }}
+            </span>
+            <span class="detail-survey__metadata-item">
+                <mat-icon>person</mat-icon>
+                {{ survey.deviceId }}
+            </span>
+        </div>
+
+        <mat-divider></mat-divider>
+    </div>
+    <div class="detail-survey__content">
+        @for (question of survey.questions; track question.id) {
+            <app-question [question]="question"></app-question>
+        }
+    </div>
+</div>
