@@ -14,7 +14,8 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "test:watch": "ng test --watch",
-        "test:ci": "ng test --watch=false --browsers=ChromeHeadless"
+        "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+        "cypress:open": "cypress open"
     },
     "private": true,
     "license": "MIT",
