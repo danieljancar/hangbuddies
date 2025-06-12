@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Observable, forkJoin, map } from 'rxjs'
+import { Observable, forkJoin, map, switchMap, catchError, of } from 'rxjs'
+import { LocalStorageService } from '../utils/local-storage.service'
+import { LOCAL_STORAGE_KEYS } from '../common/storage.constants'
+import { DeviceIdService } from './device-id.service'
+import { environment } from '../../environments/environment'
 
 export interface BackendSurveyQuestion {
     id: string
@@ -54,17 +58,67 @@ export interface CombinedSurvey extends BackendSurvey {
     responseCount: number
 }
 
+export interface CastVoteAnswer {
+    questionId: string
+    answer: string | string[]
+}
+
+export interface BackendDevice {
+    _id: string
+    deviceId: string
+    lastActive: string
+    totalSubmissions: number
+}
+
 @Injectable({ providedIn: 'root' })
 export class SurveyService {
-    private readonly API_HOST = 'https://api-dev.hangbuddies.com/surveys'
+    private readonly API_HOST = `${environment.apiUrl}/surveys`
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private localstorage: LocalStorageService,
+        private deviceIdService: DeviceIdService
+    ) {}
 
-    getCombinedSurvey(id: string): Observable<CombinedSurvey> {
-        const survey$ = this.http.get<BackendSurvey>(`${this.API_HOST}/${id}`)
-        const responses$ = this.http.get<BackendSurveyResponse[]>(
+    getSurvey(id: string): Observable<BackendSurvey> {
+        return this.http.get<BackendSurvey>(`${this.API_HOST}/${id}`)
+    }
+
+    getSurveyResponses(id: string): Observable<BackendSurveyResponse[]> {
+        return this.http.get<BackendSurveyResponse[]>(
             `${this.API_HOST}/${id}/responses`
         )
+    }
+
+    checkIfDeviceHasVoted(surveyId: string): Observable<boolean> {
+        const deviceId: string | null = this.localstorage.get(
+            LOCAL_STORAGE_KEYS.DEVICE.ID
+        )
+
+        if (!deviceId) {
+            return of(false)
+        }
+
+        return this.deviceIdService.getDeviceFromBackend(deviceId).pipe(
+            switchMap((device: BackendDevice) => {
+                return this.getSurveyResponses(surveyId).pipe(
+                    map((responses) => {
+                        return responses.some(
+                            (response) => response.deviceId === device._id
+                        )
+                    })
+                )
+            }),
+            catchError((error) => {
+                console.error('Error checking device vote:', error)
+                return of(false)
+            })
+        )
+    }
+
+    getCombinedSurvey(id: string): Observable<CombinedSurvey> {
+        const survey$ = this.getSurvey(id)
+        const responses$ = this.getSurveyResponses(id)
 
         return forkJoin([survey$, responses$]).pipe(
             map(([survey, responses]) => {
@@ -155,6 +209,23 @@ export class SurveyService {
                     responseCount: totalResponses,
                 }
             })
+        )
+    }
+
+    submitVotes(
+        surveyId: string,
+        answers: CastVoteAnswer[]
+    ): Observable<BackendSurvey> {
+        return this.http.post<BackendSurvey>(
+            `${this.API_HOST}/${surveyId}/respond`,
+            { answers: answers },
+            {
+                headers: {
+                    'x-device-id':
+                        this.localstorage.get(LOCAL_STORAGE_KEYS.DEVICE.ID) ||
+                        '',
+                },
+            }
         )
     }
 }
