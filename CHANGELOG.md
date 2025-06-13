@@ -1,3 +1,9 @@
+# [1.0.0-beta.3](https://github.com/danieljancar/hangbuddies/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2025-06-13)
+
+### Bug Fixes
+
+- remove typo in seed ([a7cc5f5](https://github.com/danieljancar/hangbuddies/commit/a7cc5f58980eaa00795908e66ec9eef2f0fd9c1b))
+
 # [1.0.0-beta.2](https://github.com/danieljancar/hangbuddies/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2025-06-13)
 
 ### Bug Fixes
