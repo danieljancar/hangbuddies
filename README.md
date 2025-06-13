@@ -7,6 +7,7 @@
 <div align="center">
 
 [![Mockups - Figma](https://img.shields.io/badge/Mockups-Figma-e36631?logo=figma&logoColor=e36631)](https://www.figma.com/design/26m3Y13QluW8Zk6z5qhvRa/HangBuddies?node-id=0-1&t=esKJwF80FX0P2PkB-1)
+![GitHub Release](https://img.shields.io/github/v/release/danieljancar/hangbuddies?include_prereleases)
 
 [![Frontend CI](https://github.com/danieljancar/hangbuddies/actions/workflows/frontend.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/frontend.yml)
 [![Backend CI](https://github.com/danieljancar/hangbuddies/actions/workflows/backend.yml/badge.svg)](https://github.com/danieljancar/hangbuddies/actions/workflows/backend.yml)
