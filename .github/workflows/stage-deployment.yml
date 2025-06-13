@@ -87,7 +87,7 @@ jobs:
                     cd ${{ secrets.STAGE_DEPLOYMENT_DIR }}
                     git pull
                     rm devops/.env
-                    echo "${{ secrets.DEPLOYMENT_ENV }}" > devops/.env
+                    echo "${{ secrets.DEPLOYMENT_ENV_STAGE }}" > devops/.env
                     echo "Created .env file on server from repository secret"
                     docker build -t hangbuddies/backend:stage apps/backend/ --no-cache
                     cd devops
@@ -103,7 +103,7 @@ jobs:
                     cd ${{ secrets.STAGE_DEPLOYMENT_DIR }}
                     git pull
                     rm devops/.env
-                    echo "${{ secrets.DEPLOYMENT_ENV }}" > devops/.env
+                    echo "${{ secrets.DEPLOYMENT_ENV_STAGE }}" > devops/.env
                     echo "Created .env file on server from repository secret"
                     docker build -t hangbuddies/frontend:stage apps/frontend/ --no-cache
                     cd devops
