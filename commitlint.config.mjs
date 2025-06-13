@@ -18,4 +18,5 @@ export default {
             ],
         ],
     },
+    ignores: [(commit) => commit.includes('[skip ci]')],
 }

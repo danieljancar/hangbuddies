@@ -97,8 +97,8 @@ We have multiple live previews of different environments. You can find them in t
 
 ### Staging (Pre-Production)
 
-- **Frontend**: `not available yet`
-- **Backend**: `not available yet`
+- **Frontend**: [https://stage.hangbuddies.com](https://stage.hangbuddies.com)
+- **Backend**: [https://api-stage.hangbuddies.com](https://api-stage.hangbuddies.com)
 
 ### Development (Pre-Staging/active development)
 
