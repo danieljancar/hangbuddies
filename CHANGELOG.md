@@ -1,3 +1,9 @@
+# [1.0.0-beta.2](https://github.com/danieljancar/hangbuddies/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2025-06-13)
+
+### Bug Fixes
+
+- update release branches config ([dc7e5a4](https://github.com/danieljancar/hangbuddies/commit/dc7e5a4e2c215f80d919a6279a0004c5b58969a1))
+
 # 1.0.0-beta.1 (2025-06-13)
 
 ### Bug Fixes
