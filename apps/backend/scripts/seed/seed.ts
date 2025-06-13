@@ -26,7 +26,7 @@ async function seed(): Promise<void> {
 
     const conn = app.get<Connection>(getConnectionToken())
     await conn.dropDatabase()
-    Logger.warn('Database dropped', 'SeedScript')
+    Logger.warn('Database dropped successfully', 'SeedScript')
 
     const deviceService = app.get(DeviceService)
     const surveyService = app.get(SurveyService)
