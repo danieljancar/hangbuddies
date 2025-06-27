@@ -1,6 +1,15 @@
 @use 'breakpoints' as bp;
 
 .single-choice {
+    &__title {
+        display: flex;
+        gap: 1.5rem;
+
+        mat-icon {
+            margin-top: 1rem;
+        }
+    }
+
     &__question-field {
         width: 100%;
         margin-bottom: 1rem;
@@ -23,6 +32,7 @@
     &__option-field {
         flex: 1;
         min-width: 200px;
+        margin-left: 0.5rem;
     }
 
     &__add-option-btn {

@@ -2,35 +2,48 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import { MatIcon } from '@angular/material/icon'
 
 @Component({
     selector: 'app-text-question',
     standalone: true,
-    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIcon],
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <div [formGroup]="group">
-            <mat-form-field appearance="outline" class="question__field">
-                <mat-label>Question</mat-label>
-                <input
-                    matInput
-                    formControlName="label"
-                    placeholder="Your question…"
-                />
-                @if (
-                    group.get('label')?.hasError('required') &&
-                    group.get('label')?.touched
-                ) {
-                    <mat-error>Question text is required</mat-error>
-                }
-            </mat-form-field>
+            <div class="question">
+                <mat-icon>chat</mat-icon>
+                <mat-form-field appearance="outline" class="question__field">
+                    <mat-label>Question</mat-label>
+                    <input
+                        matInput
+                        formControlName="label"
+                        placeholder="Your question…"
+                    />
+                    @if (
+                        group.get('label')?.hasError('required') &&
+                        group.get('label')?.touched
+                    ) {
+                        <mat-error>Question text is required</mat-error>
+                    }
+                </mat-form-field>
+            </div>
         </div>
     `,
     styles: [
         `
-            .question__field {
-                width: 100%;
-                margin: 0;
+            .question {
+                display: flex;
+                gap: 1.5rem;
+
+                mat-icon {
+                    margin-top: 1rem;
+                }
+
+                &__field {
+                    width: 100%;
+                    margin: 0;
+                }
             }
         `,
     ],

@@ -73,10 +73,10 @@ export class SingleChoiceQuestionComponent implements OnInit {
     }
 
     drop(event: CdkDragDrop<FormGroup[]>): void {
-        const optionsArray = this.options
-
-        const prev = optionsArray.at(event.previousIndex)
-        optionsArray.removeAt(event.previousIndex)
-        optionsArray.insert(event.currentIndex, prev)
+        moveItemInArray(
+            this.options.controls,
+            event.previousIndex,
+            event.currentIndex
+        )
     }
 }

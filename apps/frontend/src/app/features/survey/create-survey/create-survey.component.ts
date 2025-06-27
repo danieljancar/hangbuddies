@@ -160,12 +160,13 @@ export class CreateSurveyComponent implements OnInit {
     private addQuestion(type: QuestionType): void {
         const group = this.fb.group({
             type: this.fb.control(type, Validators.required),
-            label: this.fb.control('', Validators.required),
-            options: this.fb.control([]),
+            options: type === 'text' ? this.fb.control([]) : [],
             isRequired: this.fb.control(false),
             order: this.fb.control(this.questions.length),
         })
         this.questions.push(group)
+
+        console.log(this.questions)
     }
 
     private mapType(type: QuestionType): QuestionTypeEnum {
