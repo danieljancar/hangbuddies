@@ -1,0 +1,42 @@
+@use 'breakpoints' as bp;
+
+.single-choice {
+    &__question-field {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    &__options-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    &__option-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    &__option-field {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    &__add-option-btn {
+        margin-top: 0.5rem;
+    }
+
+    @media (max-width: map-get(bp.$breakpoints, md)) {
+        &__option-item {
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        &__option-field {
+            width: 100%;
+        }
+    }
+}

@@ -37,6 +37,8 @@ import {
 } from '../../../types/survey.types'
 import { QuestionTypeSheetComponent } from './question-type-sheet/question-type-sheet.component'
 import { TextQuestionComponent } from './question-forms/text-question/text-question.component'
+import { SingleChoiceQuestionComponent } from './question-forms/single-choice-question/single-choice-question.component'
+import { MultipleChoiceQuestionComponent } from './question-forms/multiple-choice-question/multiple-choice-question.component'
 
 @Component({
     selector: 'app-create-survey',
@@ -52,6 +54,8 @@ import { TextQuestionComponent } from './question-forms/text-question/text-quest
         MatDialogModule,
         DragDropModule,
         TextQuestionComponent,
+        SingleChoiceQuestionComponent,
+        MultipleChoiceQuestionComponent,
     ],
     templateUrl: './create-survey.component.html',
     styleUrls: ['./create-survey.component.scss'],

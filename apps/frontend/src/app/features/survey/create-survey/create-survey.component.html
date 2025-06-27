@@ -70,6 +70,32 @@
                                     </mat-error>
                                 }
                             }
+                            @case ('single-choice') {
+                                <app-single-choice-question [group]="form" />
+                                @if (
+                                    question
+                                        .get('label')
+                                        ?.hasError('required') &&
+                                    question.get('label')?.touched
+                                ) {
+                                    <mat-error
+                                        >Question text is required
+                                    </mat-error>
+                                }
+                            }
+                            @case ('multiple-choice') {
+                                <app-multiple-choice-question [group]="form" />
+                                @if (
+                                    question
+                                        .get('label')
+                                        ?.hasError('required') &&
+                                    question.get('label')?.touched
+                                ) {
+                                    <mat-error
+                                        >Question text is required
+                                    </mat-error>
+                                }
+                            }
                             @default {
                                 <!-- other types here -->
                             }

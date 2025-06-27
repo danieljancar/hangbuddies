@@ -1,1 +1,56 @@
-<p>single-choice-question works!</p>
+<div [formGroup]="group" class="single-choice">
+    <mat-form-field appearance="outline" class="single-choice__question-field">
+        <mat-label>Question</mat-label>
+        <input matInput formControlName="label" placeholder="Your question…" />
+        @if (
+            group.get('label')?.hasError('required') &&
+            group.get('label')?.touched
+        ) {
+            <mat-error>Question text is required</mat-error>
+        }
+    </mat-form-field>
+
+    <div
+        formArrayName="options"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        class="single-choice__options-list"
+    >
+        @for (option of options.controls; track option; let i = $index) {
+            <div [formGroupName]="i" cdkDrag class="single-choice__option-item">
+                <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+
+                <mat-form-field
+                    appearance="outline"
+                    class="single-choice__option-field"
+                >
+                    <mat-label>Option {{ i + 1 }}</mat-label>
+                    <input
+                        matInput
+                        formControlName="label"
+                        placeholder="Answer option…"
+                    />
+                </mat-form-field>
+
+                <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="removeOption(i)"
+                    type="button"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        }
+    </div>
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="addOption()"
+        type="button"
+        class="single-choice__add-option-btn"
+    >
+        Add Option
+    </button>
+</div>

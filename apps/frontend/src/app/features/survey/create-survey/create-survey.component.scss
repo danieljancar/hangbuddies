@@ -1,9 +1,4 @@
-.create-survey__wrapper {
-    &-actions {
-        display: flex;
-        justify-content: space-between;
-    }
-}
+@use 'breakpoints' as bp;
 
 .create-survey {
     margin: 3rem 6rem;
@@ -30,7 +25,7 @@
 
     &__item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 0.75rem;
         margin-top: 1rem;
     }
@@ -38,12 +33,11 @@
     &__drag-handle,
     &__remove {
         flex: 0 0 auto;
-        align-self: center;
+        margin-top: 0.5rem;
     }
 
     &__field {
         flex: 1 1 auto;
-        margin: 0;
     }
 
     &__add {
@@ -55,5 +49,22 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    &__wrapper {
+        &-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media (max-width: map-get(bp.$breakpoints, md)) {
+    .create-survey {
+        margin: 1rem;
+
+        &__field {
+            width: 100%;
+        }
     }
 }
